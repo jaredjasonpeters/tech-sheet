@@ -1,35 +1,41 @@
-import React from 'react'
+import React, {Component} from 'react'
 import styled, {css} from 'styled-components'
 import ToleranceTable from './tolerance_table'
 
-const DataEntry = (props) => {
-    return (
-        <Form>
-            <SectionHeader> HEADER </SectionHeader>
-            <Label>Variety Name: </Label>
-            <Input type='text' name="variety_name_input"/>
+class DataEntry extends Component {
+    constructor(props) {
+        super(props)
+    }
 
-            <Label>Species Name: </Label>
-            <Input type='text' name= "variety_species_input" />
-            
-            <SectionHeader> TOLERANCE TABLE </SectionHeader>
-            <ToleranceTable/>
-
-            <SectionHeader> CONTENT </SectionHeader>
-
-            <Label> Quick Facts: </Label>
-            <TextArea name='quick_facts' />
-
-            <Label> Adaptation: </Label>
-            <TextArea name='adaptation' />
-
-            <Label>Variety Name: </Label>
-            <Input type='text' data="variety_name"/>
-
-            <SubmitButton name='save_button'> Save </SubmitButton>
-            <SubmitButton reset='true' name='reset_button'> Reset </SubmitButton>
-        </Form>
-    )
+    render() {
+        return (
+            <Form>
+                <SectionHeader className='header'> HEADER </SectionHeader>
+                <Label>Variety Name: </Label>
+                    <Input type='text' name="variety_name_input"/>
+    
+                <Label>Species Name: </Label>
+                    <Input type='text' name= "variety_species_input" />
+                
+                <SectionHeader> TOLERANCE TABLE </SectionHeader>
+                    <ToleranceTable/>
+                <SectionHeader> CONTENT </SectionHeader>
+    
+                <Label> Quick Facts: </Label>
+                    <TextArea name='quick_facts' />
+    
+                <Label> Adaptation: </Label>
+                    <TextArea name='adaptation' />
+    
+                <Label>Variety Name: </Label>
+                    <Input type='text' data="variety_name"/>
+    
+                <SubmitButton name='save_button'> Save </SubmitButton>
+                <SubmitButton reset='true' name='reset_button'> Reset </SubmitButton>
+            </Form>
+        )
+    }
+   
 }
 
 const DLF_Green = '#00a651'
@@ -48,6 +54,10 @@ font-size: 40px;
 font-weight: bold;
 text-align: center;
 color: white;
+@import url('https://fonts.googleapis.com/css?family=Nunito:800');
+font-family: 'Nunito', sans-serif;
+
+
 `
 
 
