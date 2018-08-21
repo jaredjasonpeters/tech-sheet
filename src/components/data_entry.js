@@ -1,5 +1,6 @@
 import React from 'react'
 import styled, {css} from 'styled-components'
+import ToleranceTable from './tolerance_table'
 
 const DataEntry = (props) => {
     return (
@@ -12,12 +13,7 @@ const DataEntry = (props) => {
             <Input type='text' name= "variety_species_input" />
             
             <SectionHeader> TOLERANCE TABLE </SectionHeader>
-            <Input type='range' name="turf_quality" min='1' max='9' step='1'/>
-            <h1>{'value'}</h1>
-            <Input type='range' name="shade_tolerance" min='1' max='9' step='1'/>
-            <Input type='range' name="cold_tolerance" min='1' max='9' step='1'/>
-            <Input type='range' name="drought_tolerance" min='1' max='9' step='1'/>
-            <Input type='range' name="traffic_tolerance" min='1' max='9' step='1'/>
+            <ToleranceTable/>
 
             <SectionHeader> CONTENT </SectionHeader>
 
