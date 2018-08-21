@@ -74,6 +74,7 @@ width: 200px;
 font-size: 20px;
 font-weight: bold;
 text-align: left;
+font-family: 'Nunito', sans-serif;
 `
 const Input = styled.input`
 display: block;
