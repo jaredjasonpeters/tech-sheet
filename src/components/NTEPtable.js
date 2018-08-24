@@ -1,31 +1,45 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import NTEProw from './NTEProw'
-import {$Input, $Label, DLF_Green} from './styled/styled'
+import { $Input, InputLabel, $Label, DLF_Green } from './styled/styled'
+import { IndexColor } from './../utils/utils'
 
 export default class NTEPtable extends Component {
     constructor(props) {
         super(props)
     }
 
-    render(){
+    render() {
         return (
             <div style={{
-                 border: `5px solid ${DLF_Green}`,
-                 borderRadius: '5px',
-                 padding: '50px',
-                 marginBottom: '20px'
+                flexGrow: 1,
+                maxWidth: '45%',
+                border: `5px solid ${IndexColor(this.props.count)}`,
+                borderRadius: '5px',
+                padding: '15px',
+                marginBottom: '20px'
             }}>
-                <$Label>Title:</$Label>
-                <$Input/> 
-                <NTEProw/>
-                <NTEProw/>
-                <NTEProw/>
-                <NTEProw/>
-                <NTEProw/>
-                <NTEProw/>
-                <NTEProw/>
-                <NTEProw/>
-                <NTEProw/>
+                <div style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '90px',
+                    background: IndexColor(this.props.count),
+                    textAlign: 'center',
+                    fontSize: '30px',
+                    color: 'white',
+                    fontFamily: 'Nunito, sans-serif'
+
+                }}>{this.props.count}</div>
+                <InputLabel style={{ marginBottom: '0px' }}>Title:</InputLabel>
+                <$Input />
+                <NTEProw />
+                <NTEProw />
+                <NTEProw />
+                <NTEProw />
+                <NTEProw />
+                <NTEProw />
+                <NTEProw />
+                <NTEProw />
+                <NTEProw />
             </div>
         )
     }

@@ -1,4 +1,4 @@
-import styled, {css} from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const DLF_Green = '#00a651'
 const DLF_Pink = '#ce1141'
@@ -21,7 +21,9 @@ font-family: 'Nunito', sans-serif;
 `
 
 const $Form = styled.form`
-max-width: 800px;
+display: flex;
+flex-direction: column
+max-width: 1000px;
 margin: 50px auto 0px auto;
 padding: 50px;
 border: solid 3px black
@@ -29,18 +31,25 @@ border: solid 3px black
 const $Label = styled.label`
 flex-grow: 1
 align-self: flex-start;
-margin: 0px auto 0px 0px;
+margin: 0px 5px 0px 25px;
 
-font-size: 20px;
+font-size: 15px;
 font-weight: bold;
 font-family: 'Nunito', sans-serif;
+
+${props => props.checked && css`
+color: ${DLF_Green}
+`
+    }
 `
 const $Input = styled.input`
-display: block;
+flex-grow: 8;
 margin: 20px auto 20px 10px;
 height: 30px;
-width: 50%;
+width: 95%;
 border-radius: 5px;
+padding: 5px;
+
 `
 const NTEPWrapper = styled.div`
 display: flex;
@@ -52,23 +61,26 @@ width: 100%;
 height: auto;
 `
 const NTEPVarietyInput = styled.input`
-flex-grow: 9
+flex-grow: 2
 height: 30px;
-margin: 0 30px 0 10px;
+max-width: 150px;
 border-radius: 5px;
 `
 const NTEPRatingInput = styled.input`
 flex-grow: 1
 height: 30px;
-max-width: 100px;
-margin: 0 10px 0 10px;
+max-width: 50px;
+
+
 border-radius: 5px;
 `
 const SubmitButton = styled.button`
-display: inline-block;
-margin: 20px auto 20px 10px;
-height: 50px;
-width: 150px
+flex-grow: 1;
+width: 300px;
+max-width: 300px;
+align-self: center
+margin-bottom: 20px;
+height: 75px;
 border-radius: 5px;
 background: ${DLF_Green}
 border: none;
@@ -92,7 +104,9 @@ border-radius: 5px;
 `
 
 const Value = styled.h1`
-flex-grow: .5;
+flex-grow: 1;
+width: 30px;
+max-width: 30px;
 align-self: flex-start;
 margin-left: 50px;
 border-radius: 5px;
@@ -104,21 +118,21 @@ color: white;
 text-align: center;
 
 ${(props) => {
-    var value = props.value;
-    if(value >= 4 && value < 7) {
-        return css`
+        var value = props.value;
+        if (value >= 4 && value < 7) {
+            return css`
         background-color: black;
         `
-    }
-    if(value >= 7) {
-      return css`
+        }
+        if (value >= 7) {
+            return css`
       background-color: ${DLF_Green}
     `
-    }
-    else return css`
+        }
+        else return css`
     background-color: ${DLF_Pink}
     `
-}}
+    }}
 `
 const InputWrapper = styled.div`
 display: flex;
@@ -138,9 +152,8 @@ text-align: left;
 `
 const AddTableButton = styled.button`
 display: inline-block;
-margin: 20px auto 20px 10px;
 height: 50px;
-width: 100px
+width: 100px;
 border-radius: 5px;
 background: ${DLF_Green}
 border: none;

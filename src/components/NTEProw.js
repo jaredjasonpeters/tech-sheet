@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import { NTEPVarietyInput, $Label, NTEPRatingInput, NTEPWrapper, DLF_Green} from './styled/styled'
-import styled, {css} from 'styled-components'
+import React, { Component } from 'react';
+import { NTEPVarietyInput, $Label, NTEPRatingInput, NTEPWrapper, DLF_Green } from './styled/styled'
+import styled, { css } from 'styled-components'
 
 export default class NTEProw extends Component {
     constructor(props) {
@@ -10,7 +10,7 @@ export default class NTEProw extends Component {
         }
     }
 
-    handleClick(){
+    handleClick() {
         this.setState((prevState) => {
             var checked = prevState.checked
             return {
@@ -19,27 +19,35 @@ export default class NTEProw extends Component {
         })
     }
 
-    render(){
+    render() {
         return (
             <NTEPWrapper>
-                <IsOurs checked={this.handleClick.bind(this)} isChecked={this.state.checked}/>
-                {console.log(this.state.checked)}
-                <$Label>Variety Name:</$Label>
-                <NTEPVarietyInput type='text' data="variety_name"/>
-                <$Label>Variety Rating:</$Label>
-                <NTEPRatingInput type='text' data="ntep_rating"/>
+                <Checkbox onClick={this.handleClick.bind(this)} checked={this.state.checked} />
+                <$Label checked={this.state.checked}>Variety Name:</$Label>
+                <NTEPVarietyInput checked={this.state.checked} type='text' data="variety_name" />
+                <$Label checked={this.state.checked}>Variety Rating:</$Label>
+                <NTEPRatingInput checked={this.state.checked} type='text' data="ntep_rating" />
             </NTEPWrapper>
         )
     }
 }
 
-const IsOurs = (props) => {
 
-    return (
-            <input type='radio'/>
-    )
-    
- }
-     
-    
+const Checkbox = styled.div`
+    max-width: 30px
+    width: 30px
+    height: 15px
+    border: 1px solid black
+    border-radius: 90px
+    margin: 4px 10px
 
+    ${props => props.checked && css`
+    background-color: ${DLF_Green}
+    max-width: 30px
+    width:  30px
+    height: 15px
+    border: 1px solid black
+    border-radius: 90px
+    margin: 4px 10px
+    `}
+`
