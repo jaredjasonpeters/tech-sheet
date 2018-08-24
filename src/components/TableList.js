@@ -28,7 +28,7 @@ export default class TableList extends Component {
     }
 
     render() {
-        let tables = this.state.arr.map(v => (<NTEPtable key={`table-${v}`} count={v} />))
+        let tables = this.state.arr.map(v => (<NTEPtable key={`table-${v}`} count={v} handleCheck={this.props.handleCheck} data={this.props.data} />))
         return (
             <div style={{
                 display: 'flex',

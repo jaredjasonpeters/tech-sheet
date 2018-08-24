@@ -32,14 +32,14 @@ export default class NTEPtable extends Component {
                 }}>{this.props.count}</div>
                 <InputLabel style={{ marginBottom: '0px' }}>Title:</InputLabel>
                 <$Input />
-                <NTEProw />
-                <NTEProw />
-                <NTEProw />
-                <NTEProw />
-                <NTEProw />
-                <NTEProw />
-                <NTEProw />
-                <NTEProw />
+                <NTEProw/>
+                <NTEProw/>
+                <NTEProw/>
+                <NTEProw/>
+                <NTEProw/>
+                <NTEProw/>
+                <NTEProw/>
+                <NTEProw/>
                 <NTEProw label='LSD:' />
             </div>
         )

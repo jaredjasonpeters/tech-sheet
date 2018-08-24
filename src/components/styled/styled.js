@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components'
 
 const DLF_Green = '#00a651'
 const DLF_Pink = '#ce1141'
+const ALIST_Blue = '#00aeef'
 
 const SectionHeader = styled.div`
 width: 100%
@@ -30,14 +31,15 @@ border: solid 3px black
 `
 const $Label = styled.label`
 flex-grow: 1
-width: 40px;
-max-width: 40px;
+width: ${props => props.width || '40px'}
+max-width: ${props=> props.width || '40px'}
 align-self: flex-start;
 margin: 0px 15px 0px 10px;
 
 font-size: 15px;
 font-weight: bold;
 font-family: 'Nunito', sans-serif;
+text-align: ${props=> {if(props.center) return 'center' || 'left'}}
 
 ${props => props.checked && css`
 color: ${DLF_Green}
@@ -52,8 +54,15 @@ width: 95%;
 max-width: ${props => props.maxW || '100%'}
 border-radius: 5px;
 padding: 5px;
-
 `
+const BIinput = styled.input.attrs({type: 'text',})`
+    flex-grow: 1
+    width: 20%
+    height: 30px
+    margin: 5px
+    border-radius: 5px
+`
+
 const Wrapper = styled.div`
 display: flex;
 flex-direction: row;
@@ -166,6 +175,24 @@ font-size: 30px;
 font-weight: bold;
 color: white;
 `
+const Checkbox = styled.div`
+    max-width: 30px
+    width: 30px
+    height: 15px
+    border: 1px solid black
+    border-radius: 90px
+    margin: 4px 10px
+
+    ${props => props.checked && css`
+    background-color: ${(props.blue) ? ALIST_Blue : DLF_Green}
+    max-width: 30px
+    width:  30px
+    height: 15px
+    border: 1px solid black
+    border-radius: 90px
+    margin: 4px 10px
+    `}
+`
 
 export {
     Wrapper,
@@ -182,5 +209,8 @@ export {
     SectionHeader,
     AddTableButton,
     DLF_Green,
-    DLF_Pink
+    DLF_Pink,
+    ALIST_Blue,
+    Checkbox,
+    BIinput,
 }
