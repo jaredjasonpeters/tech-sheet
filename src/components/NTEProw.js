@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NTEPVarietyInput, $Label, NTEPRatingInput, NTEPWrapper, DLF_Green } from './styled/styled'
+import { NTEPVarietyInput, $Label, NTEPRatingInput, Wrapper, DLF_Green } from './styled/styled'
 import styled, { css } from 'styled-components'
 
 export default class NTEProw extends Component {
@@ -21,13 +21,13 @@ export default class NTEProw extends Component {
 
     render() {
         return (
-            <NTEPWrapper>
+            <Wrapper>
                 <Checkbox onClick={this.handleClick.bind(this)} checked={this.state.checked} />
                 <$Label checked={this.state.checked}>{this.props.label || 'Variety Name:'}</$Label>
                 <NTEPVarietyInput checked={this.state.checked} type='text' data="variety_name" />
                 <$Label checked={this.state.checked}>Variety Rating:</$Label>
                 <NTEPRatingInput checked={this.state.checked} type='text' data="ntep_rating" />
-            </NTEPWrapper>
+            </Wrapper>
         )
     }
 }

@@ -44,16 +44,17 @@ color: ${DLF_Green}
 `
     }
 `
-const $Input = styled.input.attrs({ type: 'text' })`
-flex-grow: 8;
-margin: 20px auto 20px 10px;
+const $Input = styled.input.attrs({ type: 'text',})`
+flex-grow: ${props => props.flex || 8};
+margin: 20px 10px; 20px 10px;
 height: 30px;
 width: 95%;
+max-width: ${props => props.maxW || '100%'}
 border-radius: 5px;
 padding: 5px;
 
 `
-const NTEPWrapper = styled.div`
+const Wrapper = styled.div`
 display: flex;
 flex-direction: row;
 justify-content: flex-start
@@ -167,7 +168,7 @@ color: white;
 `
 
 export {
-    NTEPWrapper,
+    Wrapper,
     NTEPRatingInput,
     NTEPVarietyInput,
     InputWrapper,
