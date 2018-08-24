@@ -8,16 +8,16 @@ export default class TableList extends Component {
         super(props)
         this.state = {
             arr: [],
-            count: 0
+            count: 1
         }
     }
     handleClick(e) {
         e.preventDefault()
-        if (this.state.count < 8) {
+        if (this.state.count <= 8) {
             this.setState((prevState) => {
-                var count = prevState.count += 1
+                var count = prevState.count
                 var newArr = prevState.arr;
-                newArr.push(count)
+                newArr.push(count++)
 
                 return {
                     arr: newArr,
