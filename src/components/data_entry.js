@@ -86,7 +86,7 @@ export default class DataEntry extends Component {
                         <$Label width="20%" center> Establishment Rate: </$Label>
                         <$Label width="20%" center> Mowing Frequency: </$Label>
                         <$Label width="20%" center> Nitrogen Required: </$Label>
-                        <$Label width="20%" center> Endophyte Enhanced: </$Label>
+                        <$Label width="20%" center> Endophyte +: </$Label>
                     </Wrapper>
                     <Wrapper>
                         <BIinput name="" ></BIinput>

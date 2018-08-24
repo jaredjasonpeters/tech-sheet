@@ -17,17 +17,19 @@ export default class NTEPtable extends Component {
                 border: `5px solid ${IndexColor(this.props.count)}`,
                 borderRadius: '5px',
                 padding: '15px',
-                marginBottom: '20px'
+                marginBottom: '10px',
+                marginRight: '10px'
             }}>
                 <div style={{
-                    width: '40px',
-                    height: '40px',
+                    width: '30px',
+                    height: '30px',
                     borderRadius: '90px',
                     background: IndexColor(this.props.count),
                     textAlign: 'center',
-                    fontSize: '30px',
+                    fontSize: '20px',
                     color: 'white',
-                    fontFamily: 'Nunito, sans-serif'
+                    fontFamily: 'Nunito, sans-serif',
+                    marginBottom: '30px'
 
                 }}>{this.props.count}</div>
                 <InputLabel style={{ marginBottom: '0px' }}>Title:</InputLabel>

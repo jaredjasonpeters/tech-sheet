@@ -5,15 +5,17 @@ const DLF_Pink = '#ce1141'
 const ALIST_Blue = '#00aeef'
 
 const SectionHeader = styled.div`
+flex-grow: 1
+align-self: center
 width: 100%
-height: 50px;
-margin: 40px 0 40px 0
+height: 30px;
+margin: 10px 0 10px 0
 padding: 5px;
 background-color: ${DLF_Green};
 border-radius: 5px;
 
 
-font-size: 40px;
+font-size: 20px;
 font-weight: bold;
 text-align: center;
 color: white;
@@ -24,19 +26,19 @@ font-family: 'Nunito', sans-serif;
 const $Form = styled.form`
 display: flex;
 flex-direction: column
-max-width: 1000px;
+max-width: 800px;
 margin: 50px auto 0px auto;
 padding: 50px;
 border: solid 3px black
 `
 const $Label = styled.label`
 flex-grow: 1
-width: ${props => props.width || '40px'}
-max-width: ${props=> props.width || '40px'}
+width: ${props => props.width || '30px'}
+max-width: ${props=> props.width || '30px'}
 align-self: flex-start;
-margin: 0px 15px 0px 10px;
+margin: 0px 25px 0px 10px;
 
-font-size: 15px;
+font-size: 13px;
 font-weight: bold;
 font-family: 'Nunito', sans-serif;
 text-align: ${props=> {if(props.center) return 'center' || 'left'}}
@@ -47,9 +49,9 @@ color: ${DLF_Green}
     }
 `
 const $Input = styled.input.attrs({ type: 'text',})`
-flex-grow: ${props => props.flex || 8};
-margin: 20px 10px; 20px 10px;
-height: 30px;
+flex-grow: ${props => props.flex || 6};
+margin: 10px 10px; 10px 10px;
+height: 10px;
 width: 95%;
 max-width: ${props => props.maxW || '100%'}
 border-radius: 5px;
@@ -58,7 +60,7 @@ padding: 5px;
 const BIinput = styled.input.attrs({type: 'text',})`
     flex-grow: 1
     width: 20%
-    height: 30px
+    height: 20px
     margin: 5px
     border-radius: 5px
 `
@@ -68,20 +70,20 @@ display: flex;
 flex-direction: row;
 justify-content: flex-start
 align-items: flex-start;
-margin-bottom: 20px;
+margin-bottom: 10px;
 width: 100%;
 height: auto;
 `
 const NTEPVarietyInput = styled.input`
 flex-grow: 2
-height: 30px;
-max-width: 150px;
+height: 10px;
+max-width: 100px;
 border-radius: 5px;
 `
 const NTEPRatingInput = styled.input`
 flex-grow: 1
-height: 30px;
-max-width: 50px;
+height: 10px;
+max-width: 30px;
 
 
 border-radius: 5px;
@@ -108,10 +110,10 @@ ${props => props.reset && css`
 `}
 `
 const $TextArea = styled.textarea`
-display: block;
-margin: 20px auto 40px 10px;
-height: 150px;
-width: 500px;
+flex-grow: 1
+margin: 20px auto 20px 10px;
+height: 100px;
+width: 100%;
 border-radius: 5px;
 `
 
@@ -125,7 +127,7 @@ border-radius: 5px;
 
 @import url('https://fonts.googleapis.com/css?family=Nunito:800');
 font-family: 'Nunito', sans-serif;
-font-size: 25px;
+font-size: 15px;
 color: white;
 text-align: center;
 
@@ -158,36 +160,54 @@ width: 100%
 const InputLabel = styled.h2`
 flex-grow: 1
 align-self: flex-start;
+margin-top: 0;
 font-family: 'Nunito', sans-serif;
-font-size: 20px;
+font-size: 13px;
 text-align: left;
 `
 const AddTableButton = styled.button`
 display: inline-block;
-height: 50px;
-width: 100px;
+height: 30px;
+width: 70px;
 border-radius: 5px;
 background: ${DLF_Green}
 border: none;
+margin-bottom: 0;
 
 
-font-size: 30px;
+font-size: 25px;
 font-weight: bold;
 color: white;
 `
+const RemoveTableButton = styled.button`
+display: inline-block;
+height: 30px;
+width: 70px;
+border-radius: 5px;
+background: ${DLF_Pink}
+border: none;
+margin-bottom: 0;
+
+
+font-size: 25px;
+font-weight: bold;
+color: white;
+`
+
 const Checkbox = styled.div`
-    max-width: 30px
-    width: 30px
-    height: 15px
+    flex-grow: 1
+    max-width: 10px
+    width: 10px
+    height: 10px
     border: 1px solid black
     border-radius: 90px
     margin: 4px 10px
 
     ${props => props.checked && css`
     background-color: ${(props.blue) ? ALIST_Blue : DLF_Green}
-    max-width: 30px
-    width:  30px
-    height: 15px
+    max-width: 10px
+    width:  10px
+    height: 10px
     border: 1px solid black
     border-radius: 90px
     margin: 4px 10px
@@ -208,6 +228,7 @@ export {
     $TextArea,
     SectionHeader,
     AddTableButton,
+    RemoveTableButton,
     DLF_Green,
     DLF_Pink,
     ALIST_Blue,

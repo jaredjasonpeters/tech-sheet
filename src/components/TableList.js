@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import NTEPtable from './NTEPtable'
-import { AddTableButton } from './styled/styled'
-import { randomColor } from './../utils/utils'
+import { AddTableButton, RemoveTableButton } from './styled/styled'
 
 export default class TableList extends Component {
     constructor(props) {
@@ -13,7 +12,7 @@ export default class TableList extends Component {
     }
     handleClick(e) {
         e.preventDefault()
-        if (this.state.count <= 8) {
+        if (this.state.count <= 4) {
             this.setState((prevState) => {
                 var count = prevState.count
                 var newArr = prevState.arr;
@@ -27,6 +26,24 @@ export default class TableList extends Component {
         }
     }
 
+    removeTable(e){
+        e.preventDefault()
+        if(this.state.count > 1){
+            this.setState(prevState => {
+                var count = prevState.count
+                var newArr = prevState.arr;
+                newArr.pop()
+                count--
+                return {
+                    arr: newArr,
+                    count: count
+                }
+            })
+        }
+
+        
+    }
+
     render() {
         let tables = this.state.arr.map(v => (<NTEPtable key={`table-${v}`} count={v} handleCheck={this.props.handleCheck} data={this.props.data} />))
         return (
@@ -36,8 +53,9 @@ export default class TableList extends Component {
                 flexWrap: 'wrap',
                 justifyContent: 'space-between'
             }} >
-                <div style={{ width: '100%', marginBottom: '20px' }}>
+                <div style={{ width: '100%', margin: '10px 0 10px 0' }}>
                     <AddTableButton onClick={this.handleClick.bind(this)}>+</AddTableButton>
+                    <RemoveTableButton onClick={this.removeTable.bind(this)}>-</RemoveTableButton>
                 </div>
                 {tables}
             </ div>
