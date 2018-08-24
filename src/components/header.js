@@ -3,7 +3,7 @@ import styled, {css} from 'styled-components'
 
 const Header = (props) => {
         return (
-          <CompanyHeader className="App-header">
+          <CompanyHeader className="App-header" style={{textAlign: 'Center'}}>
             <img src={props.companyLogo} className="App-logo" alt="logo" />
             <h1 className="App-title">{props.companyName} Tech Sheets</h1>
           </CompanyHeader>
