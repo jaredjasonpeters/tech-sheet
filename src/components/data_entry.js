@@ -18,10 +18,10 @@ class DataEntry extends Component {
             <$Form>
                 <SectionHeader className='header'> HEADER </SectionHeader>
                 <InputLabel>Variety Name: </InputLabel>
-                <$Input type='text' name="variety_name_input" placeholder="Leah's Awesome Blend" />
+                <$Input name="variety_name_input" placeholder="Leah's Awesome Blend" />
 
                 <InputLabel>Species Name: </InputLabel>
-                <$Input type='text' name="variety_species_input" />
+                <$Input name="variety_species_input" />
 
                 <SectionHeader className='tolerance_table'> TOLERANCE TABLE </SectionHeader>
                 <ToleranceTable />

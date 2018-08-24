@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import NTEProw from './NTEProw'
 import { $Input, InputLabel, $Label, DLF_Green } from './styled/styled'
 import { IndexColor } from './../utils/utils'
+import styled, { css } from 'styled-components'
 
 export default class NTEPtable extends Component {
     constructor(props) {
@@ -39,8 +40,10 @@ export default class NTEPtable extends Component {
                 <NTEProw />
                 <NTEProw />
                 <NTEProw />
-                <NTEProw />
+                <NTEProw label='LSD:' />
             </div>
         )
     }
 }
+
+

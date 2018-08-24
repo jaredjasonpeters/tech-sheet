@@ -23,7 +23,7 @@ export default class NTEProw extends Component {
         return (
             <NTEPWrapper>
                 <Checkbox onClick={this.handleClick.bind(this)} checked={this.state.checked} />
-                <$Label checked={this.state.checked}>Variety Name:</$Label>
+                <$Label checked={this.state.checked}>{this.props.label || 'Variety Name:'}</$Label>
                 <NTEPVarietyInput checked={this.state.checked} type='text' data="variety_name" />
                 <$Label checked={this.state.checked}>Variety Rating:</$Label>
                 <NTEPRatingInput checked={this.state.checked} type='text' data="ntep_rating" />

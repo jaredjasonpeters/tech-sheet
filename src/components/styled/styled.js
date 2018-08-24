@@ -30,8 +30,10 @@ border: solid 3px black
 `
 const $Label = styled.label`
 flex-grow: 1
+width: 40px;
+max-width: 40px;
 align-self: flex-start;
-margin: 0px 5px 0px 25px;
+margin: 0px 15px 0px 10px;
 
 font-size: 15px;
 font-weight: bold;
@@ -42,7 +44,7 @@ color: ${DLF_Green}
 `
     }
 `
-const $Input = styled.input`
+const $Input = styled.input.attrs({ type: 'text' })`
 flex-grow: 8;
 margin: 20px auto 20px 10px;
 height: 30px;
