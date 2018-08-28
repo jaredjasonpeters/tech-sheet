@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import {Context} from './contexts/contexts'
 import { $Label, Wrapper, SubmitButton, ResetButton, Checkbox, DLF_Green } from './styled/styled'
 
 export default class ToleranceSelection extends Component {
@@ -40,6 +41,7 @@ export default class ToleranceSelection extends Component {
 
     render() {
         return (
+            <Context.Consumer>{(context) => (
             <Fragment>
                 <form style={{
                     width: '100%',
@@ -78,10 +80,11 @@ export default class ToleranceSelection extends Component {
                     </Wrapper>
                 </form>
                 <Wrapper justify="center">
-                    <SubmitButton submit height="30px" width="auto" bottom="20px" fSize="14px" onClick={this.props.handleSubmit.bind(this, this.state)}>Populate Tables</SubmitButton>
+                    <SubmitButton submit height="30px" width="auto" bottom="20px" fSize="14px" onClick={context.state.handleSubmit.bind(this, this.state)}>Populate Tables</SubmitButton>
                     <SubmitButton height="30px" width="auto" bottom="20px" fSize="14px" onClick={this.handleReset}>Clear Selection</SubmitButton>
                 </Wrapper>
             </Fragment>
+         )}</Context.Consumer>
         )
     }
 }

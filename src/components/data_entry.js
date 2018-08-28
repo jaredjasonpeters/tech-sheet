@@ -4,96 +4,13 @@ import ToleranceTable from './tolerance_table'
 import TableList from './TableList'
 import { formatName } from '../utils/utils'
 import styled, { css } from 'styled-components'
-import ToleranceSelection from './toleranceSelection.js'
+import ToleranceSelection from './toleranceSelection'
 import {Context} from './contexts/contexts'
 
 
 export default class DataEntry extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            isAlist: false,
-            variety_name: '',
-            species_name: '',
-            sliders: [],
-            quick_facts: '',
-            adaptation: '',
-            seeding_rate: '',
-            establishment_rate: '',
-            mowing_frequency: '',
-            nitrogen_required: '',
-            endophyte_enhanced: '',
-            toleranceSelected: false,
-            error_message: null,
-        }
-        this.handleSubmit = this.handleSubmit.bind(this)
-        this.handleChange = this.handleChange.bind(this)
-        this.reset = this.reset.bind(this)
-    }
-
-    handleSubmit(options, e) {
-        var count = 0;
-        var inputs = [];
-        for (let option in options) {
-            if (options[option] === true) {
-                inputs.push(option)
-                count++
-            }
-        }
-
-        if (count >= 4) {
-            this.setState({
-                sliders: inputs,
-                toleranceSelected: true,
-                error_message: null,
-            })
-        } else {
-            this.setState({
-                error_message: '----You have to select at least (4) tolerance ratings----'
-            })
-        }
-
-    }
-
-    handleCheck() {
-        this.setState((prevState) => {
-            var newState = Object.assign(prevState)
-            var checked = newState.isAlist
-            return {
-                isAlist: !checked
-            }
-        })
-    }
-
-    reset(e) {
-        e.preventDefault()
-
-        this.setState({
-            isAlist: false,
-            variety_name: '',
-            species_name: '',
-            sliders: [],
-            quick_facts: '',
-            adaptation: '',
-            seeding_rate: '',
-            establishment_rate: '',
-            mowing_frequency: '',
-            nitrogen_required: '',
-            endophyte_enhanced: '',
-            toleranceSelected: false,
-            error_message: null
-        })
-    }
-
-    handleChange(e) {
-        var { name, value } = e.target
-        if (value === "--Select an Option--") return
-        console.log(name, value)
-        this.setState((prevState) => {
-            var newState = Object.assign(prevState)
-            newState[name] = value
-            return newState
-        })
     }
 
     render() {
@@ -113,9 +30,9 @@ export default class DataEntry extends Component {
                 </Wrapper>
                 <Wrapper>
                     <InputLabel>Variety Name: </InputLabel>
-                    <$Input flex='1' maxW='200px' name="variety_name" placeholder="Leah's Awesome Blend" onChange={this.handleChange} value={this.state.variety_name.toUpperCase()} />
+                    <$Input flex='1' maxW='200px' name="variety_name" placeholder="Leah's Awesome Blend" onChange={context.state.handleChange} value={context.state.variety_name.toUpperCase()} />
                     <InputLabel>Species Name: </InputLabel>
-                    <Select id="species_name" flex='6' name="species_name" placeholder="Select a Species" onChange={this.handleChange} >
+                    <Select id="species_name" flex='6' name="species_name" placeholder="Select a Species" onChange={context.state.handleChange} >
                         <option>--Select an Option--</option>
                         <option value="Turf Type Tall Fescue">Turf Type Tall Fescue</option>
                         <option value="Perennial Ryegrass">Perennial Ryegrass</option>
@@ -125,29 +42,29 @@ export default class DataEntry extends Component {
                 </Wrapper>
 
                 <SectionHeader className='tolerance_table'> TOLERANCE TABLE </SectionHeader>
-                {this.state.toleranceSelected ? <ToleranceTable>
-                    {this.state.sliders.map(v => {
+                {context.state.toleranceSelected ? <ToleranceTable>
+                    {context.state.sliders.map(v => {
                         return (
-                            <InputWrapper>
+                            <InputWrapper key={v}>
                                 <InputLabel>{formatName(v)}</InputLabel>
-                                <$Input type='range' name={v} value={this.state[v]} min='1' max='9' step='1' onChange={this.handleChange} />
-                                <Value value={this.state[v]}>{this.state[v]}</Value>
+                                <$Input type='range' name={v} value={context.state[v] || 1} min='1' max='9' step='1' onChange={context.state.handleChange} />
+                                <Value value={context.state[v]}>{context.state[v]}</Value>
                             </InputWrapper>
                         )
                     })}
                 </ToleranceTable>
-                    : <ToleranceSelection handleSubmit={this.handleSubmit} />
+                    : <ToleranceSelection/>
                 }
 
-                {this.state.error_message && <span style={{ width: '100%', textAlign: 'center', color: DLF_Pink, fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '20px' }}>{this.state.error_message}</span>}
+                {context.state.error_message && <span style={{ width: '100%', textAlign: 'center', color: DLF_Pink, fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '20px' }}>{context.state.error_message}</span>}
 
                 <SectionHeader> CONTENT </SectionHeader>
 
                 <InputLabel> Quick Facts: </InputLabel>
-                <$TextArea name='quick_facts' onChange={this.handleChange} value={this.state.quick_facts} />
+                <$TextArea name='quick_facts' onChange={context.state.handleChange} value={context.state.quick_facts} />
 
                 <InputLabel> Adaptation: </InputLabel>
-                <$TextArea name='adaptation' onChange={this.handleChange} value={this.state.adaptation} />
+                <$TextArea name='adaptation' onChange={context.state.handleChange} value={context.state.adaptation} />
 
                 <SectionHeader className='ntep_data_entry'>NTEP DATA ENTRY: </SectionHeader>
 
@@ -162,18 +79,18 @@ export default class DataEntry extends Component {
                     <$Label width="20%" center> Endophyte +: </$Label>
                 </Wrapper>
                 <Wrapper>
-                    <BIinput name="seeding_rate" onChange={this.handleChange} value={this.state.seeding_rate}></BIinput>
-                    <BIinput name="establishment_rate" onChange={this.handleChange} value={this.state.establishment_rate}></BIinput>
-                    <BIinput name="mowing_frequency" onChange={this.handleChange} value={this.state.mowing_frequency}></BIinput>
-                    <BIinput name="nitrogen_required" onChange={this.handleChange} value={this.state.nitrogen_required}></BIinput>
-                    <BIinput name="endophyte_enhanced" onChange={this.handleChange} value={this.state.endophyte_enhanced}></BIinput>
+                    <BIinput name="seeding_rate" onChange={context.state.handleChange} value={context.state.seeding_rate}></BIinput>
+                    <BIinput name="establishment_rate" onChange={context.state.handleChange} value={context.state.establishment_rate}></BIinput>
+                    <BIinput name="mowing_frequency" onChange={context.state.handleChange} value={context.state.mowing_frequency}></BIinput>
+                    <BIinput name="nitrogen_required" onChange={context.state.handleChange} value={context.state.nitrogen_required}></BIinput>
+                    <BIinput name="endophyte_enhanced" onChange={context.state.handleChange} value={context.state.endophyte_enhanced}></BIinput>
                 </Wrapper>
 
                 <br />
                 <br />
 
                 <SubmitButton submit name='save_button'> Save </SubmitButton>
-                <SubmitButton name='reset_button' onClick={this.reset}> Reset </SubmitButton>
+                <SubmitButton name='reset_button' onClick={context.state.reset}> Reset </SubmitButton>
 
             </$Form>
             )}
