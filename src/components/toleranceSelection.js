@@ -1,80 +1,80 @@
-import React, {Component, Fragment} from 'react'
-import {$Label, Wrapper, SubmitButton, ResetButton, Checkbox, DLF_Green} from './styled/styled'
+import React, { Component, Fragment } from 'react'
+import { $Label, Wrapper, SubmitButton, ResetButton, Checkbox, DLF_Green } from './styled/styled'
 
 export default class ToleranceSelection extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
-            turf_quality_is_selected: false,
-            salinity_tolerance_is_selected: false,
-            shade_tolerance_is_selected: false,
-            cold_tolerance_is_selected: false,
-            drought_tolerance_is_selected:false,
-            wear_tolerance_is_selected: false,
+            turf_quality: false,
+            salinity_tolerance: false,
+            shade_tolerance: false,
+            cold_tolerance: false,
+            drought_tolerance: false,
+            wear_tolerance: false,
         }
         this.handleClick = this.handleClick.bind(this)
-        this.handleReset =  this.handleReset.bind(this)
+        this.handleReset = this.handleReset.bind(this)
     }
 
-    handleClick(e){
+    handleClick(e) {
         e.preventDefault();
         var name = e.target.getAttribute('name')
-        var key = `${name}_is_selected`
+        var key = name
         this.setState((prevState) => {
             var newState = Object.assign(prevState)
             newState[key] = !prevState[key]
             return newState
         })
     }
-    
-    handleReset(e){
+
+    handleReset(e) {
         this.setState({
-            turf_quality_is_selected: false,
-            salinity_tolerance_is_selected: false,
-            shade_tolerance_is_selected: false,
-            cold_tolerance_is_selected: false,
-            drought_tolerance_is_selected:false,
-            wear_tolerance_is_selected: false,
+            turf_quality: false,
+            salinity_tolerance: false,
+            shade_tolerance: false,
+            cold_tolerance: false,
+            drought_tolerance: false,
+            wear_tolerance: false,
         })
     }
 
-    render(){
+    render() {
         return (
             <Fragment>
-                {console.log(this.state)}
-                <form style={{ width: '100%',
-                               display: 'flex',
-                               flexDirection: 'row',
-                            }}> 
+                <form style={{
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'row',
+                }}>
                     <Wrapper width='15%'>
                         <$Label margin="0 25px"> Turf Quality </$Label>
-                        <Checkbox checked={this.state.turf_quality_is_selected} name="turf_quality" onClick={this.handleClick}/>
-                        <span style={{width: '10px'}}>|</span>
+                        <Checkbox checked={this.state.turf_quality} name="turf_quality" onClick={this.handleClick} />
+                        <span style={{ width: '10px' }}>|</span>
                     </Wrapper>
-                    <Wrapper width='15%'>    
+                    <Wrapper width='15%'>
                         <$Label margin="0 25px"> Salinity Tolerance </$Label>
-                        <Checkbox  checked={this.state.salinity_tolerance_is_selected}name="salinity_tolerance" onClick={this.handleClick}/>
-                        <span style={{width: '10px'}}>|</span>
+                        <Checkbox checked={this.state.salinity_tolerance} name="salinity_tolerance" onClick={this.handleClick} />
+                        <span style={{ width: '10px' }}>|</span>
                     </Wrapper>
                     <Wrapper width='15%'>
                         <$Label margin="0 25px"> Shade Tolerance </$Label>
-                        <Checkbox  checked={this.state.shade_tolerance_is_selected}name="shade_tolerance" onClick={this.handleClick}/>
-                        <span style={{width: '10px'}}>|</span>
+                        <Checkbox checked={this.state.shade_tolerance} name="shade_tolerance" onClick={this.handleClick} />
+                        <span style={{ width: '10px' }}>|</span>
                     </Wrapper>
                     <Wrapper width='15%'>
                         <$Label margin="0 25px"> Drought Tolerance </$Label>
-                        <Checkbox  checked={this.state.cold_tolerance_is_selected}name="cold_tolerance" onClick={this.handleClick}/>
-                        <span style={{width: '10px'}}>|</span>
-                    </Wrapper>     
+                        <Checkbox checked={this.state.cold_tolerance} name="cold_tolerance" onClick={this.handleClick} />
+                        <span style={{ width: '10px' }}>|</span>
+                    </Wrapper>
                     <Wrapper width='15%'>
                         <$Label margin="0 25px"> Cold Tolerance </$Label>
-                        <Checkbox  checked={this.state.drought_tolerance_is_selected}name="drought_tolerance" selected onClick={this.handleClick}/>
-                        <span style={{width: '10px'}}>|</span>
+                        <Checkbox checked={this.state.drought_tolerance} name="drought_tolerance" selected onClick={this.handleClick} />
+                        <span style={{ width: '10px' }}>|</span>
                     </Wrapper>
                     <Wrapper width='15%'>
                         <$Label margin="0 25px"> Wear Tolerance </$Label>
-                        <Checkbox  checked={this.state.wear_tolerance_is_selected}name="wear_tolerance" selected onClick={this.handleClick}/>
-                        <span style={{width: '10px'}}>|</span>
+                        <Checkbox checked={this.state.wear_tolerance} name="wear_tolerance" selected onClick={this.handleClick} />
+                        <span style={{ width: '10px' }}>|</span>
                     </Wrapper>
                 </form>
                 <Wrapper justify="center">

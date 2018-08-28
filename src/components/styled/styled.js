@@ -34,21 +34,21 @@ border: solid 3px black
 const $Label = styled.label`
 flex-grow: 1
 width: ${props => props.width || '30px'}
-max-width: ${props=> props.width || '30px'}
+max-width: ${props => props.width || '30px'}
 align-self: flex-start;
 margin: ${props => props.margin || '0px 25px 0px 10px'}
 
 font-size: 13px;
 font-weight: bold;
 font-family: 'Nunito', sans-serif;
-text-align: ${props=> {if(props.center) return 'center' || 'left'}}
+text-align: ${props => { if (props.center) return 'center' || 'left' }}
 
 ${props => props.checked && css`
 color: ${DLF_Green}
 `
     }
 `
-const $Input = styled.input.attrs({ type: 'text',})`
+const $Input = styled.input.attrs({ type: 'text', })`
 flex-grow: ${props => props.flex || 6};
 margin: 10px 10px; 10px 10px;
 height: 10px;
@@ -57,7 +57,20 @@ max-width: ${props => props.maxW || '100%'}
 border-radius: 5px;
 padding: 5px;
 `
-const BIinput = styled.input.attrs({type: 'text',})`
+
+const Select = styled.select`
+flex-grow: ${props => props.flex || 6};
+margin: 10px 10px; 10px 10px;
+height: 30px;
+width: 95%;
+max-width: ${props => props.maxW || '100%'}
+border-radius: 5px;
+padding: 5px;
+
+font-family: Nunito, sans-serif
+`
+
+const BIinput = styled.input.attrs({ type: 'text', })`
     flex-grow: 1
     width: 20%
     height: 20px
@@ -111,6 +124,7 @@ margin: 20px auto 20px 10px;
 height: 100px;
 width: 100%;
 border-radius: 5px;
+font-size: 13px;
 `
 
 const Value = styled.h1`
@@ -230,4 +244,5 @@ export {
     ALIST_Blue,
     Checkbox,
     BIinput,
+    Select
 }
