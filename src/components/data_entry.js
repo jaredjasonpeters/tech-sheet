@@ -6,6 +6,31 @@ import { formatName } from '../utils/utils'
 import styled, { css } from 'styled-components'
 import ToleranceSelection from './toleranceSelection.js'
 
+const Context = React.createContext()
+
+class Provider extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+
+        }
+    }
+    render() {
+        return (
+            <Context.Provider value={{ state: this.state }}>
+                {this.props.children}
+            </Context.Provider>
+        )
+    }
+}
+
+{/* <Provider>
+    <Context.Consumer>
+        {(context) => {
+            return ()
+        }}
+    </Context.Consumer>
+</Provider> */}
 
 export default class DataEntry extends Component {
     constructor(props) {
@@ -15,13 +40,6 @@ export default class DataEntry extends Component {
             variety_name: '',
             species_name: '',
             sliders: [],
-            tolerance: {
-                turf_quality: null,
-                shade_tolerance: null,
-                cold_tolerance: null,
-                drought_tolerance: null,
-                traffic_tolerance: null,
-            },
             quick_facts: '',
             adaptation: '',
             seeding_rate: '',
@@ -33,11 +51,8 @@ export default class DataEntry extends Component {
             error_message: null,
         }
         this.handleSubmit = this.handleSubmit.bind(this)
-        this.handleSlide = this.handleSlide.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.reset = this.reset.bind(this)
-        this.updateVariety = this.updateVariety.bind(this)
-        this.updateSpecies = this.updateSpecies.bind(this)
     }
 
     handleSubmit(options, e) {
@@ -64,18 +79,6 @@ export default class DataEntry extends Component {
 
     }
 
-    handleSlide(e) {
-
-        var { name, value } = e.target
-
-        this.setState((prevState) => {
-            var newState = Object.assign(prevState)
-            var tolerance = newState.tolerance
-            tolerance[name] = value
-            return newState
-        })
-    }
-
     handleCheck() {
         this.setState((prevState) => {
             var newState = Object.assign(prevState)
@@ -94,13 +97,6 @@ export default class DataEntry extends Component {
             variety_name: '',
             species_name: '',
             sliders: [],
-            tolerance: {
-                turf_quality: null,
-                shade_tolerance: null,
-                cold_tolerance: null,
-                drought_tolerance: null,
-                traffic_tolerance: null,
-            },
             quick_facts: '',
             adaptation: '',
             seeding_rate: '',
@@ -113,25 +109,10 @@ export default class DataEntry extends Component {
         })
     }
 
-    updateVariety(e) {
-        var { name, value } = e.target
-        this.setState({
-            variety_name: value
-        })
-
-    }
-
-    updateSpecies(e) {
-        var { name, value } = e.target
-        this.setState({
-            species_name: value
-        })
-
-    }
-
     handleChange(e) {
         var { name, value } = e.target
         if (value === "--Select an Option--") return
+        console.log(name, value)
         this.setState((prevState) => {
             var newState = Object.assign(prevState)
             newState[name] = value
@@ -154,7 +135,7 @@ export default class DataEntry extends Component {
                 </Wrapper>
                 <Wrapper>
                     <InputLabel>Variety Name: </InputLabel>
-                    <$Input flex='1' maxW='200px' name="variety_name" placeholder="Leah's Awesome Blend" onChange={this.updateVariety} value={this.state.variety_name.toUpperCase()} />
+                    <$Input flex='1' maxW='200px' name="variety_name" placeholder="Leah's Awesome Blend" onChange={this.handleChange} value={this.state.variety_name.toUpperCase()} />
                     <InputLabel>Species Name: </InputLabel>
                     <Select id="species_name" flex='6' name="species_name" placeholder="Select a Species" onChange={this.handleChange} >
                         <option>--Select an Option--</option>
@@ -171,8 +152,8 @@ export default class DataEntry extends Component {
                         return (
                             <InputWrapper>
                                 <InputLabel>{formatName(v)}</InputLabel>
-                                <$Input type='range' name={v} value={this.state.tolerance[v]} min='1' max='9' step='1' onChange={this.handleSlide} />
-                                <Value value={this.state.tolerance[v]}>{this.state.tolerance[v]}</Value>
+                                <$Input type='range' name={v} value={this.state[v]} min='1' max='9' step='1' onChange={this.handleChange} />
+                                <Value value={this.state[v]}>{this.state[v]}</Value>
                             </InputWrapper>
                         )
                     })}
