@@ -89,7 +89,7 @@ export default class DataEntry extends Component {
                 <br />
                 <br />
 
-                <SubmitButton submit name='save_button'> Save </SubmitButton>
+                <SubmitButton submit name='save_button' onClick={context.state.saveForm}> Save </SubmitButton>
                 <SubmitButton name='reset_button' onClick={context.state.reset}> Reset </SubmitButton>
 
             </$Form>

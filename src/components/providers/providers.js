@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Context} from '../contexts/contexts'
+import {structured} from '../../utils/utils'
 
 class TechSheetProvider extends Component {
     constructor(props) {
@@ -68,6 +69,38 @@ class TechSheetProvider extends Component {
                         isAlist: !checked
                     }
                 })
+            },
+            saveForm: () => {
+                this.setState((prevState) => {
+                    var newState = Object.assign(prevState)
+                    var structured = {
+                        header: {
+                            a_list: this.state.isAlist,
+                            variety_name: this.state.variety_name,
+                            species_name: this.state.species_name
+                        },
+                        tolerance_table: {
+                            info: this.state.sliders.map(v => [v, this.state[v]])
+                        },
+                        content: {
+                            quick_facts: this.state.quick_facts,
+                            adaptation: this.state.adaptation
+                        },
+                        ntep_data: {
+                            info: this.state.tables
+                        },
+                        bottom_info: {
+                            seeding_rate: this.state.seeding_rate,
+                            establishment_rate: this.state.establishment_rate,
+                            mowing_frequency: this.state.mowing_frequency,
+                            nitrogen_required: this.state.nitrogen_required,
+                            endophyte_enhanced: this.state.endophyte_enhanced
+                        }
+                    }
+                        newState['form_data'] = structured
+                        return newState
+                    }
+                )
             },
             reset: (e) => {
                 e.preventDefault()
