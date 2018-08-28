@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import NTEPtable from './NTEPtable'
-import { AddTableButton, RemoveTableButton } from './styled/styled'
+import { AddTableButton, ResetButton, Wrapper } from './styled/styled'
 
 export default class TableList extends Component {
     constructor(props) {
@@ -54,8 +54,10 @@ export default class TableList extends Component {
                 justifyContent: 'space-between'
             }} >
                 <div style={{ width: '100%', margin: '10px 0 10px 0' }}>
-                    <AddTableButton onClick={this.handleClick.bind(this)}>+</AddTableButton>
-                    <RemoveTableButton onClick={this.removeTable.bind(this)}>-</RemoveTableButton>
+                    <Wrapper justify="center">
+                        <AddTableButton onClick={this.handleClick.bind(this)}>+</AddTableButton>
+                        <ResetButton onClick={this.removeTable.bind(this)}>-</ResetButton>
+                    </Wrapper>
                 </div>
                 {tables}
             </ div>

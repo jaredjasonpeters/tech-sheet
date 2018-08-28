@@ -23,7 +23,7 @@ color: white;
 font-family: 'Nunito', sans-serif;
 `
 
-const $Form = styled.form`
+const $Form = styled.div`
 display: flex;
 flex-direction: column
 max-width: 800px;
@@ -36,7 +36,7 @@ flex-grow: 1
 width: ${props => props.width || '30px'}
 max-width: ${props=> props.width || '30px'}
 align-self: flex-start;
-margin: 0px 25px 0px 10px;
+margin: ${props => props.margin || '0px 25px 0px 10px'}
 
 font-size: 13px;
 font-weight: bold;
@@ -68,10 +68,10 @@ const BIinput = styled.input.attrs({type: 'text',})`
 const Wrapper = styled.div`
 display: flex;
 flex-direction: row;
-justify-content: flex-start
+justify-content: ${props => props.justify || 'flex-start'};
 align-items: flex-start;
 margin-bottom: 10px;
-width: 100%;
+width: ${props => props.width || '100%'};
 height: auto;
 `
 const NTEPVarietyInput = styled.input`
@@ -90,24 +90,20 @@ border-radius: 5px;
 `
 const SubmitButton = styled.button`
 flex-grow: 1;
-width: 300px;
+width: ${props => props.width || '300px'};
 max-width: 300px;
 align-self: center
-margin-bottom: 20px;
-height: 75px;
+margin: 20px 20px ${props => props.bottom || '0px'} 0 ;
+height: ${props => props.height || '75px'};
 border-radius: 5px;
-background: ${DLF_Green}
+background: ${props => (props.submit) ? DLF_Green : DLF_Pink};
 border: none;
 
 
-font-size: 18px;
+font-size: ${props => props.fSize || '18px'};
 font-weight: bold;
+text-align: center;
 color: white;
-
-${props => props.reset && css`
-    background: ${DLF_Pink};
-    color: white;
-`}
 `
 const $TextArea = styled.textarea`
 flex-grow: 1
@@ -179,7 +175,7 @@ font-size: 25px;
 font-weight: bold;
 color: white;
 `
-const RemoveTableButton = styled.button`
+const ResetButton = styled.button`
 display: inline-block;
 height: 30px;
 width: 70px;
@@ -228,7 +224,7 @@ export {
     $TextArea,
     SectionHeader,
     AddTableButton,
-    RemoveTableButton,
+    ResetButton,
     DLF_Green,
     DLF_Pink,
     ALIST_Blue,

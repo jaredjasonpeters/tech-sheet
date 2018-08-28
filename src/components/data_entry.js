@@ -3,12 +3,14 @@ import { $Input, InputLabel, $Label, SectionHeader, $Form, SubmitButton, $TextAr
 import ToleranceTable from './tolerance_table'
 import TableList from './TableList'
 import styled, {css} from 'styled-components'
+import ToleranceSelection from './toleranceSelection.js'
 
 
 export default class DataEntry extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            tables: [],            
             tolerance: {
                 turf_quality: 1,
                 shade_tolerance: 1,
@@ -16,7 +18,29 @@ export default class DataEntry extends Component {
                 drought_tolerance: 1,
                 traffic_tolerance: 1,},
             isAlist: false,
+            toleranceSelected: false,
         }
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+    handleSubmit(tables, e) {
+        var count = 0;
+        for(let table in tables) {
+            if(tables[table]) {
+                count++
+            }
+        }
+        console.log(count)
+        if(count >= 4) {
+            this.setState({
+                toleranceSelected : true
+            })
+        }
+        console.log(this.state.toleranceSelected)
+        //pass all selected to tolerance table to generate
+        
+        //set toleranceSelected to true
+
     }
 
     handleSlide(e) {
@@ -66,7 +90,9 @@ export default class DataEntry extends Component {
                 </Wrapper>
 
                 <SectionHeader className='tolerance_table'> TOLERANCE TABLE </SectionHeader>
-                    <ToleranceTable handleSlide={this.handleSlide.bind(this)} data={this.state.tolerance} />
+                    {this.state.toleranceSelected ? <ToleranceTable handleSlide={this.handleSlide.bind(this)} data={this.state.tolerance} />
+                                                  : <ToleranceSelection handleSubmit={this.handleSubmit}/>
+                    }
 
                 <SectionHeader> CONTENT </SectionHeader>
 
@@ -89,18 +115,18 @@ export default class DataEntry extends Component {
                         <$Label width="20%" center> Endophyte +: </$Label>
                     </Wrapper>
                     <Wrapper>
-                        <BIinput name="" ></BIinput>
-                        <BIinput name="" ></BIinput>    
-                        <BIinput name="" ></BIinput>    
-                        <BIinput name="" ></BIinput>    
-                        <BIinput name="" ></BIinput>                              
+                        <BIinput></BIinput>
+                        <BIinput></BIinput>    
+                        <BIinput></BIinput>    
+                        <BIinput></BIinput>    
+                        <BIinput></BIinput>                              
                     </Wrapper>
 
                          <br />
                          <br />
 
-                    <SubmitButton name='save_button'> Save </SubmitButton>
-                    <SubmitButton reset name='reset_button'> Reset </SubmitButton>
+                    <SubmitButton submit name='save_button'> Save </SubmitButton>
+                    <SubmitButton name='reset_button'> Reset </SubmitButton>
 
             </$Form>
         )
