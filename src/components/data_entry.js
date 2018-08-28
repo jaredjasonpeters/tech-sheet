@@ -5,32 +5,8 @@ import TableList from './TableList'
 import { formatName } from '../utils/utils'
 import styled, { css } from 'styled-components'
 import ToleranceSelection from './toleranceSelection.js'
+import {Context} from './contexts/contexts'
 
-const Context = React.createContext()
-
-class Provider extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-
-        }
-    }
-    render() {
-        return (
-            <Context.Provider value={{ state: this.state }}>
-                {this.props.children}
-            </Context.Provider>
-        )
-    }
-}
-
-{/* <Provider>
-    <Context.Consumer>
-        {(context) => {
-            return ()
-        }}
-    </Context.Consumer>
-</Provider> */}
 
 export default class DataEntry extends Component {
     constructor(props) {
@@ -122,6 +98,8 @@ export default class DataEntry extends Component {
 
     render() {
         return (
+            <Context.Consumer>
+            {(context) => (
             <$Form>
                 <SectionHeader className='header'> HEADER </SectionHeader>
                 <Wrapper>
@@ -131,7 +109,7 @@ export default class DataEntry extends Component {
                             width: '70px'
                         }}>
                     </img>
-                    <Checkbox blue onClick={this.handleCheck.bind(this)} checked={this.state.isAlist} />
+                    <Checkbox blue onClick={context.state.handleCheck} checked={context.state.isAlist} />
                 </Wrapper>
                 <Wrapper>
                     <InputLabel>Variety Name: </InputLabel>
@@ -198,6 +176,8 @@ export default class DataEntry extends Component {
                 <SubmitButton name='reset_button' onClick={this.reset}> Reset </SubmitButton>
 
             </$Form>
+            )}
+            </Context.Consumer>
         )
     }
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Context} from './contexts/contexts'
 import { NTEPVarietyInput, $Label, NTEPRatingInput, Wrapper, DLF_Green, Checkbox } from './styled/styled'
 import styled, { css } from 'styled-components'
 
@@ -23,7 +24,7 @@ export default class NTEProw extends Component {
 
     render() {
         return (
-            <Wrapper>
+            <Wrapper>               
                 <Checkbox onClick={this.handleCheck.bind(this)} checked={this.state.checked} />
                 <$Label checked={this.state.checked}>{this.props.label || 'Variety Name:'}</$Label>
                 <NTEPVarietyInput checked={this.state.checked} type='text' data="variety_name" />
