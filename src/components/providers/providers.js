@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {Context} from '../contexts/contexts'
-import {structured} from '../../utils/utils'
 
 class TechSheetProvider extends Component {
     constructor(props) {
@@ -11,6 +10,7 @@ class TechSheetProvider extends Component {
             variety_name: '',
             species_name: '',
             sliders: [],
+            tables: [],
             quick_facts: '',
             adaptation: '',
             seeding_rate: '',
@@ -87,7 +87,7 @@ class TechSheetProvider extends Component {
                             adaptation: this.state.adaptation
                         },
                         ntep_data: {
-                            info: this.state.tables
+                            info: this.state.tables.push(this.getTable())
                         },
                         bottom_info: {
                             seeding_rate: this.state.seeding_rate,

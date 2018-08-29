@@ -45,7 +45,7 @@ export default class NTEPDataEntry extends Component {
     }
 
     render() {
-        let tables = this.state.arr.map(v => (<NTEPtable key={`table-${v}`} count={v}/>))
+        let tables = this.state.arr.map(v => (<NTEPtable key={`table-${v}`} name={`table-${v}`} count={v}/>))
         return (
             <Fragment>
                 <SectionHeader className='ntep_data_entry'>NTEP DATA ENTRY: </SectionHeader>
