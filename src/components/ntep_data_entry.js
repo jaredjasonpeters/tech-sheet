@@ -45,24 +45,24 @@ export default class NTEPDataEntry extends Component {
     }
 
     render() {
-        let tables = this.state.arr.map(v => (<NTEPtable key={`table-${v}`} count={v} handleCheck={this.props.handleCheck} data={this.props.data} />))
+        let tables = this.state.arr.map(v => (<NTEPtable key={`table-${v}`} count={v}/>))
         return (
             <Fragment>
-            <SectionHeader className='ntep_data_entry'>NTEP DATA ENTRY: </SectionHeader>
-            <div style={{
-                display: 'flex',
-                flexDirection: 'row',
-                flexWrap: 'wrap',
-                justifyContent: 'space-between'
-            }}>
-            <div style={{ width: '100%', margin: '10px 0 10px 0' }}>
-            <Wrapper justify="center">
-            <AddTableButton onClick={this.handleClick.bind(this)}>+</AddTableButton>
-            <ResetButton onClick={this.removeTable.bind(this)}>-</ResetButton>
-            </Wrapper>
-            </div>
-            {tables}
-            </div>
+                <SectionHeader className='ntep_data_entry'>NTEP DATA ENTRY: </SectionHeader>
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    flexWrap: 'wrap',
+                    justifyContent: 'space-between'
+                }}>
+                    <div style={{ width: '100%', margin: '10px 0 10px 0' }}>
+                        <Wrapper justify="center">
+                            <AddTableButton onClick={this.handleClick.bind(this)}>+</AddTableButton>
+                            <ResetButton onClick={this.removeTable.bind(this)}>-</ResetButton>
+                        </Wrapper>
+                    </div>
+                {tables}
+                </div>
             </Fragment>
         )
     }

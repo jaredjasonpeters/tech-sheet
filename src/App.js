@@ -15,10 +15,10 @@ class App extends Component {
     this.state = {
       display_form: false,
     }
-    this.showForm = this.showForm.bind(this)
+    this.displayForm = this.displayForm.bind(this)
   }
     
-    showForm() {
+    displayForm() {
       this.setState((prevState) => {
         var newState = Object.assign(prevState)
         newState['display_form'] = !prevState['display_form']
@@ -33,11 +33,10 @@ class App extends Component {
         <Header companyName='DLF Pickseed' companyLogo='https://www.dlfpickseed.com/Files/Images/DLF_Pickseed_USA/Logos/DLF_Pickseed_Logo_230x93.png' />
         {!this.state.display_form && 
           <Wrapper justify="center">
-            <SubmitButton submit onClick={this.showForm}>Create New Techsheet</SubmitButton>
+            <SubmitButton submit onClick={this.displayForm}>Create New Techsheet</SubmitButton>
           </Wrapper>
         }
         {this.state.display_form && <DataEntryForm />}
-        {/* <Techsheet /> */}
         <Context.Consumer>
         {(context)=> (console.log(context.state.form_data))}
         </Context.Consumer>
