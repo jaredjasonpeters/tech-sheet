@@ -10,7 +10,7 @@ import NTEPDataEntry from './ntep_data_entry'
 import BottomInfo from './bottom_info'
 
 
-const DataEntry = (props) => (
+const DataEntryForm = (props) => (
         <Context.Consumer>
         {(context) => (
             <$Form>
@@ -28,5 +28,5 @@ const DataEntry = (props) => (
         </Context.Consumer>
 )
     
-export default DataEntry
+export default DataEntryForm
 

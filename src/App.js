@@ -2,14 +2,10 @@ import React, { Component } from 'react';
 import Header from './components/header';
 import Techsheet from './components/techsheet';
 import {TechSheetProvider} from './components/providers/providers'
-import DataEntry from './components/data_entry';
+import DataEntryForm from './components/data_entry_form';
 import './App.css';
 import { Context } from './components/contexts/contexts';
 import { SubmitButton, Wrapper } from './components/styled/styled'
-
-
-
-
 
 
 
@@ -40,7 +36,7 @@ class App extends Component {
             <SubmitButton submit onClick={this.showForm}>Create New Techsheet</SubmitButton>
           </Wrapper>
         }
-        {this.state.display_form && <DataEntry />}
+        {this.state.display_form && <DataEntryForm />}
         {/* <Techsheet /> */}
         <Context.Consumer>
         {(context)=> (console.log(context.state.form_data))}
