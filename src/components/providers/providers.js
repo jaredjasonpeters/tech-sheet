@@ -80,7 +80,7 @@ class TechSheetProvider extends Component {
                             species_name: this.state.species_name
                         },
                         tolerance_table: {
-                            info: this.state.sliders
+                            info: this.state.sliders.map(v=> [v, this.state[v]])
                         },
                         content: {
                             quick_facts: this.state.quick_facts,
