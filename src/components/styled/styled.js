@@ -104,7 +104,7 @@ border-radius: 5px;
 const SubmitButton = styled.button`
 flex-grow: 1;
 width: ${props => props.width || '300px'};
-max-width: 300px;
+max-width: ${props => props.max || '300px'};
 align-self: center
 margin: 20px 20px ${props => props.bottom || '0px'} 0 ;
 height: ${props => props.height || '75px'};

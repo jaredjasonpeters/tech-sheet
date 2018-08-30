@@ -5,7 +5,7 @@ class TechSheetProvider extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            name: 'Jared',
+            count: 0,
           isAlist: false,
             variety_name: '',
             species_name: '',
@@ -87,7 +87,7 @@ class TechSheetProvider extends Component {
                             adaptation: this.state.adaptation
                         },
                         ntep_data: {
-                            info: this.state.tables.push(this.getTable())
+                            info: this.state.tables
                         },
                         bottom_info: {
                             seeding_rate: this.state.seeding_rate,
@@ -105,10 +105,12 @@ class TechSheetProvider extends Component {
             reset: (e) => {
                 e.preventDefault()
                 this.setState({
+                    count: 0,
                     isAlist: false,
                     variety_name: '',
                     species_name: '',
                     sliders: [],
+                    tables: [],
                     quick_facts: '',
                     adaptation: '',
                     seeding_rate: '',
@@ -119,7 +121,18 @@ class TechSheetProvider extends Component {
                     toleranceSelected: false,
                     error_message: null
                 })
-            },
+            },  
+            addTable: (table) => {
+                this.setState(prevState => {
+                    var newState = Object.assign(prevState)
+                    if(!table.confirmed) {
+                        newState.tables.push(table)
+                        table.confirmed = true
+                        return newState
+                    }
+                    
+                })
+            }          
         }
     }
     render() {

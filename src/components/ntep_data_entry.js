@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import {Context} from './contexts/contexts'
 import NTEPtable from './NTEPtable'
 import { AddTableButton, ResetButton, Wrapper, SectionHeader } from './styled/styled'
 
@@ -39,15 +40,16 @@ export default class NTEPDataEntry extends Component {
                     count: count
                 }
             })
-        }
-
-        
+        } 
     }
 
     render() {
-        let tables = this.state.arr.map(v => (<NTEPtable key={`table-${v}`} name={`table-${v}`} count={v}/>))
+        
         return (
-            <Fragment>
+            <Context.Consumer>
+            {context => (
+                <Fragment>
+                {console.log(context)}
                 <SectionHeader className='ntep_data_entry'>NTEP DATA ENTRY: </SectionHeader>
                 <div style={{
                     display: 'flex',
@@ -55,15 +57,17 @@ export default class NTEPDataEntry extends Component {
                     flexWrap: 'wrap',
                     justifyContent: 'space-between'
                 }}>
-                    <div style={{ width: '100%', margin: '10px 0 10px 0' }}>
-                        <Wrapper justify="center">
-                            <AddTableButton onClick={this.handleClick.bind(this)}>+</AddTableButton>
-                            <ResetButton onClick={this.removeTable.bind(this)}>-</ResetButton>
-                        </Wrapper>
-                    </div>
-                {tables}
+                <div style={{ width: '100%', margin: '10px 0 10px 0' }}>
+                <Wrapper justify="center">
+                <AddTableButton onClick={this.handleClick.bind(this)}>+</AddTableButton>
+                <ResetButton onClick={this.removeTable.bind(this)}>-</ResetButton>
+                </Wrapper>
                 </div>
-            </Fragment>
+                {this.state.arr.map(v => (<NTEPtable key={`table-${v}`} name={`table-${v}`} count={v}/>))}
+                </div>
+                </Fragment>
+            )}
+            </Context.Consumer>
         )
     }
 }

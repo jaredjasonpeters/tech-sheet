@@ -37,9 +37,6 @@ class App extends Component {
           </Wrapper>
         }
         {this.state.display_form && <DataEntryForm />}
-        <Context.Consumer>
-        {(context)=> (console.log(context.state.form_data))}
-        </Context.Consumer>
       
       </div>
       </TechSheetProvider>
