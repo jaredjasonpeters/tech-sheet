@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import {Context} from './contexts/contexts'
-import NTEPtable from './NTEPtable'
+import NTEPtable from './ntep_table'
 import { AddTableButton, ResetButton, Wrapper, SectionHeader } from './styled/styled'
 
 export default class NTEPDataEntry extends Component {
@@ -27,19 +27,24 @@ export default class NTEPDataEntry extends Component {
         }
     }
 
-    removeTable(e){
+    removeTable(context,e){
+        
         e.preventDefault()
         if(this.state.count > 1){
             this.setState(prevState => {
-                var count = prevState.count
+                var count = prevState.count - 1
+                console.log(count)
+                context.state.removeTable(count)
+                
                 var newArr = prevState.arr;
-                newArr.pop()
-                count--
+                newArr.pop()                   
+               
                 return {
                     arr: newArr,
                     count: count
                 }
             })
+           
         } 
     }
 
@@ -49,7 +54,6 @@ export default class NTEPDataEntry extends Component {
             <Context.Consumer>
             {context => (
                 <Fragment>
-                {console.log(context)}
                 <SectionHeader className='ntep_data_entry'>NTEP DATA ENTRY: </SectionHeader>
                 <div style={{
                     display: 'flex',
@@ -60,7 +64,7 @@ export default class NTEPDataEntry extends Component {
                 <div style={{ width: '100%', margin: '10px 0 10px 0' }}>
                 <Wrapper justify="center">
                 <AddTableButton onClick={this.handleClick.bind(this)}>+</AddTableButton>
-                <ResetButton onClick={this.removeTable.bind(this)}>-</ResetButton>
+                <ResetButton onClick={this.removeTable.bind(this, context)}>-</ResetButton>
                 </Wrapper>
                 </div>
                 {this.state.arr.map(v => (<NTEPtable key={`table-${v}`} name={`table-${v}`} count={v}/>))}

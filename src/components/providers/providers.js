@@ -9,8 +9,8 @@ class TechSheetProvider extends Component {
           isAlist: false,
             variety_name: '',
             species_name: '',
-            sliders: [],
-            tables: [],
+            sliders: {},
+            tables: {},
             quick_facts: '',
             adaptation: '',
             seeding_rate: '',
@@ -80,7 +80,7 @@ class TechSheetProvider extends Component {
                             species_name: this.state.species_name
                         },
                         tolerance_table: {
-                            info: this.state.sliders.map(v => [v, this.state[v]])
+                            info: this.state.sliders
                         },
                         content: {
                             quick_facts: this.state.quick_facts,
@@ -101,6 +101,7 @@ class TechSheetProvider extends Component {
                         return newState
                     }
                 )
+                console.log(this.state)
             },
             reset: (e) => {
                 e.preventDefault()
@@ -109,8 +110,8 @@ class TechSheetProvider extends Component {
                     isAlist: false,
                     variety_name: '',
                     species_name: '',
-                    sliders: [],
-                    tables: [],
+                    sliders: {},
+                    tables: {},
                     quick_facts: '',
                     adaptation: '',
                     seeding_rate: '',
@@ -123,16 +124,49 @@ class TechSheetProvider extends Component {
                 })
             },  
             addTable: (table) => {
+                if(table.confirmed) return
+                var {id, title, lines} = table
+                var LSDFilled = table.lines.lsd.ntep_rating.filled
+                var titleFilled = title !== ''
+                var oneOfOursSelected = false
+                var count = 0
+                for(let row in lines) {
+                   if(row !== 'lsd') {
+                       if(lines[row].ntep_rating.filled && lines[row].variety_name.filled) {
+                        count++
+                       }
+                       if(lines[row].proprietary) {
+                        oneOfOursSelected = true
+                       }
+                   }
+                }
+                
                 this.setState(prevState => {
                     var newState = Object.assign(prevState)
-                    if(!table.confirmed) {
-                        newState.tables.push(table)
+                    
+                    if(!table.confirmed && titleFilled && LSDFilled & oneOfOursSelected & count === 8) {
+                        newState.tables[id] = table
                         table.confirmed = true
                         return newState
-                    }
+                    } else { return }
                     
-                })
-            }          
+                  })
+            },
+            // removeTable: (table) => {
+            //     console.log(table)
+            //     var {id, title} = table
+            //     this.setState(prevState => {
+            //         var newState = Object.assign(prevState)
+            //         newState.tables[id] = {}
+            //     })
+            // }
+             removeTable: (count) => {
+                 this.setState(prevState => {
+                     var newState = Object.assign(prevState)
+                     newState.tables[`table-${count}`] = {}
+                     return newState
+                 })
+             }   
         }
     }
     render() {
