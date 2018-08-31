@@ -11,10 +11,10 @@ const Header = (props) => {
         <Context.Consumer>
             {context => (
 
-                <Wrapper width="100%" row="row" bg-color="white">
+                <Wrapper width="100%" row="row" bg-color="none">
                     <CompanyHeader className="App-header" theme={Colors[context.state.theme_style]}>
-                        <img src={props.companyLogo} className="App-logo" alt="logo" />
-                        <h1 className="App-title">{props.companyName} Tech Sheets</h1>
+                        <img src={`/images/${context.state.theme_style}.png`} className="App-logo" alt="logo" />
+                        <h1 className="App-title">TECH SHEETS APP</h1>
                     </CompanyHeader>
                     <StyleSwitcher />
                     <UserPanel />
@@ -27,14 +27,16 @@ const Header = (props) => {
 const CompanyHeader = styled.header`
         @import url('https://fonts.googleapis.com/css?family=Nunito:800');
         font-family: 'Nunito', sans-serif;
+        font-size: 12px;
+        line-height: 2em;
         text-align: left;
         flex-grow: 5;
-        max-width: 30%;
+        max-width: 22%;
         align-self: flex-start;
         background-color: ${props => props.theme || '#222'};
         height: 10%;
         padding: 20px 0 0px 50px;
-        color: white;
+        color: black;
         border-radius: 0px 0px 0px 0px;
     `
 

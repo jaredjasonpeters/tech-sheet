@@ -6,7 +6,7 @@ class TechSheetProvider extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            theme_style: '',
+            theme_style: 'DLF_BLK',
             display_form: false,
             count: 0,
             isAlist: false,
@@ -26,10 +26,23 @@ class TechSheetProvider extends Component {
 
             chooseTheme: (e) => {
                 var target = e.target
-                target.style.color = Colors[name];
+                var title = document.querySelector('.App-title')
+                title.style.color = 'white'
+                var currentActive = document.querySelector('h3[active=true]')
+                if(currentActive) {
+                    currentActive.style.color = 'black'
+                    currentActive.setAttribute('active',false)
+                } 
+                target.setAttribute('active', true)
+                var isActive = target.getAttribute('active')
                 var name = target.getAttribute('name')
-                console.log(name)
+            
+                if(isActive) {
+                    target.style.color = Colors[name];
+                }
+                
                 this.setState({ theme_style: name });
+                
             },
 
             displayForm: () => {

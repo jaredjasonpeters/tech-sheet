@@ -40,26 +40,26 @@ export default class UserPanel extends Component {
 
 const UserPanelContainer = styled.div`
  
- height: 150px;
- width: 30%;
- background: rgba(0,50,25,0.15);
+ height: 120px;
+ width: 24%;
+ background: rgb(225,225,235);
  border-radius: 0px 0px 0px 15px;
  flex-grow: 1;
  align-self: flex-start;
  padding: 20px 0 0px 50px;
-
- img:hover {
- border: 5px solid ${DLF_Green}
- }
 `
 const ProfileImage = styled.img`
  flex-basis: auto;
-width: 80px;
-height: 80px;
+width: 60px;
+height: 60px;
 border-radius: 90px;
 object-fit: cover;
 border: 3px solid black
 transition: border 100ms;
+&:hover 
+    {
+    border: 3px solid ${DLF_Green}
+    }
 `
 
 const UserInfo = styled.div`
@@ -73,6 +73,7 @@ li {
     list-style-type: none
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
+    font-size: 13px;
 }
 a {
     text-decoration: none;
@@ -80,14 +81,14 @@ a {
     transition: color: 200ms;
 }
 a: hover {
-    font-size: 20px;
+    font-size: 16px;
     color: ${DLF_Green}
 }
 `
 const UserName = styled.h2`
 @import url('https://fonts.googleapis.com/css?family=Nunito:800,400');
 font-family: 'Nunito', sans-serif;
-font-size: 18px;
+font-size: 15px;
 font-weight: 800;
 margin-left: 20px;
 `

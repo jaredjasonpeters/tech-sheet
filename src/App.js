@@ -7,6 +7,7 @@ import './App.css';
 import { Context } from './components/contexts/contexts';
 import { SubmitButton, Wrapper } from './components/styled/styled'
 import { Colors } from './utils/utils'
+import {DLF_Green} from './components/styled/styled'
 
 
 
@@ -23,9 +24,9 @@ class App extends Component {
             <div className="App"
               style={{
                 transition: 'background 1000',
-                background: Colors[context.state.theme_style]
+                background: Colors[context.state.theme_style] || 'white'
               }}>
-              <Header companyName='DLF Pickseed' companyLogo='https://www.dlfpickseed.com/Files/Images/DLF_Pickseed_USA/Logos/DLF_Pickseed_Logo_230x93.png' />
+              <Header companyName='DLF Pickseed' />
               {context.state.display_form && <DataEntryForm />}
             </div>
           )}

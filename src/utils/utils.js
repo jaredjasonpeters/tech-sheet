@@ -26,9 +26,10 @@ const formatInput = (str, type) => {
 }
 
 const Colors = {
-  DLF_Pickseed_Pro_Turf: '#00a651',
+  DLF_Pickseed_Pro_Turf: '#80bc00',
   DLF_Pickseed_Forage: '#ce1141',
   Seed_Research_of_Oregon: '#C60C30',
+  DLF_BLK: 'white',
 }
 
 

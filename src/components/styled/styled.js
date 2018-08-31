@@ -1,8 +1,9 @@
 import styled, { css } from 'styled-components'
 
-const DLF_Green = '#00a651'
-const DLF_Pink = '#ce1141'
-const ALIST_Blue = '#00aeef'
+const DLF_Green = '#00a651',
+      DLF_ProTurf = '#80bc00',
+      DLF_Pink = '#ce1141',
+      ALIST_Blue = '#00aeef'
 
 const SectionHeader = styled.div`
 flex-grow: 1
@@ -11,7 +12,7 @@ width: 100%
 height: 30px;
 margin: 10px 0 10px 0
 padding: 5px;
-background-color: ${DLF_Green};
+background: black;
 border-radius: 5px;
 
 
@@ -88,10 +89,11 @@ display: flex;
 flex-direction: ${props => props.column || 'row'};
 justify-content: ${props => props.justify || 'flex-start'};
 align-items: flex-start;
-margin-bottom: 10px;
+margin: ${props=> props.margin || '0 0 10px 0'};
 width: ${props => props.width || '100%'};
 height: ${props => props.height || 'auto'};
 background: ${props => props['bg-color'] || 'none'}
+padding: ${props => props.pad || '0px'}
 `
 const NTEPVarietyInput = styled.input`
 flex-grow: 2
@@ -112,7 +114,7 @@ flex-grow: 1;
 width: ${props => props.width || '300px'};
 max-width: ${props => props.max || '300px'};
 align-self: center
-margin: 20px 20px ${props => props.bottom || '0px'} ${props => props.left || '0px'};
+margin: ${props => props.top || '20px'} ${props => props.right || '20px'} ${props => props.bottom || '5px'} ${props => props.left || '5px'};
 height: ${ props => props.height || '75px'};
 border-radius: 5px;
 background: ${ props => (props.submit) ? DLF_Green : DLF_Pink};
@@ -206,6 +208,7 @@ border-radius: 5px;
 background: ${ DLF_Pink}
 border: none;
 margin-bottom: 0;
+margin-left: 5px;
 
 
 font-size: 25px;
@@ -251,6 +254,7 @@ export {
     AddTableButton,
     ResetButton,
     DLF_Green,
+    DLF_ProTurf,
     DLF_Pink,
     ALIST_Blue,
     Checkbox,

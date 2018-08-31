@@ -24,16 +24,18 @@ export default class StyleSwitcher extends Component {
         flexGrow: 7,
         width: '30%',
         alignSelf: 'flex-start',
-        padding: '10px 0 0px 30px'
+        padding: '10px 0 0px 30px',
+        background: 'none'
+        
       }}>
         <Context.Consumer>
           {context => (
-            <Wrapper>
+            <Wrapper bg-color="whitesmoke" pad="0 0 0 20px">
               <Wrapper width="50%">
-                {this.state.styles.map((v, i) => <Styles onMouseEnter={(e) => e.target.style.color = Colors[v]} onMouseLeave={(e) => e.target.style.color = 'black'} name={v} key={`style-${i}`} onClick={context.state.chooseTheme}>{formatName(v)}</Styles>)}
+                {this.state.styles.map((v, i) => <Styles Context={context} name={v} key={`style-${i}`} onClick={context.state.chooseTheme}>{formatName(v)}</Styles>)}
               </Wrapper>
               {!context.state.display_form &&
-                <SubmitButton submit width="200px" max="200px" fSize="16px" left="20px" onClick={context.state.displayForm}>Create New Techsheet</SubmitButton>
+                <SubmitButton submit width="150px" max="150px" fSize="16px" left="40px" height="60px" onClick={context.state.displayForm}>Create New Techsheet</SubmitButton>
               }
             </Wrapper>
           )}
@@ -47,9 +49,15 @@ const Styles = styled.h3`
 font-family: Nunito, sans-serif;
 flex-grow: 1;
 width: 210px;
-font-size: 15px;
+max-width: 12ch;
+line-height: 1.2em;
+font-size: 14px;
 padding: 10px;
+text-align: center;
 align-self: flex-start;
 cursor: pointer
 transition: color 1s
+&:hover {
+  color: ${props => Colors[props.name]}
+}
 `
