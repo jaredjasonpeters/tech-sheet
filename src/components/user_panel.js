@@ -15,6 +15,12 @@ export default class UserPanel extends Component {
         return (
                 <Fragment>
                     <PanelBox>
+                        <Wrapper>
+                        <ProfileImage/>
+                        <UserInfo>
+                            <h1>{this.state.name}</h1>
+                        </UserInfo>
+                        </Wrapper>
                     </PanelBox>
                 </Fragment>
         )
@@ -29,4 +35,15 @@ const PanelBox = styled.div`
  flex-grow: 1;
  align-self: flex-start;
  padding: 20px 0 0px 50px;
+`
+const ProfileImage = styled.img`
+flex-grow: 1
+width: 90px;
+height: 90px;
+`
+
+const UserInfo = styled.div`
+flex-grow: 5
+width: 50%;
+height: 90px;
 `
