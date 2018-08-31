@@ -124,7 +124,7 @@ class TechSheetProvider extends Component {
                     newState['form_data'] = structured
                     return newState
                 })
-                console.log(this.state)
+                console.log(this.state.form_data)
             },
 
             reset: (e) => {
