@@ -54,7 +54,7 @@ export default class NTEPDataEntry extends Component {
             <Context.Consumer>
             {context => (
                 <Fragment>
-                <SectionHeader className='ntep_data_entry'>NTEP DATA ENTRY: </SectionHeader>
+                <SectionHeader theme={context.state.theme_style} className='ntep_data_entry'>NTEP DATA ENTRY: </SectionHeader>
                 <div style={{
                     display: 'flex',
                     flexDirection: 'row',

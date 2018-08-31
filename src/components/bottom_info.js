@@ -6,7 +6,7 @@ const BottomInfo = (props) => {
         <Context.Consumer>
         {context=>(
             <Fragment>
-                <SectionHeader className='bottom_info'>BOTTOM INFO: </SectionHeader>
+                <SectionHeader theme={context.state.theme_style} className='bottom_info'>BOTTOM INFO: </SectionHeader>
                 <Wrapper>
                     <$Label width="20%" center> Seeding Rate: </$Label>
                     <$Label width="20%" center> Establishment Rate: </$Label>

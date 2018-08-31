@@ -1,14 +1,14 @@
 import React, {Component, Fragment} from 'react'
                 import {Context} from './contexts/contexts'
                 import {SectionHeader, InputWrapper, InputLabel, $Input, Value, DLF_Pink} from './styled/styled'
-                import {formatName} from '../utils/utils'
+                import {formatName, errors} from '../utils/utils'
                 import ToleranceSelection from './tolerance_selection'
 
                 const ToleranceTable = (props) => (
                     <Context.Consumer>
                     {context => (
                         <Fragment>
-                        <SectionHeader className='tolerance_table'> TOLERANCE TABLE </SectionHeader>
+                        <SectionHeader theme={context.state.theme_style} className='tolerance_table'> TOLERANCE TABLE </SectionHeader>
                         {context.state.toleranceSelected ?
                             (
                                 context.state.sliders.map(v => (
@@ -22,7 +22,7 @@ import React, {Component, Fragment} from 'react'
                             )
                             : <ToleranceSelection/>
                         }                        
-                        {context.state.error_message && <span style={{ width: '100%', textAlign: 'center', color: DLF_Pink, fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '20px' }}>{context.state.error_message}</span>}
+                        {context.state.error_message === errors.tolerance_not_selected && <span style={{ width: '100%', textAlign: 'center', color: DLF_Pink, fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '20px' }}>{context.state.error_message}</span>}
                         </Fragment>
                     )}
                     </Context.Consumer>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Context } from '../contexts/contexts'
-import { Colors } from '../../utils/utils'
+import { Colors, errors} from '../../utils/utils'
 
 class TechSheetProvider extends Component {
     constructor(props) {
@@ -48,7 +48,8 @@ class TechSheetProvider extends Component {
             displayForm: () => {
                 this.setState((prevState) => {
                     var newState = Object.assign(prevState)
-                    newState['display_form'] = !prevState['display_form']
+                    if(this.state.theme_style !== 'DLF_BLK') newState['display_form'] = !prevState['display_form']
+                    else newState.error_message = errors.style_not_selected
                     return newState
                 })
             },
@@ -81,7 +82,7 @@ class TechSheetProvider extends Component {
                     })
                 } else {
                     this.setState({
-                        error_message: '----You have to select at least (4) tolerance ratings----'
+                        error_message: errors.tolerance_not_selected
                     })
                 }
 

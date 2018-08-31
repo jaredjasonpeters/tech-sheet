@@ -6,7 +6,7 @@ const Content = (props) => (
     <Context.Consumer>
         {context => (
             <Fragment>
-            <SectionHeader> CONTENT </SectionHeader>
+            <SectionHeader theme={context.state.theme_style}> CONTENT </SectionHeader>
             
             <InputLabel> Quick Facts: </InputLabel>
             <$TextArea name='quick_facts' onChange={context.state.handleChange} value={context.state.quick_facts} />

@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import {Colors} from '../../utils/utils'
 
 const DLF_Green = '#00a651',
       DLF_ProTurf = '#80bc00',
@@ -12,7 +13,7 @@ width: 100%
 height: 30px;
 margin: 10px 0 10px 0
 padding: 5px;
-background: black;
+background: ${props => Colors[props.theme] || 'black'};
 border-radius: 5px;
 
 
@@ -48,6 +49,7 @@ font-size: 13px;
 font-weight: bold;
 font-family: 'Nunito', sans-serif;
 text-align: ${props => { if (props.center) return 'center' || 'left' }}
+
 
 ${props => props.checked && css`
 color: ${DLF_Green}

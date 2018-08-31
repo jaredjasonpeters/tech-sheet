@@ -32,13 +32,19 @@ const Colors = {
   DLF_BLK: 'white',
 }
 
+const errors = {
+  style_not_selected: 'Choose a Style!',
+  tolerance_not_selected: 'You need to select at least (4)!'
+}
+
 
 
 module.exports = {
   formatName,
   IndexColor,
   formatInput,
-  Colors
+  Colors,
+  errors,
 
   // IndexColor(index) {
   //   var colors = ['_', '#232122', '#383435', '#514f4f', '#968f91',]

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { Context } from './contexts/contexts'
 import styled, { css } from 'styled-components'
-import { Wrapper, SubmitButton } from './styled/styled'
+import { Wrapper, SubmitButton, DLF_Pink, $Label } from './styled/styled'
 import DataEntryForm from './data_entry_form'
 import { formatName, Colors } from '../utils/utils'
 
@@ -32,11 +32,13 @@ export default class StyleSwitcher extends Component {
           {context => (
             <Wrapper bg-color="whitesmoke" pad="0 0 0 20px">
               <Wrapper width="50%">
+                <$Label>Styles:</$Label>
                 {this.state.styles.map((v, i) => <Styles Context={context} name={v} key={`style-${i}`} onClick={context.state.chooseTheme}>{formatName(v)}</Styles>)}
               </Wrapper>
               {!context.state.display_form &&
                 <SubmitButton submit width="150px" max="150px" fSize="16px" left="40px" height="60px" onClick={context.state.displayForm}>Create New Techsheet</SubmitButton>
               }
+              {<Error>{!context.state.display_form && context.state.error_message}</Error>}
             </Wrapper>
           )}
         </Context.Consumer>
@@ -60,4 +62,8 @@ transition: color 1s
 &:hover {
   color: ${props => Colors[props.name]}
 }
+`
+
+const Error = styled.h4`
+color: ${DLF_Pink};
 `
