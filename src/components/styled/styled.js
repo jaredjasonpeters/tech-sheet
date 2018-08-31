@@ -80,12 +80,13 @@ const BIinput = styled.input.attrs({ type: 'text', })`
 
 const Wrapper = styled.div`
 display: flex;
-flex-direction: row;
+flex-direction: ${props => props.column || 'row'};
 justify-content: ${props => props.justify || 'flex-start'};
 align-items: flex-start;
 margin-bottom: 10px;
 width: ${props => props.width || '100%'};
-height: auto;
+height: ${props => props.height || 'auto'};
+background: ${props => props['bg-color'] || 'none'}
 `
 const NTEPVarietyInput = styled.input`
 flex-grow: 2

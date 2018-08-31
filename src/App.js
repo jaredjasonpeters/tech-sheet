@@ -31,6 +31,10 @@ class App extends Component {
       <TechSheetProvider>
       <div className="App">
         <Header companyName='DLF Pickseed' companyLogo='https://www.dlfpickseed.com/Files/Images/DLF_Pickseed_USA/Logos/DLF_Pickseed_Logo_230x93.png' />
+
+        
+
+
         {!this.state.display_form && 
           <Wrapper justify="center">
             <SubmitButton submit onClick={this.displayForm}>Create New Techsheet</SubmitButton>
