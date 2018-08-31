@@ -36,7 +36,7 @@ export default class StyleSwitcher extends Component {
                 {this.state.styles.map((v, i) => <Styles Context={context} name={v} key={`style-${i}`} onClick={context.state.chooseTheme}>{formatName(v)}</Styles>)}
               </Wrapper>
               {!context.state.display_form &&
-                <SubmitButton submit width="150px" max="150px" fSize="16px" left="40px" height="60px" onClick={context.state.displayForm}>Create New Techsheet</SubmitButton>
+                <SubmitButton submit width="150px" max="150px" fSize="16px" left="40px" height="60px" top="0" onClick={context.state.displayForm}>Create New Techsheet</SubmitButton>
               }
               {<Error>{!context.state.display_form && context.state.error_message}</Error>}
             </Wrapper>
