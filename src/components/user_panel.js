@@ -44,6 +44,7 @@ const UserPanelContainer = styled.div`
  width: 24%;
  background: rgb(225,225,235);
  border-radius: 0px 0px 0px 15px;
+ box-shadow: 5px 5px 1px 2px rgba(0, 0, 0, .1);
  flex-grow: 1;
  align-self: flex-start;
  padding: 20px 0 0px 50px;

@@ -31,9 +31,10 @@ flex-direction: column
 max-width: 800px;
 margin: 50px auto 0px auto;
 padding: 50px;
-border: solid 3px black
+border: solid 3px white;
 border-radius: 15px
-opacity: 0
+opacity: 0;
+box-shadow: 15px 15px 5px 2px rgba(0, 0, 0, .2);
 transition: opacity 2s
 background: rgb(240, 240, 240)
 
