@@ -23,9 +23,12 @@ class App extends Component {
   }
   
   logIn() {
-    this.setState({
-      loggedIn: true
-    })
+    setTimeout(() => {
+      this.setState({
+        loggedIn: true
+      })
+    }, 1500)
+    
   }
 
   render() {
