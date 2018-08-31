@@ -1,12 +1,15 @@
-import React, {Component} from 'react'
-import {Context} from '../contexts/contexts'
+import React, { Component } from 'react'
+import { Context } from '../contexts/contexts'
+import { Colors } from '../../utils/utils'
 
 class TechSheetProvider extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            theme_style: '',
+            display_form: false,
             count: 0,
-          isAlist: false,
+            isAlist: false,
             variety_name: '',
             species_name: '',
             sliders: {},
@@ -20,6 +23,23 @@ class TechSheetProvider extends Component {
             endophyte_enhanced: '',
             toleranceSelected: false,
             error_message: null,
+
+            chooseTheme: (e) => {
+                var target = e.target
+                target.style.color = Colors[name];
+                var name = target.getAttribute('name')
+                console.log(name)
+                this.setState({ theme_style: name });
+            },
+
+            displayForm: () => {
+                this.setState((prevState) => {
+                    var newState = Object.assign(prevState)
+                    newState['display_form'] = !prevState['display_form']
+                    return newState
+                })
+            },
+
             handleCheck: () => {
                 this.setState((prevState) => {
                     var newState = Object.assign(prevState)
@@ -29,6 +49,7 @@ class TechSheetProvider extends Component {
                     }
                 })
             },
+
             handleSubmit: (options, e) => {
                 var count = 0;
                 var inputs = [];
@@ -38,7 +59,7 @@ class TechSheetProvider extends Component {
                         count++
                     }
                 }
-        
+
                 if (count >= 4) {
                     this.setState({
                         sliders: inputs,
@@ -50,8 +71,9 @@ class TechSheetProvider extends Component {
                         error_message: '----You have to select at least (4) tolerance ratings----'
                     })
                 }
-        
+
             },
+
             handleChange: (e) => {
                 var { name, value } = e.target
                 if (value === "--Select an Option--") return
@@ -61,6 +83,7 @@ class TechSheetProvider extends Component {
                     return newState
                 })
             },
+
             handleCheck: () => {
                 this.setState((prevState) => {
                     var newState = Object.assign(prevState)
@@ -70,6 +93,7 @@ class TechSheetProvider extends Component {
                     }
                 })
             },
+
             saveForm: () => {
                 this.setState((prevState) => {
                     var newState = Object.assign(prevState)
@@ -80,7 +104,7 @@ class TechSheetProvider extends Component {
                             species_name: this.state.species_name
                         },
                         tolerance_table: {
-                            info: this.state.sliders.map(v=> [v, this.state[v]])
+                            info: this.state.sliders.map(v => [v, this.state[v]])
                         },
                         content: {
                             quick_facts: this.state.quick_facts,
@@ -97,12 +121,12 @@ class TechSheetProvider extends Component {
                             endophyte_enhanced: this.state.endophyte_enhanced
                         }
                     }
-                        newState['form_data'] = structured
-                        return newState
-                    }
-                )
+                    newState['form_data'] = structured
+                    return newState
+                })
                 console.log(this.state)
             },
+
             reset: (e) => {
                 e.preventDefault()
                 this.setState({
@@ -122,51 +146,45 @@ class TechSheetProvider extends Component {
                     toleranceSelected: false,
                     error_message: null
                 })
-            },  
+            },
+
             addTable: (table) => {
-                if(table.confirmed) return
-                var {id, title, lines} = table
+                if (table.confirmed) return
+                var { id, title, lines } = table
                 var LSDFilled = table.lines.lsd.ntep_rating.filled
                 var titleFilled = title !== ''
                 var oneOfOursSelected = false
                 var count = 0
-                for(let row in lines) {
-                   if(row !== 'lsd') {
-                       if(lines[row].ntep_rating.filled && lines[row].variety_name.filled) {
-                        count++
-                       }
-                       if(lines[row].proprietary) {
-                        oneOfOursSelected = true
-                       }
-                   }
+                for (let row in lines) {
+                    if (row !== 'lsd') {
+                        if (lines[row].ntep_rating.filled && lines[row].variety_name.filled) {
+                            count++
+                        }
+                        if (lines[row].proprietary) {
+                            oneOfOursSelected = true
+                        }
+                    }
                 }
-                
+
                 this.setState(prevState => {
                     var newState = Object.assign(prevState)
-                    
-                    if(!table.confirmed && titleFilled && LSDFilled & oneOfOursSelected & count === 8) {
+
+                    if (!table.confirmed && titleFilled && LSDFilled & oneOfOursSelected & count === 8) {
                         newState.tables[id] = table
                         table.confirmed = true
                         return newState
                     } else { return }
-                    
-                  })
+
+                })
             },
-            // removeTable: (table) => {
-            //     console.log(table)
-            //     var {id, title} = table
-            //     this.setState(prevState => {
-            //         var newState = Object.assign(prevState)
-            //         newState.tables[id] = {}
-            //     })
-            // }
-             removeTable: (count) => {
-                 this.setState(prevState => {
-                     var newState = Object.assign(prevState)
-                     newState.tables[`table-${count}`] = {}
-                     return newState
-                 })
-             }   
+
+            removeTable: (count) => {
+                this.setState(prevState => {
+                    var newState = Object.assign(prevState)
+                    newState.tables[`table-${count}`] = {}
+                    return newState
+                })
+            }
         }
     }
     render() {

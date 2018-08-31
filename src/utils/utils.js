@@ -17,12 +17,18 @@ const IndexColor = (index) => {
 }
 
 const formatInput = (str, type) => {
-  if(type === 'name') {
-   return [...str].map(v=>v.toUpperCase())
+  if (type === 'name') {
+    return [...str].map(v => v.toUpperCase())
   }
-  if(type === 'rating') {
+  if (type === 'rating') {
     return str
   }
+}
+
+const Colors = {
+  DLF_Pickseed_Pro_Turf: '#00a651',
+  DLF_Pickseed_Forage: '#ce1141',
+  Seed_Research_of_Oregon: '#C60C30',
 }
 
 
@@ -30,7 +36,8 @@ const formatInput = (str, type) => {
 module.exports = {
   formatName,
   IndexColor,
-  formatInput
+  formatInput,
+  Colors
 
   // IndexColor(index) {
   //   var colors = ['_', '#232122', '#383435', '#514f4f', '#968f91',]
