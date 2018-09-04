@@ -18,7 +18,7 @@ export default class TechSheetSidebar  extends Component {
         return (
             <Fragment>
                 <ul>
-                    {this.state.techsheets.map(v=> <li key={`ts-${v}`}>{v}</li>)}
+                    {this.state.techsheets.map(v => <li key={`ts-${v}`}>{v}</li>)}
                 </ul>
             </Fragment>
         );
