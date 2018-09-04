@@ -1,0 +1,42 @@
+{
+	
+	"Create Class Component": {
+		"prefix": "ccc",
+		"body": ["import React, {Component} from 'react';",
+			     "",
+			     "export default class $1 extends Component{",
+		         "\tconstructor(props){", 
+				 "\tsuper(props)",
+				 "\t\tthis.state={",
+				 "\t\t\t$2",
+				 "\t\t}",
+				  "\t}", 
+				  "",
+				  "\trender(){",
+				  "\t\treturn(",
+				  "\t\t\t$3",
+				  "\t\t);",
+				  "\t}",
+				  "}",
+				 ],
+		"description": "Create instance of React Class Component"
+	},
+
+	"Console Log": {
+		"prefix": "log",
+		"body": "console.log($1);"
+	},
+	"Create Functional Stateless Component": {
+		"prefix": "cfsc",
+		"body": [
+			"import React from 'react';",
+			"",
+			"const $1 = (props) => {",
+			"\treturn ($2);",
+			"}",
+			"",
+			"export default $1;"
+				],
+				"description": "Creating a functional stateless react component"
+	}
+}
