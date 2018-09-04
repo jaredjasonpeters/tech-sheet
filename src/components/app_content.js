@@ -1,6 +1,8 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import TechSheetSidebar from './tech_sheet_sidebar';
-import {Checkbox} from './styled/styled'
+import {Context} from './contexts/contexts'
+import DataEntryForm from './data_entry_form'
+import {Wrapper} from './styled/styled'
 
 export default class AppContent extends Component{
     constructor(props){
@@ -12,7 +14,14 @@ export default class AppContent extends Component{
 
     render(){
         return(
-            <TechSheetSidebar/>
+            <Context.Consumer>
+            {context => (
+                <Wrapper>
+                    <TechSheetSidebar/>
+                    { context.state.display_form && <DataEntryForm /> }
+                </Wrapper>
+            )}
+            </Context.Consumer>
         );
     }
 }

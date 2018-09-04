@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import styled from 'styled-components'
 
 export default class TechSheetSidebar  extends Component {
     constructor(props){
@@ -17,10 +18,14 @@ export default class TechSheetSidebar  extends Component {
     render() {
         return (
             <Fragment>
-                <ul>
+                <SidebarContainer>
                     {this.state.techsheets.map(v => <li key={`ts-${v}`}>{v}</li>)}
-                </ul>
+                </SidebarContainer>
             </Fragment>
         );
     }
 }
+
+const SidebarContainer = styled.ul`
+    width: 20%;
+`

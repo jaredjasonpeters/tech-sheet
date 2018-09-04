@@ -48,7 +48,6 @@ class App extends Component {
               background: Colors[context.state.theme_style] || 'white'
             }}>
               <Header companyName='DLF Pickseed' />
-              {context.state.display_form && <DataEntryForm />}
               <AppContent/>
             </div>
           )}
