@@ -27,7 +27,8 @@ font-family: 'Nunito', sans-serif;
 
 const $Form = styled.div`
 display: flex;
-flex-direction: column
+flex-direction: ${props => props['flex-dir'] || 'column'}
+width: 50%;
 max-width: 800px;
 margin: 50px auto 0px auto;
 padding: 50px;
@@ -41,15 +42,16 @@ background: rgb(240, 240, 240)
 `
 const $Label = styled.label`
 flex-grow: 1
-width: ${props => props.width || '30px'}
-max-width: ${props => props.width || '30px'}
+width: ${props => props.width || null }
+height: ${props => props.height || 'auto'}
+max-width: ${props => props.width || null }
 align-self: flex-start;
 margin: ${props => props.margin || '0px 25px 0px 10px'}
 
 font-size: 13px;
 font-weight: bold;
 font-family: 'Nunito', sans-serif;
-text-align: ${props => { if (props.center) return 'center' || 'left' }}
+text-align: ${props => props.center || 'left' }
 
 
 ${props => props.checked && css`
@@ -58,13 +60,13 @@ color: ${DLF_Green}
     }
 `
 const $Input = styled.input.attrs({ type: 'text', })`
-flex-grow: ${props => props.flex || 6};
-margin: 10px 10px; 10px 10px;
-height: 10px;
-width: 95%;
-max-width: ${props => props.maxW || '100%'}
-border-radius: 5px;
-padding: 5px;
+flex-grow: ${props => props.flex || '6'};
+margin: ${props => props.margin || '10px 10px 10px 10px' };
+height: ${props => props.height || '10px' };
+max-width: ${props => props.maxW };
+width: ${props => props.width };
+border-radius: ${props => props['border-rad'] || '0px'};
+padding: ${props => props.pad || '5px' };
 `
 
 const Select = styled.select`
@@ -91,13 +93,79 @@ const Wrapper = styled.div`
 display: flex;
 flex-direction: ${props => props.column || 'row'};
 justify-content: ${props => props.justify || 'flex-start'};
+flex-wrap: ${props => props.wrap || 'wrap'}
 align-items: flex-start;
 margin: ${props=> props.margin || '0 0 10px 0'};
 width: ${props => props.width || '100%'};
 height: ${props => props.height || 'auto'};
 background: ${props => props['bg-color'] || 'none'}
 padding: ${props => props.pad || '0px'}
+border-radius: ${props => props.br || '0px'}
+
+
+${props => props.media && `
+    @media (max-width: 425px) {
+        flex-direction: column;
+        & > div {
+            width: 100%;
+            text-align: center;
+        }
+    }
 `
+}
+`
+
+const FlexOuterWrapper = styled.div`
+display: flex;
+flex-direction: ${props => props.column || 'row'};
+justify-content: ${props => props.justify || 'flex-start'};
+flex-wrap: ${props => props.wrap || 'wrap'}
+align-items: flex-start;
+margin: ${props=> props.margin || '0 0 10px 0'};
+width: ${props => props.width || '100%'};
+height: ${props => props.height || 'auto'};
+background: ${props => props['bg-color'] || 'none'}
+padding: ${props => props.pad || '0px'}
+border-radius: ${props => props.br || '0px'}
+transition: background 1000ms;
+
+
+${props => props.media && `
+    @media (max-width: 425px) {
+        flex-direction: column;
+        & > div {
+            width: 100%;
+            text-align: center;
+        }
+    }
+`
+}
+`
+
+const FlexInnerWrapper = styled.div`
+display: flex;
+flex-direction: ${props => props['flex-d'] || 'column'}
+flex-grow: ${props => props.fg || '1'}
+width: ${props => props.width || '100%'};
+height: ${props => props.height || 'auto'};
+background: ${props => props['bg-color'] || 'none'}
+padding: ${props => props.pad || '0px'}
+border-radius: ${props => props.br || '0px'}
+align-items: space-between;
+
+
+${props => props.media && `
+    @media (max-width: 425px) {
+        flex-direction: column;
+        & > div {
+            width: 100%;
+            text-align: center;
+        }
+    }
+`
+}
+`
+
 const NTEPVarietyInput = styled.input`
 flex-grow: 2
 height: 10px;
@@ -222,7 +290,7 @@ color: white;
 const Checkbox = styled.div`
 flex-grow: 1
 max-width: 10px
-width: 10px
+width: ${props => props.width || '10px'}
 height: 10px
 border: 1px solid black
 border-radius: 90px
@@ -243,8 +311,8 @@ ${
 
 export {
     Wrapper,
-    NTEPRatingInput,
-    NTEPVarietyInput,
+    FlexOuterWrapper,
+    FlexInnerWrapper,
     InputWrapper,
     InputLabel,
     Value,

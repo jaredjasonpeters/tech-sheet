@@ -45,7 +45,7 @@ class App extends Component {
             <div className="App"
             style={{
               transition: 'background 1000',
-              background: Colors[context.state.theme_style] || 'white'
+              background: Colors[context.state.theme_style] || 'white',
             }}>
               <Header companyName='DLF Pickseed' />
               <AppContent/>

@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import {Context} from './contexts/contexts'
 import { $Label, Wrapper, SubmitButton, ResetButton, Checkbox, DLF_Green } from './styled/styled'
+import styled from 'styled-components'
 
 export default class ToleranceSelection extends Component {
     constructor(props) {
@@ -43,42 +44,38 @@ export default class ToleranceSelection extends Component {
         return (
             <Context.Consumer>{(context) => (
             <Fragment>
-                <form style={{
-                    width: '100%',
-                    display: 'flex',
-                    flexDirection: 'row',
-                }}>
-                    <Wrapper width='15%'>
-                        <$Label margin="0 25px"> Turf Quality </$Label>
+                <Wrapper media="true">
+                    <SelectionContainer>
+                        <$Label margin="0" height="50px"> Turf Quality </$Label>
                         <Checkbox checked={this.state.turf_quality} name="turf_quality" onClick={this.handleClick} />
-                        <span style={{ width: '10px' }}>|</span>
-                    </Wrapper>
-                    <Wrapper width='15%'>
-                        <$Label margin="0 25px"> Salinity Tolerance </$Label>
+                        
+                    </SelectionContainer>
+                    <SelectionContainer>
+                        <$Label margin="0" height="50px"> Salinity Tolerance </$Label>
                         <Checkbox checked={this.state.salinity_tolerance} name="salinity_tolerance" onClick={this.handleClick} />
-                        <span style={{ width: '10px' }}>|</span>
-                    </Wrapper>
-                    <Wrapper width='15%'>
-                        <$Label margin="0 25px"> Shade Tolerance </$Label>
+                        
+                    </SelectionContainer>
+                    <SelectionContainer>
+                        <$Label margin="0" height="50px"> Shade Tolerance </$Label>
                         <Checkbox checked={this.state.shade_tolerance} name="shade_tolerance" onClick={this.handleClick} />
-                        <span style={{ width: '10px' }}>|</span>
-                    </Wrapper>
-                    <Wrapper width='15%'>
-                        <$Label margin="0 25px"> Drought Tolerance </$Label>
+                        
+                    </SelectionContainer>
+                    <SelectionContainer>
+                        <$Label margin="0" height="50px"> Drought Tolerance </$Label>
                         <Checkbox checked={this.state.cold_tolerance} name="cold_tolerance" onClick={this.handleClick} />
-                        <span style={{ width: '10px' }}>|</span>
-                    </Wrapper>
-                    <Wrapper width='15%'>
-                        <$Label margin="0 25px"> Cold Tolerance </$Label>
+                        
+                    </SelectionContainer>
+                    <SelectionContainer>
+                        <$Label margin="0" height="50px"> Cold Tolerance </$Label>
                         <Checkbox checked={this.state.drought_tolerance} name="drought_tolerance" selected onClick={this.handleClick} />
-                        <span style={{ width: '10px' }}>|</span>
-                    </Wrapper>
-                    <Wrapper width='15%'>
-                        <$Label margin="0 25px"> Wear Tolerance </$Label>
+                       
+                    </SelectionContainer>
+                    <SelectionContainer>
+                        <$Label margin="0" height="50px"> Wear Tolerance </$Label>
                         <Checkbox checked={this.state.wear_tolerance} name="wear_tolerance" selected onClick={this.handleClick} />
-                        <span style={{ width: '10px' }}>|</span>
-                    </Wrapper>
-                </form>
+                        
+                    </SelectionContainer>
+                </Wrapper>
                 <Wrapper justify="center">
                     <SubmitButton submit height="30px" width="auto" bottom="20px" fSize="14px" onClick={context.state.handleSubmit.bind(this, this.state)}>Populate Tables</SubmitButton>
                     <SubmitButton height="30px" width="auto" bottom="20px" fSize="14px" onClick={this.handleReset}>Clear Selection</SubmitButton>
@@ -88,3 +85,8 @@ export default class ToleranceSelection extends Component {
         )
     }
 }
+
+const SelectionContainer = styled.div`
+    flex-grow: 1;
+    width: 15%
+`

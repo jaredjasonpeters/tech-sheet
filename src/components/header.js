@@ -1,27 +1,37 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components'
-import { Wrapper } from './styled/styled'
+import { FlexOuterWrapper } from './styled/styled'
 import { Context } from './contexts/contexts'
 import UserPanel from './user_panel'
 import StyleSwitcher from './style_switcher'
 import { Colors } from '../utils/utils'
 
-const Header = (props) => {
-    return (
-        <Context.Consumer>
-            {context => (
+export default class Header extends Component {
+    constructor(props) {
+        super(props)
+    }
 
-                <Wrapper width="100%" row="row" bg-color="none">
+    componentDidUpdate(){
+
+    }
+    render(){
+
+        return (
+            <Context.Consumer>
+            {context => (
+                
+                <FlexOuterWrapper width="100%" bg-color="none">
                     <CompanyHeader className="App-header" theme={Colors[context.state.theme_style]}>
                         <img src={`/images/${context.state.theme_style}.png`} className="App-logo" alt="logo" />
                         <h1 className="App-title">TECH SHEETS APP</h1>
                     </CompanyHeader>
                     <StyleSwitcher />
                     <UserPanel />
-                </Wrapper>
+                </FlexOuterWrapper>
             )}
         </Context.Consumer>
-    )
+       )
+    }   
 }
 
 const CompanyHeader = styled.header`
@@ -40,4 +50,4 @@ const CompanyHeader = styled.header`
         border-radius: 0px 0px 0px 0px;
     `
 
-export default Header
+

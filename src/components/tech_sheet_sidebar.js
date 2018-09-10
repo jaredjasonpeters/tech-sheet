@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components'
+import {Context} from './contexts/contexts'
 
 export default class TechSheetSidebar  extends Component {
     constructor(props){
@@ -7,25 +8,30 @@ export default class TechSheetSidebar  extends Component {
         this.state = {
             techsheets: [
                 'one',
-                'tow',
+                'two',
                 'three',
                 'four',
                 'five',
-                'six'
+                'six',
             ]
         }
     }
     render() {
         return (
-            <Fragment>
-                <SidebarContainer>
-                    {this.state.techsheets.map(v => <li key={`ts-${v}`}>{v}</li>)}
-                </SidebarContainer>
-            </Fragment>
+            <Context.Consumer>
+                {context => (
+                    <SidebarContainer Context={context.state.theme_style}>
+                        {this.state.techsheets.map(v => <li key={`ts-${v}`}>{v}</li>)}
+                    </SidebarContainer>
+                )}
+                
+            </Context.Consumer>
         );
     }
 }
 
 const SidebarContainer = styled.ul`
     width: 20%;
+    flex-grow: 1;
+    color: ${props => props.Context && 'white'}
 `

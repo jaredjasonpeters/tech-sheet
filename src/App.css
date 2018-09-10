@@ -1,5 +1,9 @@
 .App {
- height: 3000px
+ display: flex;
+ flex-direction: column;
+ height: auto;
+ width: 100%;
+ min-height: 100vh;
 }
 
 .App-logo {

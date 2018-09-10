@@ -1,9 +1,7 @@
 import React, { Fragment, Component } from 'react'
 import { Context } from './contexts/contexts'
 import NTEProw from './ntep_row'
-import { $Input, InputLabel, $Label, DLF_Green, SubmitButton, Wrapper } from './styled/styled'
-import { IndexColor, formatInput } from '../utils/utils'
-import styled, { css } from 'styled-components'
+import { $Input, InputLabel, DLF_Green, SubmitButton, Wrapper } from './styled/styled'
 
 export default class NTEPtable extends Component {
     constructor(props) {
@@ -60,17 +58,23 @@ export default class NTEPtable extends Component {
     handleInput(e) {
         var { name, value } = e.target
         var row = e.target.getAttribute('data-row')
-        var isFilled = e.target.getAttribute('data-is-filled')
-        console.log(value)
 
-
+        var accChars = ['0','1','2','3','4','5','6','7','8','9', '.']
+        var textArray = value.split('').filter(v => accChars.indexOf(v) !== -1)
+        var filteredText = textArray.join('')
+     
         this.setState(prevState => {
             var newState = Object.assign(prevState)
             if (name === 'variety_name') {
-                newState.table.lines[row][name] = { value: value, filled: value.length > 0 }
+
+                newState.table.lines[row][name] = {
+                     value: value,
+                     filled: value.length > 0 
+                    }
             }
             if (name === 'ntep_rating' && value.length <= 3) {
-                newState.table.lines[row][name] = { value: value, filled: value.length > 0 }
+                
+                newState.table.lines[row][name] = { value: filteredText , filled: value.length > 0 }
             }
             return newState
         }
@@ -106,7 +110,8 @@ export default class NTEPtable extends Component {
                     <Fragment>
                         <div style={{
                             flexGrow: 1,
-                            maxWidth: '45%',
+                            maxWidth: '100%',
+                            width: '45%',
                             border: `5px solid ${this.state.table.confirmed ? DLF_Green : 'black'}`,
                             borderRadius: '5px',
                             padding: '15px',
@@ -127,16 +132,94 @@ export default class NTEPtable extends Component {
                             }}>{this.props.count}</div>
 
                             <InputLabel style={{ marginBottom: '0px' }}>Title:</InputLabel>
-                            <$Input name="title" onChange={this.setTitle} value={this.state.table.title} data-is-filled={this.state.table.title !== ''} />
-                            <NTEProw name="row_1" handleCheck={this.handleCheck} handleInput={this.handleInput} data-row={this.state.table.lines.row_1} data-table={this.props.name} checked={this.state.table.lines.row_1.proprietary} />
-                            <NTEProw name="row_2" handleCheck={this.handleCheck} handleInput={this.handleInput} data-row={this.state.table.lines.row_2} data-table={this.props.name} checked={this.state.table.lines.row_2.proprietary} />
-                            <NTEProw name="row_3" handleCheck={this.handleCheck} handleInput={this.handleInput} data-row={this.state.table.lines.row_3} data-table={this.props.name} checked={this.state.table.lines.row_3.proprietary} />
-                            <NTEProw name="row_4" handleCheck={this.handleCheck} handleInput={this.handleInput} data-row={this.state.table.lines.row_4} data-table={this.props.name} checked={this.state.table.lines.row_4.proprietary} />
-                            <NTEProw name="row_5" handleCheck={this.handleCheck} handleInput={this.handleInput} data-row={this.state.table.lines.row_5} data-table={this.props.name} checked={this.state.table.lines.row_5.proprietary} />
-                            <NTEProw name="row_6" handleCheck={this.handleCheck} handleInput={this.handleInput} data-row={this.state.table.lines.row_6} data-table={this.props.name} checked={this.state.table.lines.row_6.proprietary} />
-                            <NTEProw name="row_7" handleCheck={this.handleCheck} handleInput={this.handleInput} data-row={this.state.table.lines.row_7} data-table={this.props.name} checked={this.state.table.lines.row_7.proprietary} />
-                            <NTEProw name="row_8" handleCheck={this.handleCheck} handleInput={this.handleInput} data-row={this.state.table.lines.row_8} data-table={this.props.name} checked={this.state.table.lines.row_8.proprietary} />
-                            <NTEProw label="LSD:" name="lsd" handleInput={this.handleInput} data-row={this.state.table.lines.lsd} />
+                            <$Input name="title" onChange={this.setTitle} value={this.state.table.title} width="50%" data-is-filled={this.state.table.title !== ''} />
+                            <NTEProw 
+                                name="row_1" 
+                                handleCheck={this.handleCheck} 
+                                handleInput={this.handleInput} 
+                                data-row={this.state.table.lines.row_1} 
+                                data-table={this.props.name} 
+                                checked={this.state.table.lines.row_1.proprietary} 
+                                tableConfirmed={this.state.table.confirmed}
+                            />
+
+                            <NTEProw 
+                                name="row_2" 
+                                handleCheck={this.handleCheck} 
+                                handleInput={this.handleInput} 
+                                data-row={this.state.table.lines.row_2} 
+                                data-table={this.props.name} 
+                                checked={this.state.table.lines.row_2.proprietary}
+                                tableConfirmed={this.state.table.confirmed} 
+                            />
+
+                            <NTEProw 
+                                name="row_3" 
+                                handleCheck={this.handleCheck} 
+                                handleInput={this.handleInput} 
+                                data-row={this.state.table.lines.row_3} 
+                                data-table={this.props.name} 
+                                checked={this.state.table.lines.row_3.proprietary}
+                                tableConfirmed={this.state.table.confirmed} 
+                            />
+
+                            <NTEProw 
+                                name="row_4" 
+                                handleCheck={this.handleCheck} 
+                                handleInput={this.handleInput} 
+                                data-row={this.state.table.lines.row_4} 
+                                data-table={this.props.name} 
+                                checked={this.state.table.lines.row_4.proprietary} 
+                                tableConfirmed={this.state.table.confirmed}
+                            />
+
+                            <NTEProw 
+                                name="row_5" 
+                                handleCheck={this.handleCheck} 
+                                handleInput={this.handleInput} 
+                                data-row={this.state.table.lines.row_5} 
+                                data-table={this.props.name} 
+                                checked={this.state.table.lines.row_5.proprietary}
+                                tableConfirmed={this.state.table.confirmed} 
+                            />
+
+                            <NTEProw 
+                                name="row_6" 
+                                handleCheck={this.handleCheck} 
+                                handleInput={this.handleInput} 
+                                data-row={this.state.table.lines.row_6} 
+                                data-table={this.props.name} 
+                                checked={this.state.table.lines.row_6.proprietary}
+                                tableConfirmed={this.state.table.confirmed} 
+                            />
+
+                            <NTEProw 
+                                name="row_7" 
+                                handleCheck={this.handleCheck} 
+                                handleInput={this.handleInput} 
+                                data-row={this.state.table.lines.row_7} 
+                                data-table={this.props.name} 
+                                checked={this.state.table.lines.row_7.proprietary}
+                                tableConfirmed={this.state.table.confirmed} 
+                            />
+
+                            <NTEProw 
+                                name="row_8" 
+                                handleCheck={this.handleCheck} 
+                                handleInput={this.handleInput} 
+                                data-row={this.state.table.lines.row_8} 
+                                data-table={this.props.name} 
+                                checked={this.state.table.lines.row_8.proprietary}
+                                tableConfirmed={this.state.table.confirmed} 
+                            />
+
+                            <NTEProw 
+                                lsd='LSD:' 
+                                name="lsd" 
+                                handleInput={this.handleInput} 
+                                data-row={this.state.table.lines.lsd}
+                                tableConfirmed={this.state.table.confirmed} 
+                            />
                             <Wrapper justify="center">
                                 <SubmitButton submit width="150px" max="150px" height="40px" onClick={context.state.addTable.bind(context, this.state.table)}>Confirm</SubmitButton>
                             </Wrapper>

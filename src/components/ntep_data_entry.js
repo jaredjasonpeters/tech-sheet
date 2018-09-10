@@ -55,20 +55,13 @@ export default class NTEPDataEntry extends Component {
             {context => (
                 <Fragment>
                 <SectionHeader theme={context.state.theme_style} className='ntep_data_entry'>NTEP DATA ENTRY: </SectionHeader>
-                <div style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    flexWrap: 'wrap',
-                    justifyContent: 'space-between'
-                }}>
-                <div style={{ width: '100%', margin: '10px 0 10px 0' }}>
                 <Wrapper justify="center">
-                <AddTableButton onClick={this.handleClick.bind(this)}>+</AddTableButton>
-                <ResetButton onClick={this.removeTable.bind(this, context)}>-</ResetButton>
+                    <AddTableButton onClick={this.handleClick.bind(this)}>+</AddTableButton>
+                    <ResetButton onClick={this.removeTable.bind(this, context)}>-</ResetButton>
                 </Wrapper>
-                </div>
-                {this.state.arr.map(v => (<NTEPtable key={`table-${v}`} name={`table-${v}`} count={v}/>))}
-                </div>
+                <Wrapper >
+                    {this.state.arr.map(v => (<NTEPtable key={`table-${v}`} name={`table-${v}`} count={v}/>))}
+                </Wrapper>
                 </Fragment>
             )}
             </Context.Consumer>

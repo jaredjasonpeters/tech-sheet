@@ -24,9 +24,6 @@ export default class StyleSwitcher extends Component {
         flexGrow: 7,
         width: '30%',
         alignSelf: 'flex-start',
-        padding: '10px 0 0px 30px',
-        background: 'none'
-        
       }}>
         <Context.Consumer>
           {context => (

@@ -27,7 +27,7 @@ class DataEntryForm extends Component {
         return (
             <Context.Consumer>
                 {(context) => (
-                    <$Form id="data-entry-form">
+                    <$Form id="data-entry-form" >
                         <VarietyId />
                         <ToleranceTable />
                         <Content />
