@@ -16,10 +16,13 @@ export default class Header extends Component {
         var headerWrapper = document.getElementById('header-wrapper');
         headerWrapper.style.transition = 'none'
         headerWrapper.style.opacity = 0;
+         
+      
 
         setTimeout(() => {
             headerWrapper.style.transition = 'opacity 750ms ease-in'
             headerWrapper.style.opacity = 1
+           
         }, 750)
 
 
@@ -33,7 +36,8 @@ export default class Header extends Component {
         var sectionHeaders = [...document.querySelectorAll('div.sh')]
 
         if (!this.props.context.state.display_form) {
-            var image = document.getElementById('company-logo');
+            var image = document.getElementById('company-logo')
+           
             image.style.transition = 'none'
             image.style.opacity = 0;
 
@@ -80,7 +84,7 @@ export default class Header extends Component {
                             </FlexInnerWrapper>
                         </FlexInnerWrapper>
                         <StyleSwitcher />
-                        <UserPanel />
+                        <UserPanel context={context}/>
                     </FlexOuterWrapper>
                 )}
             </Context.Consumer>

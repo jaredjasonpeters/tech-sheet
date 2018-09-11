@@ -18,7 +18,9 @@ export default class AppContent extends Component {
             <Context.Consumer>
                 {context => (
                     <FlexOuterWrapper pad="50px 0">
-                        {!context.state.display_form && <TechSheetSidebar />}
+                        <FlexInnerWrapper id="sidebar-container">
+                            {!context.state.display_form && <TechSheetSidebar />}
+                        </FlexInnerWrapper>
                         <FlexInnerWrapper>
                             {context.state.display_form && <DataEntryForm />}
                         </FlexInnerWrapper>
@@ -30,8 +32,5 @@ export default class AppContent extends Component {
 }
 
 
-const FlexWrapper = styled.div`
-flex-grow: 1
-`
 
 

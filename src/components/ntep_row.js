@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components'
 
 const NTEProw = (props) => (
  
-            <FlexOuterWrapper bg-color={props.tableConfirmed ? DLF_Green : "#d0d0d0"} pad="3px" br="15px" width="100%">              
+            <FlexOuterWrapper bg-color={props.tableConfirmed ? DLF_Green : "#e0e0e0"} pad="3px" br="15px" width="100%">              
                 {!props.lsd && 
                     <Checkbox 
                     onClick={props.handleCheck} 

@@ -134,6 +134,9 @@ border-radius: ${props => props.br || '0px'}
 border: ${props => props.border || 'none'}
 transition: background 1000ms;
 
+${props => props.center && `
+ text-align: center
+`}
 
 ${props => props.media && `
     @media (max-width: 425px) {

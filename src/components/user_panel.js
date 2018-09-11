@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { FlexOuterWrapper, FlexInnerWrapper, DLF_Green } from './styled/styled'
 import styled, { css } from 'styled-components'
+import {Colors} from '../utils/utils'
 
 
 export default class UserPanel extends Component {
@@ -14,11 +15,14 @@ export default class UserPanel extends Component {
                 'Edit Account',
                 'Change Image',
                 'Change Title'
-            ]
+            ],
         }
     }
 
     render() {
+
+        var initTextColor = this.props.context.state.theme_style === 'DLF_BLK' ? 'black' : 'white';
+       
         return (
 
 
@@ -27,11 +31,18 @@ export default class UserPanel extends Component {
                     <ProfileImage
                         src={this.state.profile_image_url}
                         alt="80px by 80px image of user" />
-                    <UserName>{this.state.name}</UserName>
-                    <UserOptions>
+                    <UserName 
+                        textColor={initTextColor}>
+                        {this.state.name}
+                    </UserName>
+                    <UserOptions 
+                        textColor={initTextColor}>
                         {this.state.user_options.map((v, i) => <a key={`link-${i}`}><li key={`option-${i}`}>{v}</li></a>)}
                     </UserOptions>
-                    <UserRole>{this.state.user_role.toUpperCase()}</UserRole>
+                    <UserRole 
+                        textColor={initTextColor}>
+                        {this.state.user_role.toUpperCase()}
+                    </UserRole>
                 </FlexInnerWrapper>
             </FlexInnerWrapper>
 
@@ -57,7 +68,7 @@ transition: border 100ms;
 
 const UserOptions = styled.ul`
 flex-grow: 1
-color: white;
+color: ${props => props.textColor || 'black'}
 li {
     list-style-type: none
     font-family: 'Nunito', sans-serif;
@@ -67,16 +78,21 @@ li {
 a {
     text-decoration: none;
     cursor: pointer;
-    transition: color: 200ms;
+    transition: transform 400ms;
 }
 a: hover {
     font-size: 16px;
-    color: ${DLF_Green}
+    font-weight: 800;
+    text-decoration: underline;
+    transform: scale(1.4);
+    position: relative;
+    left: -10px;
+    
 }
 `
 const UserName = styled.h2`
 flex-grow: 1
-color: white;
+color: ${props => props.textColor || 'black'}
 @import url('https://fonts.googleapis.com/css?family=Nunito:800,400');
 font-family: 'Nunito', sans-serif;
 font-size: 15px;
@@ -85,7 +101,7 @@ margin-left: 20px;
 `
 
 const UserRole = styled.h3`
-color: white;
+color: ${props => props.textColor || 'black'}
 font-family: 'Michroma', sans-serif;
 letter-spacing: 4px;
 flex-grow: 1;
