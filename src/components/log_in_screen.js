@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
-import {Wrapper, SubmitButton} from './styled/styled'
+import { FlexOuterWrapper, SubmitButton } from './styled/styled'
+import LoginModal from './login_modal'
+
 export default class LogInScreen extends Component {
+    constructor(props) {
+        super(props)
+    }
     render() {
         return (
-            <Wrapper height="100vh" width="100vw" justify="center">
-            <SubmitButton submit onClick={this.props.logIn}>Log In</SubmitButton>
-            </Wrapper>
+            <FlexOuterWrapper
+                height="100vh"
+                width="100vw"
+                justify="center"
+                align-items="center"
+            >
+                <LoginModal logIn={this.props.logIn} />
+            </FlexOuterWrapper>
         );
     }
 }
+

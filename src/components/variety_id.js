@@ -1,6 +1,6 @@
-import React, {Fragment} from 'react'
-import {Context} from './contexts/contexts'
-import {SectionHeader, Wrapper, Checkbox, InputLabel, $Input, Select} from './styled/styled'
+import React, { Fragment } from 'react'
+import { Context } from './contexts/contexts'
+import { SectionHeader, Wrapper, Checkbox, InputLabel, $Input, Select } from './styled/styled'
 
 const VarietyId = (props) => (
     <Context.Consumer>
@@ -10,16 +10,25 @@ const VarietyId = (props) => (
                 <Wrapper wrap='row'>
                     <Wrapper>
                         <img src="http://a-listturf.org/wp-content/uploads/2016/12/ALIST-Logo-Small.png"
-                        style={{
-                            height: '70px',
-                            width: '70px'
-                        }}>
+                            style={{
+                                height: '70px',
+                                width: '70px'
+                            }}>
                         </img>
                         <Checkbox blue onClick={context.state.handleCheck} checked={context.state.isAlist} />
                     </Wrapper>
                     <Wrapper>
                         <InputLabel>Variety Name: </InputLabel>
-                        <$Input height="auto" maxW='200px' name="variety_name" placeholder="Leah's Awesome Blend" onChange={context.state.handleChange} value={context.state.variety_name.toUpperCase()} />
+                        <$Input
+                            height="auto"
+                            maxW='200px'
+                            name="variety_name"
+                            placeholder="Leah's Awesome Blend"
+                            onChange={context.state.handleChange}
+                            value={context.state.variety_name.toUpperCase()}
+                            font-family="Nunito"
+                            font-weight="800"
+                        />
                     </Wrapper>
                     <Wrapper>
                         <InputLabel>Species Name: </InputLabel>

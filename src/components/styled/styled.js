@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components'
-import {Colors} from '../../utils/utils'
+import { Colors } from '../../utils/utils'
 
 const DLF_Green = '#00a651',
-      DLF_ProTurf = '#80bc00',
-      DLF_Pink = '#ce1141',
-      ALIST_Blue = '#00aeef'
+    DLF_ProTurf = '#80bc00',
+    DLF_Pink = '#ce1141',
+    ALIST_Blue = '#00aeef'
 
 const SectionHeader = styled.div`
 flex-grow: 1
@@ -17,12 +17,12 @@ background: ${props => Colors[props.theme] || 'black'};
 border-radius: 5px;
 
 
-font-size: 20px;
+font-size: 1em;
 font-weight: bold;
 text-align: center;
 color: white;
-@import url('https://fonts.googleapis.com/css?family=Nunito:800');
-font-family: 'Nunito', sans-serif;
+font-family: 'Michroma', sans-serif;
+letter-spacing: 4px;
 `
 
 const $Form = styled.div`
@@ -42,16 +42,17 @@ background: rgb(240, 240, 240)
 `
 const $Label = styled.label`
 flex-grow: 1
-width: ${props => props.width || null }
+width: ${props => props.width || 'auto'}
 height: ${props => props.height || 'auto'}
-max-width: ${props => props.width || null }
-align-self: flex-start;
+max-width: ${props => props.width || 'auto'}
+align-self: ${props => props['align-self'] || 'flex-start'};
 margin: ${props => props.margin || '0px 25px 0px 10px'}
 
-font-size: 13px;
+font-size: ${props => props['font-size'] || '13px'};
 font-weight: bold;
 font-family: 'Nunito', sans-serif;
-text-align: ${props => props.center || 'left' }
+text-align: ${props => props.center || 'left'}
+color: ${props => props.color || 'black'}
 
 
 ${props => props.checked && css`
@@ -61,12 +62,14 @@ color: ${DLF_Green}
 `
 const $Input = styled.input.attrs({ type: 'text', })`
 flex-grow: ${props => props.flex || '6'};
-margin: ${props => props.margin || '10px 10px 10px 10px' };
-height: ${props => props.height || '10px' };
-max-width: ${props => props.maxW };
-width: ${props => props.width };
+margin: ${props => props.margin || '10px 10px 10px 10px'};
+height: ${props => props.height || '10px'};
+max-width: ${props => props.maxW};
+width: ${props => props.width};
 border-radius: ${props => props['border-rad'] || '0px'};
-padding: ${props => props.pad || '5px' };
+padding: ${props => props.pad || '5px'};
+font-family: ${props => props['font-family'] || 'sans-serif'}
+font-weight: ${props => props['font-weight'] || '400'}
 `
 
 const Select = styled.select`
@@ -95,7 +98,7 @@ flex-direction: ${props => props.column || 'row'};
 justify-content: ${props => props.justify || 'flex-start'};
 flex-wrap: ${props => props.wrap || 'wrap'}
 align-items: flex-start;
-margin: ${props=> props.margin || '0 0 10px 0'};
+margin: ${props => props.margin || '0 0 10px 0'};
 width: ${props => props.width || '100%'};
 height: ${props => props.height || 'auto'};
 background: ${props => props['bg-color'] || 'none'}
@@ -112,21 +115,23 @@ ${props => props.media && `
         }
     }
 `
-}
+    }
 `
 
 const FlexOuterWrapper = styled.div`
 display: flex;
-flex-direction: ${props => props.column || 'row'};
+align-self: ${props => props['align-self'] || 'center'}
+flex-direction: ${props => props['flex-dir'] || 'row'};
 justify-content: ${props => props.justify || 'flex-start'};
 flex-wrap: ${props => props.wrap || 'wrap'}
-align-items: flex-start;
-margin: ${props=> props.margin || '0 0 10px 0'};
+align-items: ${props => props['align-items'] || 'flex-start'};
+margin: ${props => props.margin || '0 0 0 0'};
 width: ${props => props.width || '100%'};
 height: ${props => props.height || 'auto'};
 background: ${props => props['bg-color'] || 'none'}
 padding: ${props => props.pad || '0px'}
 border-radius: ${props => props.br || '0px'}
+border: ${props => props.border || 'none'}
 transition: background 1000ms;
 
 
@@ -139,19 +144,26 @@ ${props => props.media && `
         }
     }
 `
-}
+    }
 `
 
 const FlexInnerWrapper = styled.div`
 display: flex;
-flex-direction: ${props => props['flex-d'] || 'column'}
+flex-direction: ${props => props['flex-dir'] || 'column'}
 flex-grow: ${props => props.fg || '1'}
 width: ${props => props.width || '100%'};
 height: ${props => props.height || 'auto'};
 background: ${props => props['bg-color'] || 'none'}
 padding: ${props => props.pad || '0px'}
 border-radius: ${props => props.br || '0px'}
+border: ${props => props.border || 'none'}
 align-items: space-between;
+align-self: ${props => props['align-self'] || 'flex-start'}
+margin: ${props => props.margin || '0 0 0 0'}
+
+${props => props.center && `
+ text-align: center
+`}
 
 
 ${props => props.media && `
@@ -163,39 +175,35 @@ ${props => props.media && `
         }
     }
 `
-}
+    }
 `
 
-const NTEPVarietyInput = styled.input`
-flex-grow: 2
-height: 10px;
-max-width: 100px;
-border-radius: 5px;
-`
-const NTEPRatingInput = styled.input`
-flex-grow: 1
-height: 10px;
-max-width: 30px;
-
-
-border-radius: 5px;
-`
 const SubmitButton = styled.button`
 flex-grow: 1;
-width: ${props => props.width || '300px'};
+width: ${props => props.width || '75px'};
 max-width: ${props => props.max || '300px'};
 align-self: center
 margin: ${props => props.top || '20px'} ${props => props.right || '20px'} ${props => props.bottom || '5px'} ${props => props.left || '5px'};
 height: ${ props => props.height || '75px'};
-border-radius: 5px;
-background: ${ props => (props.submit) ? DLF_Green : DLF_Pink};
-border: none;
+border-radius: 90px;
+background: ${ props => props.background || 'DLF_Pink'};
+border: 3px solid white;
 
 
-font-size: ${ props => props.fSize || '18px'};
+font-size: ${ props => props['font-size'] || '18px'};
+font-family: ${props => props['font-fam'] || 'sans-serif'}
+letter-spacing: ${props => props['letter-spac'] || '0px'}
 font-weight: bold;
 text-align: center;
 color: white;
+
+${props => props.submit && `
+    background: ${DLF_Green}
+`}
+
+${props => props.reset && `
+    background: ${DLF_Pink}
+`}
 `
 const $TextArea = styled.textarea`
 flex-grow: 1

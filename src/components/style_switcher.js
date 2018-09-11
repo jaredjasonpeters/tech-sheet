@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { Context } from './contexts/contexts'
 import styled, { css } from 'styled-components'
-import { Wrapper, SubmitButton, DLF_Pink, $Label } from './styled/styled'
+import { FlexOuterWrapper, FlexInnerWrapper, SubmitButton, DLF_Pink, $Label } from './styled/styled'
 import DataEntryForm from './data_entry_form'
 import { formatName, Colors } from '../utils/utils'
 
@@ -20,26 +20,36 @@ export default class StyleSwitcher extends Component {
 
   render() {
     return (
-      <div style={{
-        flexGrow: 7,
-        width: '30%',
-        alignSelf: 'flex-start',
-      }}>
-        <Context.Consumer>
-          {context => (
-            <Wrapper bg-color="whitesmoke" pad="0 0 0 20px">
-              <Wrapper width="50%">
-                <$Label>Styles:</$Label>
-                {this.state.styles.map((v, i) => <Styles Context={context} name={v} key={`style-${i}`} onClick={context.state.chooseTheme}>{formatName(v)}</Styles>)}
-              </Wrapper>
+
+      <Context.Consumer>
+        {context => (
+          <FlexOuterWrapper border="3px solid white" width="auto" height="100%" align-self="center" pad="0 0 0 40px">
+            <FlexInnerWrapper flex-dir="row" height="100%">
+              <$Label color="white" align-self="center">Styles:</$Label>
+              {this.state.styles.map(
+                (v, i) => <Styles
+                  context={context}
+                  name={v}
+                  key={`style-${i}`}
+                  onClick={context.state.chooseTheme}>{formatName(v)}
+                </Styles>)}
               {!context.state.display_form &&
-                <SubmitButton submit width="150px" max="150px" fSize="16px" left="40px" height="60px" top="0" onClick={context.state.displayForm}>Create New Techsheet</SubmitButton>
+                <SubmitButton
+                  height="50px"
+                  background="none"
+                  width="50px"
+                  max="50px"
+                  font-size="30px"
+                  left="40px"
+                  font-fam="Michroma"
+                  top="0"
+                  onClick={context.state.displayForm}>+
+                </SubmitButton>
               }
-              {<Error>{!context.state.display_form && context.state.error_message}</Error>}
-            </Wrapper>
-          )}
-        </Context.Consumer>
-      </div>
+            </FlexInnerWrapper>
+          </FlexOuterWrapper>
+        )}
+      </Context.Consumer>
     );
   }
 }
@@ -53,14 +63,13 @@ line-height: 1.2em;
 font-size: 14px;
 padding: 10px;
 text-align: center;
-align-self: flex-start;
+align-self: center;
 cursor: pointer
 transition: color 1s
+color: ${props => props.context.state.theme_style === 'DLF_BLK' ? 'black' : 'white'}
 &:hover {
   color: ${props => Colors[props.name]}
 }
 `
 
-const Error = styled.h4`
-color: ${DLF_Pink};
-`
+

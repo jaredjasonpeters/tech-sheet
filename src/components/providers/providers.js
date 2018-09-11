@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Context } from '../contexts/contexts'
-import { Colors, errors} from '../../utils/utils'
+import { Colors, errors } from '../../utils/utils'
 
 class TechSheetProvider extends Component {
     constructor(props) {
@@ -29,26 +29,26 @@ class TechSheetProvider extends Component {
                 var title = document.querySelector('.App-title')
                 title.style.color = 'white'
                 var currentActive = document.querySelector('h3[active=true]')
-                if(currentActive) {
-                    currentActive.style.color = 'black'
-                    currentActive.setAttribute('active',false)
-                } 
+                if (currentActive) {
+                    currentActive.style.color = 'white'
+                    currentActive.setAttribute('active', false)
+                }
                 target.setAttribute('active', true)
                 var isActive = target.getAttribute('active')
                 var name = target.getAttribute('name')
-            
-                if(isActive) {
+
+                if (isActive) {
                     target.style.color = Colors[name];
                 }
-                
+
                 this.setState({ theme_style: name });
-                
+
             },
 
             displayForm: () => {
                 this.setState((prevState) => {
                     var newState = Object.assign(prevState)
-                    if(this.state.theme_style !== 'DLF_BLK') newState['display_form'] = !prevState['display_form']
+                    if (this.state.theme_style !== 'DLF_BLK') newState['display_form'] = !prevState['display_form']
                     else newState.error_message = errors.style_not_selected
                     return newState
                 })
