@@ -1,0 +1,10 @@
+endpoint: https://us1.prisma.sh/jared-peters-2fd802/dlf/dev
+datamodel: datamodel.prisma
+
+generate:
+  - generator: javascript-client
+    output: ./prisma-client/
+
+hooks:
+  post-deploy:
+    - prisma generate
