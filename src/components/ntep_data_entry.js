@@ -54,7 +54,7 @@ export default class NTEPDataEntry extends Component {
             <Context.Consumer>
             {context => (
                 <Fragment>
-                <SectionHeader theme={context.state.theme_style} className='ntep_data_entry'>NTEP DATA ENTRY: </SectionHeader>
+                <SectionHeader theme={context.state.theme_style} className='sh ntep_data_entry'>NTEP DATA ENTRY: </SectionHeader>
                 <Wrapper justify="center">
                     <AddTableButton onClick={this.handleClick.bind(this)}>+</AddTableButton>
                     <ResetButton onClick={this.removeTable.bind(this, context)}>-</ResetButton>

@@ -8,7 +8,7 @@ import React, {Component, Fragment} from 'react'
                     <Context.Consumer>
                     {context => (
                         <Fragment>
-                        <SectionHeader theme={context.state.theme_style} className='tolerance_table'> TOLERANCE TABLE </SectionHeader>
+                        <SectionHeader theme={context.state.theme_style} className='sh tolerance_table'> TOLERANCE TABLE </SectionHeader>
                         {context.state.toleranceSelected ?
                             (
                                 context.state.sliders.map(v => (

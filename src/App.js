@@ -21,6 +21,10 @@ class App extends Component {
     }
     this.logIn = this.logIn.bind(this)
   }
+
+  ComponentDidUpdate(){
+    
+  }
   
   logIn() {
     setTimeout(() => {
@@ -42,12 +46,14 @@ class App extends Component {
       <TechSheetProvider>
         <Context.Consumer>
           {context => (
-            <div className="App"
+            <div id="App"
+            className="App"
+            context={context}
             style={{
-              transition: 'background 1000',
-              background: Colors[context.state.theme_style] || 'white',
+              transition: 'background 500ms ease-in',
+              background: 'white',
             }}>
-              <Header companyName='DLF Pickseed' />
+              <Header id="header" companyName='DLF Pickseed' context={context} />
               <AppContent/>
             </div>
           )}

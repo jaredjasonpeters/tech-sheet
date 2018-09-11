@@ -6,7 +6,7 @@ const VarietyId = (props) => (
     <Context.Consumer>
         {context => (
             <Fragment>
-                <SectionHeader theme={context.state.theme_style} className='header'> VARIETY ID </SectionHeader>
+                <SectionHeader theme={context.state.theme_style} className='sh header'> VARIETY ID </SectionHeader>
                 <Wrapper wrap='row'>
                     <Wrapper>
                         <img src="http://a-listturf.org/wp-content/uploads/2016/12/ALIST-Logo-Small.png"

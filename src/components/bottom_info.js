@@ -7,7 +7,7 @@ const BottomInfo = (props) => {
         <Context.Consumer>
         {context=>(
             <Fragment>
-                <SectionHeader theme={context.state.theme_style} className='bottom_info'>BOTTOM INFO: </SectionHeader>
+                <SectionHeader theme={context.state.theme_style} className='sh bottom_info'>BOTTOM INFO: </SectionHeader>
                 <FlexOuterWrapper>
                     <FlexInnerWrapper  width="auto">
                         <$Label  center> Seeding Rate: </$Label>
