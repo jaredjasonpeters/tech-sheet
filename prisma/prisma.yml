@@ -1,5 +1,7 @@
 endpoint: https://us1.prisma.sh/jared-peters-2fd802/dlf/dev
 datamodel: datamodel.prisma
+# seed: 
+#   import: ./seed/seed.graphql
 
 generate:
   - generator: javascript-client
@@ -8,3 +10,4 @@ generate:
 hooks:
   post-deploy:
     - prisma generate
+    # - prisma seed
