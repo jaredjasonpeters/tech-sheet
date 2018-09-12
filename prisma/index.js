@@ -1,37 +1,71 @@
 const { prisma } = require('./prisma-client')
+const { GraphQLServer } = require('graphql-yoga')
 
-// A `main` function so that we can use async/await
-async function main() {
+const resolvers = {
+  Query: {
+    publishedPosts(root, args, context) {
+      return context.prisma.posts({ where: { published: true } })
+    },
+    post(root, args, context) {
+      return context.prisma.post({ id: args.postId })
+    },
+    postsByUser(root, args, context) {
+      return context.prisma.user({
+        id: args.userId
+      }).posts()
+    }
+  },
+  Mutation: {
+    createDraft(root, args, context) {
+      return context.prisma.createPost(
+        {
+          data: {
+            title: args.title,
+            author: {
+              connect: { id: args.userId }
+            }
+          },
+        },
 
-  // Create a new user with a new post
-  // const newUser = await prisma
-  //   .createUser({
-  //     name: "Bob",
-  //     email: "bob@prisma.io",
-  //     posts: {
-  //       create: {
-  //         title: "The data layer for modern apps",
-  //       }
-  //     },
-  //   })
-  // console.log(`Created new user: ${newUser.name} (ID: ${newUser.id})`)
+      )
+    },
+    publish(root, args, context) {
+      return context.prisma.updatePost(
+        {
+          where: { id: args.postId },
+          data: { published: true },
+        },
 
-  // Read all users from the database and print them to the console
-  // const allUsers = await prisma.users()
-  // console.log(allUsers)
-
-  // const allPosts = await prisma.posts()
-  // console.log(allPosts)
-
-  const postsByUser = await prisma
-    .users({
-        where: {
-          email: "bob@prisma.io"
-        }
-      })
-    
-
-    console.log(postsByUser)
+      )
+    },
+    createUser(root, args, context) {
+      return context.prisma.createUser({ 
+              name: args.name,
+              email: args.email 
+              })
+    }
+  },
+  User: {
+    posts(root, args, context) {
+      return context.prisma.user({
+        id: root.id
+      }).posts()
+    }
+  },
+  Post: {
+    author(root, args, context) {
+      return context.prisma.post({
+        id: root.id
+      }).author()
+    }
+  }
 }
 
-main().catch(e => console.error(e))
+const server = new GraphQLServer({
+  typeDefs: './schema.graphql',
+  resolvers,
+  context: { 
+    prisma
+  },
+})
+server.start(() => console.log('Server is running on http://localhost:4000'))
