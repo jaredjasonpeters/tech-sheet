@@ -1,5 +1,5 @@
 module.exports = {
-        typeDefs: `type AggregatePost {
+        typeDefs: /* GraphQL */ `type AggregatePost {
   count: Int!
 }
 

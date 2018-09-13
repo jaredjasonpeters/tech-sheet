@@ -13,6 +13,9 @@ const resolvers = {
       return context.prisma.user({
         id: args.userId
       }).posts()
+    },
+    users(root, args, context) {
+      return context.prisma.users()
     }
   },
   Mutation: {
@@ -40,9 +43,12 @@ const resolvers = {
     },
     createUser(root, args, context) {
       return context.prisma.createUser({ 
-              name: args.name,
-              email: args.email 
-              })
+            name: args.name,
+            email: args.email     
+      })
+    },
+    deleteUsers(root, args, context) {
+      return context.prisma.deleteManyUsers()
     }
   },
   User: {
