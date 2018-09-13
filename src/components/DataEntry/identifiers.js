@@ -19,7 +19,7 @@ const Identifiers = (props) => (
                         </img>
 
                         <InputLabel>Variety/Blend/Mixture: </InputLabel>
-                        <Select id="species_name" flex='6' name="species_name" placeholder="Select a Species" onChange={context.state.handleChange} >
+                        <Select id="species_name" flex='6' name="variety_blend_mixture" onChange={context.state.handleChange} >
                             <option>--Select</option>
                             <option value="Variety">Variety</option>
                             <option value="Blend">Blend</option>
@@ -33,7 +33,7 @@ const Identifiers = (props) => (
                             name="variety_name"
                             placeholder="Leah's Awesome Blend"
                             onChange={context.state.handleChange}
-                            value={context.state.variety_name.toUpperCase()}
+                            value={context.state.variety_name}
                             font-family="Nunito"
                             font-weight="800"
                         />

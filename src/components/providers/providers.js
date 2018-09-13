@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Context } from '../Contexts/contexts'
-import { Colors, errors } from '../../utils/utils'
+import { Colors, errors, formatName } from '../../utils/utils'
 
 class TechSheetProvider extends Component {
     constructor(props) {
@@ -90,12 +90,21 @@ class TechSheetProvider extends Component {
 
             handleChange: (e) => {
                 var { name, value } = e.target
-                if (value === "--Select an Option--") return
-                this.setState((prevState) => {
-                    var newState = Object.assign(prevState)
-                    newState[name] = value
-                    return newState
-                })
+                console.log(name, value)
+                if (value === "--Select") return
+                if (value) {
+                    this.setState((prevState) => {
+                        var newState = Object.assign(prevState)
+                        newState[name] = formatName(value, 'name')
+                        return newState
+                    })
+                } else {
+                    this.setState((prevState) => {
+                        var newState = Object.assign(prevState) 
+                        newState[name] = ''
+                        return newState
+                    })
+                }
             },
 
             handleCheck: () => {
