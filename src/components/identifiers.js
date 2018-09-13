@@ -1,23 +1,31 @@
 import React, { Fragment } from 'react'
 import { Context } from './contexts/contexts'
-import { SectionHeader, Wrapper, Checkbox, InputLabel, $Input, Select } from './styled/styled'
+import { SectionHeader, FlexInnerWrapper, Checkbox, InputLabel, $Input, Select, FlexOuterWrapper } from './styled/styled'
 
-const VarietyId = (props) => (
+const Identifiers = (props) => (
     <Context.Consumer>
         {context => (
             <Fragment>
-                <SectionHeader theme={context.state.theme_style} className='sh header'> VARIETY ID </SectionHeader>
-                <Wrapper wrap='row'>
-                    <Wrapper>
+                <SectionHeader theme={context.state.theme_style} className='sh header'> IDENTIFIERS </SectionHeader>
+                <FlexOuterWrapper>
+                    <FlexInnerWrapper flex-dir="row">
+                    <Checkbox blue onClick={context.state.handleCheck} checked={context.state.isAlist} />
                         <img src="http://a-listturf.org/wp-content/uploads/2016/12/ALIST-Logo-Small.png"
                             style={{
                                 height: '70px',
-                                width: '70px'
+                                width: '70px',
+                                minWidth: '70px'
                             }}>
                         </img>
-                        <Checkbox blue onClick={context.state.handleCheck} checked={context.state.isAlist} />
-                    </Wrapper>
-                    <Wrapper>
+
+                        <InputLabel>Variety/Blend/Mixture: </InputLabel>
+                        <Select id="species_name" flex='6' name="species_name" placeholder="Select a Species" onChange={context.state.handleChange} >
+                            <option>--Select</option>
+                            <option value="Variety">Variety</option>
+                            <option value="Blend">Blend</option>
+                            <option value="Mixture">Mixture</option>
+                        </Select>
+                    
                         <InputLabel>Variety Name: </InputLabel>
                         <$Input
                             height="auto"
@@ -29,21 +37,27 @@ const VarietyId = (props) => (
                             font-family="Nunito"
                             font-weight="800"
                         />
-                    </Wrapper>
-                    <Wrapper>
+                    
                         <InputLabel>Species Name: </InputLabel>
                         <Select id="species_name" flex='6' name="species_name" placeholder="Select a Species" onChange={context.state.handleChange} >
-                            <option>--Select an Option--</option>
+                            <option>--Select</option>
                             <option value="Turf Type Tall Fescue">Turf Type Tall Fescue</option>
                             <option value="Perennial Ryegrass">Perennial Ryegrass</option>
                             <option value="Annual Ryegrass">Annual Ryegrass</option>
                             <option value="Festulolium">Festulolium</option>
                         </Select>
-                    </Wrapper>
-                </Wrapper>
+                    </FlexInnerWrapper>
+                </FlexOuterWrapper>
             </Fragment>
         )}
     </Context.Consumer>
 )
 
-export default VarietyId
+export default Identifiers
+
+
+
+
+
+
+

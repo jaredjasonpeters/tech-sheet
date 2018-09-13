@@ -3,11 +3,11 @@ import { $Form, SubmitButton } from './styled/styled'
 import { formatName } from '../utils/utils'
 import styled, { css } from 'styled-components'
 import { Context } from './contexts/contexts'
-import VarietyId from './variety_id'
 import ToleranceTable from './tolerance_table'
 import Content from './content'
 import NTEPDataEntry from './ntep_data_entry'
 import BottomInfo from './bottom_info'
+import Identifiers from './identifiers';
 
 
 class DataEntryForm extends Component {
@@ -28,7 +28,7 @@ class DataEntryForm extends Component {
             <Context.Consumer>
                 {(context) => (
                     <$Form id="data-entry-form" >
-                        <VarietyId />
+                        <Identifiers />
                         <ToleranceTable />
                         <Content />
                         <NTEPDataEntry></NTEPDataEntry>

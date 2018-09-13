@@ -300,7 +300,7 @@ color: white;
 
 const Checkbox = styled.div`
 flex-grow: 1
-max-width: 10px
+min-width: 10px
 width: ${props => props.width || '10px'}
 height: 10px
 border: 1px solid black
