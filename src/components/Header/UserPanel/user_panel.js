@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
-import { FlexOuterWrapper, FlexInnerWrapper, DLF_Green } from './styled/styled'
+import { FlexOuterWrapper, FlexInnerWrapper, DLF_Green } from '../../Styled/styled'
 import styled, { css } from 'styled-components'
-import {Colors} from '../utils/utils'
+import {Colors} from '../../../utils/utils'
 
 
 export default class UserPanel extends Component {

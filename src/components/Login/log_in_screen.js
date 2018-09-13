@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { FlexOuterWrapper, SubmitButton } from './styled/styled'
-import LoginModal from './login_modal'
+import { FlexOuterWrapper, SubmitButton } from '../Styled/styled'
+import LoginModal from '../Login/login_modal'
 
 export default class LogInScreen extends Component {
     constructor(props) {

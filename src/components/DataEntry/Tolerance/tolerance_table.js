@@ -1,8 +1,8 @@
 import React, {Component, Fragment} from 'react'
-                import {Context} from './contexts/contexts'
-                import {SectionHeader, InputWrapper, InputLabel, $Input, Value, DLF_Pink} from './styled/styled'
-                import {formatName, errors} from '../utils/utils'
-                import ToleranceSelection from './tolerance_selection'
+                import {Context} from '../../Contexts/contexts'
+                import {SectionHeader, InputWrapper, InputLabel, $Input, Value, DLF_Pink} from '../../Styled/styled'
+                import {formatName, errors} from '../../../utils/utils'
+                import ToleranceSelection from '../Tolerance/tolerance_selection'
 
                 const ToleranceTable = (props) => (
                     <Context.Consumer>

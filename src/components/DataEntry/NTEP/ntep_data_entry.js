@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
-import {Context} from './contexts/contexts'
-import NTEPtable from './ntep_table'
-import { AddTableButton, ResetButton, Wrapper, SectionHeader } from './styled/styled'
+import {Context} from '../../Contexts/contexts'
+import NTEPtable from '../NTEP/ntep_table'
+import { AddTableButton, ResetButton, Wrapper, SectionHeader } from '../../Styled/styled'
 
 export default class NTEPDataEntry extends Component {
     constructor(props) {

@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { $Form, SubmitButton } from './styled/styled'
-import { formatName } from '../utils/utils'
+import { $Form, SubmitButton } from '../Styled/styled'
+import { formatName } from '../../utils/utils'
 import styled, { css } from 'styled-components'
-import { Context } from './contexts/contexts'
-import ToleranceTable from './tolerance_table'
-import Content from './content'
-import NTEPDataEntry from './ntep_data_entry'
-import BottomInfo from './bottom_info'
-import Identifiers from './identifiers';
+import { Context } from '../Contexts/contexts'
+import ToleranceTable from '../DataEntry/Tolerance/tolerance_table'
+import TextContent from '../DataEntry/text_content'
+import NTEPDataEntry from '../DataEntry/NTEP/ntep_data_entry'
+import BottomInfo from '../DataEntry/bottom_info'
+import Identifiers from '../DataEntry/identifiers';
 
 
 class DataEntryForm extends Component {
@@ -30,7 +30,7 @@ class DataEntryForm extends Component {
                     <$Form id="data-entry-form" >
                         <Identifiers />
                         <ToleranceTable />
-                        <Content />
+                        <TextContent />
                         <NTEPDataEntry></NTEPDataEntry>
                         <BottomInfo />
                         <br />

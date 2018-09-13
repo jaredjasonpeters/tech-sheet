@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from 'react'
-import { Context } from './contexts/contexts'
-import NTEProw from './ntep_row'
-import { $Input, InputLabel, DLF_Green, SubmitButton, Wrapper } from './styled/styled'
+import { Context } from '../../Contexts/contexts'
+import NTEProw from '../NTEP/ntep_row'
+import { $Input, InputLabel, DLF_Green, SubmitButton, Wrapper } from '../../Styled/styled'
 
 export default class NTEPtable extends Component {
     constructor(props) {

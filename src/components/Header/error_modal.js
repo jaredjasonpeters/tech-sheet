@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Context } from './contexts/contexts'
+import { Context } from '../Contexts/contexts'
 
 class ErrorModal extends Component {
   constructor(props) {

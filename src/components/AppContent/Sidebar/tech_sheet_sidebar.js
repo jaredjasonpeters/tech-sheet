@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components'
-import { Context } from './contexts/contexts'
-import {DLF_Green} from './styled/styled'
+import { Context } from '../../Contexts/contexts'
+import {DLF_Green} from '../../Styled/styled'
 
 export default class TechSheetSidebar extends Component {
     constructor(props) {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Context } from '../contexts/contexts'
+import { Context } from '../Contexts/contexts'
 import { Colors, errors } from '../../utils/utils'
 
 class TechSheetProvider extends Component {

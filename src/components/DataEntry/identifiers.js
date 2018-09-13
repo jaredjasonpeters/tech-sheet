@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
-import { Context } from './contexts/contexts'
-import { SectionHeader, FlexInnerWrapper, Checkbox, InputLabel, $Input, Select, FlexOuterWrapper } from './styled/styled'
+import { Context } from '../Contexts/contexts'
+import { SectionHeader, FlexInnerWrapper, Checkbox, InputLabel, $Input, Select, FlexOuterWrapper } from '../Styled/styled'
 
 const Identifiers = (props) => (
     <Context.Consumer>

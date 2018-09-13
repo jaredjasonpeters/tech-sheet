@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { SubmitButton, FlexInnerWrapper, FlexOuterWrapper, $Label, $Input } from './styled/styled'
+import { SubmitButton, FlexInnerWrapper, FlexOuterWrapper, $Label, $Input } from '../Styled/styled'
 
 class LoginModal extends Component {
   constructor(props) {

@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
-import { Context } from './contexts/contexts'
-import { $Label, Wrapper, SubmitButton, ResetButton, Checkbox, DLF_Green } from './styled/styled'
+import { Context } from '../../Contexts/contexts'
+import { $Label, Wrapper, SubmitButton, ResetButton, Checkbox, DLF_Green } from '../../Styled/styled'
 import styled from 'styled-components'
 
 export default class ToleranceSelection extends Component {

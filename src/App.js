@@ -1,14 +1,10 @@
 import React, { Component, Fragment } from 'react';
-import Header from './components/header';
-import { TechSheetProvider } from './components/providers/providers'
-import DataEntryForm from './components/data_entry_form';
+import Header from './components/Header/header';
+import { TechSheetProvider } from './components/Providers/providers'
 import './App.css';
-import { Context } from './components/contexts/contexts';
-import LogInScreen from './components/log_in_screen'
-import { SubmitButton, Wrapper } from './components/styled/styled'
-import { Colors } from './utils/utils'
-import {DLF_Green} from './components/styled/styled'
-import AppContent from './components/app_content'
+import { Context } from './components/Contexts/contexts';
+import LogInScreen from './components/Login/log_in_screen'
+import AppContent from './components/AppContent/app_content'
 
 
 

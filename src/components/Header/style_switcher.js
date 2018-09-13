@@ -1,9 +1,8 @@
 import React, { Component, Fragment } from 'react'
-import { Context } from './contexts/contexts'
+import { Context } from '../Contexts/contexts'
 import styled, { css } from 'styled-components'
-import { FlexOuterWrapper, FlexInnerWrapper, SubmitButton, DLF_Pink, $Label } from './styled/styled'
-import DataEntryForm from './data_entry_form'
-import { formatName, Colors } from '../utils/utils'
+import { FlexOuterWrapper, FlexInnerWrapper, SubmitButton, DLF_Pink, $Label } from '../Styled/styled'
+import { formatName, Colors } from '../../utils/utils'
 
 
 export default class StyleSwitcher extends Component {

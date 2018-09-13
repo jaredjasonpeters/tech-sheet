@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {Context} from './contexts/contexts'
-import { FlexOuterWrapper, FlexInnerWrapper, $Input, NTEPVarietyInput, $Label, NTEPRatingInput, Wrapper, DLF_Green, Checkbox } from './styled/styled'
+import {Context} from '../../Contexts/contexts'
+import { FlexOuterWrapper, FlexInnerWrapper, $Input, NTEPVarietyInput, $Label, NTEPRatingInput, Wrapper, DLF_Green, Checkbox } from '../../Styled/styled'
 import styled, { css } from 'styled-components'
 
 const NTEProw = (props) => (

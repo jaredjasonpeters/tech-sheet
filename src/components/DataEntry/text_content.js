@@ -1,8 +1,8 @@
 import React, {Fragment} from 'react'
-import {SectionHeader, InputLabel, $TextArea} from './styled/styled'
-import {Context} from './contexts/contexts'
+import {SectionHeader, InputLabel, $TextArea} from '../Styled/styled'
+import {Context} from '../Contexts/contexts'
 
-const Content = (props) => (
+const TextContent = (props) => (
     <Context.Consumer>
         {context => (
             <Fragment>
@@ -18,4 +18,4 @@ const Content = (props) => (
     </Context.Consumer>
 )
 
-export default Content
+export default TextContent

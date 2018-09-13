@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react'
-import {Context} from './contexts/contexts'
-import {Wrapper, $Label, $Input, SectionHeader, FlexInnerWrapper, FlexOuterWrapper} from './styled/styled'
+import {Context} from '../Contexts/contexts'
+import {Wrapper, $Label, $Input, SectionHeader, FlexInnerWrapper, FlexOuterWrapper} from '../Styled/styled'
 
 const BottomInfo = (props) => {
     return (
