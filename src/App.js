@@ -5,7 +5,7 @@ import './App.css';
 import { Context } from './components/Contexts/contexts';
 import LogInScreen from './components/Login/log_in_screen'
 import AppContent from './components/AppContent/app_content'
-
+import TechSheetList from './components/Example/TechsheetList'
 
 
 class App extends Component {
@@ -34,7 +34,8 @@ class App extends Component {
     return (
       <Fragment>
       {!this.state.loggedIn &&
-      <LogInScreen logIn={this.logIn}></LogInScreen>
+      // <LogInScreen logIn={this.logIn}></LogInScreen>
+      <TechSheetList/>
       } 
 
       {this.state.loggedIn &&
