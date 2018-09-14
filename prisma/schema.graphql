@@ -1,31 +1,36 @@
 type Query {
-  publishedPosts: [Post!]!
-  post(postId: ID!): Post
-  postsByUser(userId: ID!): [Post!]!
   users: [User!]!
+  techsheet(techsheetId: ID!): Techsheet
+  techsheetsByUser(userId: ID!): Techsheet
+  techsheets: [Techsheet!]!
 }
 
 type Mutation {
-  createUser(name: String!, email: String!): User
-  createDraft(title: String!, userId: ID!): Post
-  publish(postId: ID!): Post
-  deleteUsers: BatchPayload!
+  createUser(name: String!, email: String!, companies: [Company!] ): User
+  createTechsheet(title: String!): Techsheet
+  deleteUsers: BatchPayload
 }
 
 type User {
-  id: ID!
+  id: ID! 
   email: String!
   name: String!
-  posts: [Post!]!
+  companies: [Company!]
+  techsheets: [Techsheet!]!
 }
 
-type Post {
-  id: ID!
+type Techsheet {
+  id: ID! 
   title: String!
   published: Boolean!
-  author: User
+  author: User!
 }
 
 type BatchPayload {
   count: Int!
+}
+
+enum Company {
+  DLFPICKSEED
+  SEEDRESEARCHOFOREGON
 }

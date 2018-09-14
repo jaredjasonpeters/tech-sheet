@@ -3,64 +3,54 @@ const { GraphQLServer } = require('graphql-yoga')
 
 const resolvers = {
   Query: {
-    publishedPosts(root, args, context) {
-      return context.prisma.posts({ where: { published: true } })
+    techsheet(root, args, context) {
+      return context.prisma.techsheet({ id: args.techsheetId })
     },
-    post(root, args, context) {
-      return context.prisma.post({ id: args.postId })
-    },
-    postsByUser(root, args, context) {
+    techsheetsByUser(root, args, context) {
       return context.prisma.user({
         id: args.userId
-      }).posts()
+      }).techsheets()
     },
     users(root, args, context) {
       return context.prisma.users()
+    },
+    techsheets(root, args, context) {
+      return context.prisma.techsheets()
     }
   },
   Mutation: {
-    createDraft(root, args, context) {
-      return context.prisma.createPost(
+    createTechsheet(root, args, context) {
+      return context.prisma.createTechsheet(
         {
-          data: {
             title: args.title,
-            author: {
-              connect: { id: args.userId }
-            }
-          },
         },
-
-      )
-    },
-    publish(root, args, context) {
-      return context.prisma.updatePost(
-        {
-          where: { id: args.postId },
-          data: { published: true },
-        },
-
-      )
+        )
     },
     createUser(root, args, context) {
-      return context.prisma.createUser({ 
+      return context.prisma.createUser(
+        { 
             name: args.name,
-            email: args.email     
-      })
+            email: args.email,
+            companies: {
+              set: args.companies
+            }
+        }
+      )
     },
     deleteUsers(root, args, context) {
       return context.prisma.deleteManyUsers()
     }
   },
   User: {
-    posts(root, args, context) {
+    techsheets(root, args, context) {
       return context.prisma.user({
         id: root.id
-      }).posts()
+      }).techsheets()
     }
   },
-  Post: {
+  Techsheet: {
     author(root, args, context) {
-      return context.prisma.post({
+      return context.prisma.techsheet({
         id: root.id
       }).author()
     }

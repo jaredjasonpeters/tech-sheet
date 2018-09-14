@@ -1,14 +1,19 @@
 type User {
   id: ID! @unique
   email: String!@unique
-  name: String! 
-  posts: [Post!]!
+  name: String!
+  companies: [Company!]
+  techsheets: [Techsheet!]!
 }
 
-
-type Post {
+type Techsheet {
   id: ID! @unique
   title: String!
   published: Boolean! @default(value: "false")
   author: User
+}
+
+enum Company {
+  DLFPICKSEED
+  SEEDRESEARCHOFOREGON
 }

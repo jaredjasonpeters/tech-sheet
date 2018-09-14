@@ -10,7 +10,7 @@ type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
 
 export interface Exists {
   user: (where?: UserWhereInput) => Promise<boolean>;
-  post: (where?: PostWhereInput) => Promise<boolean>;
+  techsheet: (where?: TechsheetWhereInput) => Promise<boolean>;
 }
 
 export interface Node {}
@@ -54,29 +54,29 @@ export interface Prisma {
       last?: Int;
     }
   ) => UserConnection;
-  post: (args: { where: PostWhereUniqueInput }) => Post;
-  posts: (
+  techsheet: (args: { where: TechsheetWhereUniqueInput }) => Techsheet;
+  techsheets: (
     args?: {
-      where?: PostWhereInput;
-      orderBy?: PostOrderByInput;
+      where?: TechsheetWhereInput;
+      orderBy?: TechsheetOrderByInput;
       skip?: Int;
       after?: String;
       before?: String;
       first?: Int;
       last?: Int;
     }
-  ) => Promise<Array<PostNode>>;
-  postsConnection: (
+  ) => Promise<Array<TechsheetNode>>;
+  techsheetsConnection: (
     args?: {
-      where?: PostWhereInput;
-      orderBy?: PostOrderByInput;
+      where?: TechsheetWhereInput;
+      orderBy?: TechsheetOrderByInput;
       skip?: Int;
       after?: String;
       before?: String;
       first?: Int;
       last?: Int;
     }
-  ) => PostConnection;
+  ) => TechsheetConnection;
   node: (args: { id: ID_Output }) => Node;
 
   /**
@@ -99,22 +99,22 @@ export interface Prisma {
   ) => User;
   deleteUser: (where: UserWhereUniqueInput) => User;
   deleteManyUsers: (where?: UserWhereInput) => BatchPayload;
-  createPost: (data: PostCreateInput) => Post;
-  updatePost: (
-    args: { data: PostUpdateInput; where: PostWhereUniqueInput }
-  ) => Post;
-  updateManyPosts: (
-    args: { data: PostUpdateInput; where?: PostWhereInput }
+  createTechsheet: (data: TechsheetCreateInput) => Techsheet;
+  updateTechsheet: (
+    args: { data: TechsheetUpdateInput; where: TechsheetWhereUniqueInput }
+  ) => Techsheet;
+  updateManyTechsheets: (
+    args: { data: TechsheetUpdateInput; where?: TechsheetWhereInput }
   ) => BatchPayload;
-  upsertPost: (
+  upsertTechsheet: (
     args: {
-      where: PostWhereUniqueInput;
-      create: PostCreateInput;
-      update: PostUpdateInput;
+      where: TechsheetWhereUniqueInput;
+      create: TechsheetCreateInput;
+      update: TechsheetUpdateInput;
     }
-  ) => Post;
-  deletePost: (where: PostWhereUniqueInput) => Post;
-  deleteManyPosts: (where?: PostWhereInput) => BatchPayload;
+  ) => Techsheet;
+  deleteTechsheet: (where: TechsheetWhereUniqueInput) => Techsheet;
+  deleteManyTechsheets: (where?: TechsheetWhereInput) => BatchPayload;
 
   /**
    * Subscriptions
@@ -127,9 +127,9 @@ export interface Subscription {
   user: (
     args?: { where?: UserSubscriptionWhereInput }
   ) => UserSubscriptionPayloadSubscription;
-  post: (
-    args?: { where?: PostSubscriptionWhereInput }
-  ) => PostSubscriptionPayloadSubscription;
+  techsheet: (
+    args?: { where?: TechsheetSubscriptionWhereInput }
+  ) => TechsheetSubscriptionPayloadSubscription;
 }
 
 export interface ClientConstructor<T> {
@@ -140,7 +140,7 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type PostOrderByInput =
+export type TechsheetOrderByInput =
   | "id_ASC"
   | "id_DESC"
   | "title_ASC"
@@ -151,6 +151,8 @@ export type PostOrderByInput =
   | "createdAt_DESC"
   | "updatedAt_ASC"
   | "updatedAt_DESC";
+
+export type Company = "DLFPICKSEED" | "SEEDRESEARCHOFOREGON";
 
 export type UserOrderByInput =
   | "id_ASC"
@@ -166,9 +168,11 @@ export type UserOrderByInput =
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export interface PostCreateWithoutAuthorInput {
-  title: String;
-  published?: Boolean;
+export interface TechsheetCreateManyWithoutAuthorInput {
+  create?:
+    | TechsheetCreateWithoutAuthorInput[]
+    | TechsheetCreateWithoutAuthorInput;
+  connect?: TechsheetWhereUniqueInput[] | TechsheetWhereUniqueInput;
 }
 
 export type UserWhereUniqueInput = AtLeastOne<{
@@ -176,75 +180,92 @@ export type UserWhereUniqueInput = AtLeastOne<{
   email?: String;
 }>;
 
-export interface UserCreateOneWithoutPostsInput {
-  create?: UserCreateWithoutPostsInput;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface PostUpdateWithWhereUniqueWithoutAuthorInput {
-  where: PostWhereUniqueInput;
-  data: PostUpdateWithoutAuthorDataInput;
-}
-
-export interface PostCreateInput {
+export interface TechsheetCreateInput {
   title: String;
   published?: Boolean;
-  author?: UserCreateOneWithoutPostsInput;
+  author?: UserCreateOneWithoutTechsheetsInput;
 }
 
-export interface PostUpdateManyWithoutAuthorInput {
-  create?: PostCreateWithoutAuthorInput[] | PostCreateWithoutAuthorInput;
-  delete?: PostWhereUniqueInput[] | PostWhereUniqueInput;
-  connect?: PostWhereUniqueInput[] | PostWhereUniqueInput;
-  disconnect?: PostWhereUniqueInput[] | PostWhereUniqueInput;
-  update?:
-    | PostUpdateWithWhereUniqueWithoutAuthorInput[]
-    | PostUpdateWithWhereUniqueWithoutAuthorInput;
-  upsert?:
-    | PostUpsertWithWhereUniqueWithoutAuthorInput[]
-    | PostUpsertWithWhereUniqueWithoutAuthorInput;
+export interface TechsheetUpdateWithWhereUniqueWithoutAuthorInput {
+  where: TechsheetWhereUniqueInput;
+  data: TechsheetUpdateWithoutAuthorDataInput;
 }
 
-export interface PostUpsertWithWhereUniqueWithoutAuthorInput {
-  where: PostWhereUniqueInput;
-  update: PostUpdateWithoutAuthorDataInput;
-  create: PostCreateWithoutAuthorInput;
+export interface TechsheetUpsertWithWhereUniqueWithoutAuthorInput {
+  where: TechsheetWhereUniqueInput;
+  update: TechsheetUpdateWithoutAuthorDataInput;
+  create: TechsheetCreateWithoutAuthorInput;
 }
 
-export interface PostSubscriptionWhereInput {
+export interface UserUpdatecompaniesInput {
+  set?: Company[] | Company;
+}
+
+export interface TechsheetSubscriptionWhereInput {
   mutation_in?: MutationType[] | MutationType;
   updatedFields_contains?: String;
   updatedFields_contains_every?: String[] | String;
   updatedFields_contains_some?: String[] | String;
-  node?: PostWhereInput;
-  AND?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
-  OR?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
-  NOT?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
+  node?: TechsheetWhereInput;
+  AND?: TechsheetSubscriptionWhereInput[] | TechsheetSubscriptionWhereInput;
+  OR?: TechsheetSubscriptionWhereInput[] | TechsheetSubscriptionWhereInput;
+  NOT?: TechsheetSubscriptionWhereInput[] | TechsheetSubscriptionWhereInput;
 }
 
-export interface UserUpsertWithoutPostsInput {
-  update: UserUpdateWithoutPostsDataInput;
-  create: UserCreateWithoutPostsInput;
-}
-
-export interface UserUpdateOneWithoutPostsInput {
-  create?: UserCreateWithoutPostsInput;
-  update?: UserUpdateWithoutPostsDataInput;
-  upsert?: UserUpsertWithoutPostsInput;
-  delete?: Boolean;
-  disconnect?: Boolean;
-  connect?: UserWhereUniqueInput;
+export interface UserUpsertWithoutTechsheetsInput {
+  update: UserUpdateWithoutTechsheetsDataInput;
+  create: UserCreateWithoutTechsheetsInput;
 }
 
 export interface UserCreateInput {
   email: String;
   name: String;
-  posts?: PostCreateManyWithoutAuthorInput;
+  companies?: UserCreatecompaniesInput;
+  techsheets?: TechsheetCreateManyWithoutAuthorInput;
 }
 
-export interface UserCreateWithoutPostsInput {
+export interface UserUpdateOneWithoutTechsheetsInput {
+  create?: UserCreateWithoutTechsheetsInput;
+  update?: UserUpdateWithoutTechsheetsDataInput;
+  upsert?: UserUpsertWithoutTechsheetsInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserCreatecompaniesInput {
+  set?: Company[] | Company;
+}
+
+export interface UserCreateWithoutTechsheetsInput {
   email: String;
   name: String;
+  companies?: UserCreatecompaniesInput;
+}
+
+export interface TechsheetUpdateWithoutAuthorDataInput {
+  title?: String;
+  published?: Boolean;
+}
+
+export interface UserCreateOneWithoutTechsheetsInput {
+  create?: UserCreateWithoutTechsheetsInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface TechsheetUpdateManyWithoutAuthorInput {
+  create?:
+    | TechsheetCreateWithoutAuthorInput[]
+    | TechsheetCreateWithoutAuthorInput;
+  delete?: TechsheetWhereUniqueInput[] | TechsheetWhereUniqueInput;
+  connect?: TechsheetWhereUniqueInput[] | TechsheetWhereUniqueInput;
+  disconnect?: TechsheetWhereUniqueInput[] | TechsheetWhereUniqueInput;
+  update?:
+    | TechsheetUpdateWithWhereUniqueWithoutAuthorInput[]
+    | TechsheetUpdateWithWhereUniqueWithoutAuthorInput;
+  upsert?:
+    | TechsheetUpsertWithWhereUniqueWithoutAuthorInput[]
+    | TechsheetUpsertWithWhereUniqueWithoutAuthorInput;
 }
 
 export interface UserWhereInput {
@@ -290,9 +311,9 @@ export interface UserWhereInput {
   name_not_starts_with?: String;
   name_ends_with?: String;
   name_not_ends_with?: String;
-  posts_every?: PostWhereInput;
-  posts_some?: PostWhereInput;
-  posts_none?: PostWhereInput;
+  techsheets_every?: TechsheetWhereInput;
+  techsheets_some?: TechsheetWhereInput;
+  techsheets_none?: TechsheetWhereInput;
   AND?: UserWhereInput[] | UserWhereInput;
   OR?: UserWhereInput[] | UserWhereInput;
   NOT?: UserWhereInput[] | UserWhereInput;
@@ -301,46 +322,16 @@ export interface UserWhereInput {
 export interface UserUpdateInput {
   email?: String;
   name?: String;
-  posts?: PostUpdateManyWithoutAuthorInput;
+  companies?: UserUpdatecompaniesInput;
+  techsheets?: TechsheetUpdateManyWithoutAuthorInput;
 }
 
-export interface PostUpdateWithoutAuthorDataInput {
-  title?: String;
+export interface TechsheetCreateWithoutAuthorInput {
+  title: String;
   published?: Boolean;
 }
 
-export interface PostCreateManyWithoutAuthorInput {
-  create?: PostCreateWithoutAuthorInput[] | PostCreateWithoutAuthorInput;
-  connect?: PostWhereUniqueInput[] | PostWhereUniqueInput;
-}
-
-export type PostWhereUniqueInput = AtLeastOne<{
-  id?: ID_Input;
-}>;
-
-export interface PostUpdateInput {
-  title?: String;
-  published?: Boolean;
-  author?: UserUpdateOneWithoutPostsInput;
-}
-
-export interface UserUpdateWithoutPostsDataInput {
-  email?: String;
-  name?: String;
-}
-
-export interface UserSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: UserWhereInput;
-  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-}
-
-export interface PostWhereInput {
+export interface TechsheetWhereInput {
   id?: ID_Input;
   id_not?: ID_Input;
   id_in?: ID_Input[] | ID_Input;
@@ -372,31 +363,58 @@ export interface PostWhereInput {
   published?: Boolean;
   published_not?: Boolean;
   author?: UserWhereInput;
-  AND?: PostWhereInput[] | PostWhereInput;
-  OR?: PostWhereInput[] | PostWhereInput;
-  NOT?: PostWhereInput[] | PostWhereInput;
+  AND?: TechsheetWhereInput[] | TechsheetWhereInput;
+  OR?: TechsheetWhereInput[] | TechsheetWhereInput;
+  NOT?: TechsheetWhereInput[] | TechsheetWhereInput;
+}
+
+export type TechsheetWhereUniqueInput = AtLeastOne<{
+  id?: ID_Input;
+}>;
+
+export interface TechsheetUpdateInput {
+  title?: String;
+  published?: Boolean;
+  author?: UserUpdateOneWithoutTechsheetsInput;
+}
+
+export interface UserUpdateWithoutTechsheetsDataInput {
+  email?: String;
+  name?: String;
+  companies?: UserUpdatecompaniesInput;
+}
+
+export interface UserSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: UserWhereInput;
+  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
 }
 
 export interface NodeNode {
   id: ID_Output;
 }
 
-export interface PostPreviousValuesNode {
+export interface TechsheetPreviousValuesNode {
   id: ID_Output;
   title: String;
   published: Boolean;
 }
 
-export interface PostPreviousValues
-  extends Promise<PostPreviousValuesNode>,
+export interface TechsheetPreviousValues
+  extends Promise<TechsheetPreviousValuesNode>,
     Fragmentable {
   id: () => Promise<ID_Output>;
   title: () => Promise<String>;
   published: () => Promise<Boolean>;
 }
 
-export interface PostPreviousValuesSubscription
-  extends Promise<AsyncIterator<PostPreviousValuesNode>>,
+export interface TechsheetPreviousValuesSubscription
+  extends Promise<AsyncIterator<TechsheetPreviousValuesNode>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   title: () => Promise<AsyncIterator<String>>;
@@ -483,33 +501,34 @@ export interface UserConnectionSubscription
   aggregate: <T = AggregateUserSubscription>() => T;
 }
 
-export interface PostSubscriptionPayloadNode {
+export interface TechsheetSubscriptionPayloadNode {
   mutation: MutationType;
   updatedFields?: String[];
 }
 
-export interface PostSubscriptionPayload
-  extends Promise<PostSubscriptionPayloadNode>,
+export interface TechsheetSubscriptionPayload
+  extends Promise<TechsheetSubscriptionPayloadNode>,
     Fragmentable {
   mutation: () => Promise<MutationType>;
-  node: <T = Post>() => T;
+  node: <T = Techsheet>() => T;
   updatedFields: () => Promise<String[]>;
-  previousValues: <T = PostPreviousValues>() => T;
+  previousValues: <T = TechsheetPreviousValues>() => T;
 }
 
-export interface PostSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<PostSubscriptionPayloadNode>>,
+export interface TechsheetSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<TechsheetSubscriptionPayloadNode>>,
     Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = PostSubscription>() => T;
+  node: <T = TechsheetSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = PostPreviousValuesSubscription>() => T;
+  previousValues: <T = TechsheetPreviousValuesSubscription>() => T;
 }
 
 export interface UserPreviousValuesNode {
   id: ID_Output;
   email: String;
   name: String;
+  companies: Company[];
 }
 
 export interface UserPreviousValues
@@ -518,6 +537,7 @@ export interface UserPreviousValues
   id: () => Promise<ID_Output>;
   email: () => Promise<String>;
   name: () => Promise<String>;
+  companies: () => Promise<Company[]>;
 }
 
 export interface UserPreviousValuesSubscription
@@ -526,23 +546,24 @@ export interface UserPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   email: () => Promise<AsyncIterator<String>>;
   name: () => Promise<AsyncIterator<String>>;
+  companies: () => Promise<AsyncIterator<Company[]>>;
 }
 
-export interface PostNode {
+export interface TechsheetNode {
   id: ID_Output;
   title: String;
   published: Boolean;
 }
 
-export interface Post extends Promise<PostNode>, Fragmentable {
+export interface Techsheet extends Promise<TechsheetNode>, Fragmentable {
   id: () => Promise<ID_Output>;
   title: () => Promise<String>;
   published: () => Promise<Boolean>;
   author: <T = User>() => T;
 }
 
-export interface PostSubscription
-  extends Promise<AsyncIterator<PostNode>>,
+export interface TechsheetSubscription
+  extends Promise<AsyncIterator<TechsheetNode>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   title: () => Promise<AsyncIterator<String>>;
@@ -554,16 +575,18 @@ export interface UserNode {
   id: ID_Output;
   email: String;
   name: String;
+  companies: Company[];
 }
 
 export interface User extends Promise<UserNode>, Fragmentable {
   id: () => Promise<ID_Output>;
   email: () => Promise<String>;
   name: () => Promise<String>;
-  posts: <T = Promise<Array<PostNode>>>(
+  companies: () => Promise<Company[]>;
+  techsheets: <T = Promise<Array<TechsheetNode>>>(
     args?: {
-      where?: PostWhereInput;
-      orderBy?: PostOrderByInput;
+      where?: TechsheetWhereInput;
+      orderBy?: TechsheetOrderByInput;
       skip?: Int;
       after?: String;
       before?: String;
@@ -579,10 +602,11 @@ export interface UserSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   email: () => Promise<AsyncIterator<String>>;
   name: () => Promise<AsyncIterator<String>>;
-  posts: <T = Promise<AsyncIterator<Array<PostSubscription>>>>(
+  companies: () => Promise<AsyncIterator<Company[]>>;
+  techsheets: <T = Promise<AsyncIterator<Array<TechsheetSubscription>>>>(
     args?: {
-      where?: PostWhereInput;
-      orderBy?: PostOrderByInput;
+      where?: TechsheetWhereInput;
+      orderBy?: TechsheetOrderByInput;
       skip?: Int;
       after?: String;
       before?: String;
@@ -592,35 +616,37 @@ export interface UserSubscription
   ) => T;
 }
 
-export interface AggregatePostNode {
+export interface AggregateTechsheetNode {
   count: Int;
 }
 
-export interface AggregatePost
-  extends Promise<AggregatePostNode>,
+export interface AggregateTechsheet
+  extends Promise<AggregateTechsheetNode>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregatePostSubscription
-  extends Promise<AsyncIterator<AggregatePostNode>>,
+export interface AggregateTechsheetSubscription
+  extends Promise<AsyncIterator<AggregateTechsheetNode>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface PostEdgeNode {
+export interface TechsheetEdgeNode {
   cursor: String;
 }
 
-export interface PostEdge extends Promise<PostEdgeNode>, Fragmentable {
-  node: <T = Post>() => T;
+export interface TechsheetEdge
+  extends Promise<TechsheetEdgeNode>,
+    Fragmentable {
+  node: <T = Techsheet>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface PostEdgeSubscription
-  extends Promise<AsyncIterator<PostEdgeNode>>,
+export interface TechsheetEdgeSubscription
+  extends Promise<AsyncIterator<TechsheetEdgeNode>>,
     Fragmentable {
-  node: <T = PostSubscription>() => T;
+  node: <T = TechsheetSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
@@ -654,22 +680,22 @@ export interface AggregateUserSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface PostConnectionNode {}
+export interface TechsheetConnectionNode {}
 
-export interface PostConnection
-  extends Promise<PostConnectionNode>,
+export interface TechsheetConnection
+  extends Promise<TechsheetConnectionNode>,
     Fragmentable {
   pageInfo: <T = PageInfo>() => T;
-  edges: <T = Promise<Array<PostEdgeNode>>>() => T;
-  aggregate: <T = AggregatePost>() => T;
+  edges: <T = Promise<Array<TechsheetEdgeNode>>>() => T;
+  aggregate: <T = AggregateTechsheet>() => T;
 }
 
-export interface PostConnectionSubscription
-  extends Promise<AsyncIterator<PostConnectionNode>>,
+export interface TechsheetConnectionSubscription
+  extends Promise<AsyncIterator<TechsheetConnectionNode>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<Array<PostEdgeSubscription>>>>() => T;
-  aggregate: <T = AggregatePostSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<Array<TechsheetEdgeSubscription>>>>() => T;
+  aggregate: <T = AggregateTechsheetSubscription>() => T;
 }
 
 /*

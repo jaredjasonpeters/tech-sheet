@@ -1,5 +1,5 @@
 module.exports = {
-        typeDefs: /* GraphQL */ `type AggregatePost {
+        typeDefs: /* GraphQL */ `type AggregateTechsheet {
   count: Int!
 }
 
@@ -11,6 +11,11 @@ type BatchPayload {
   count: Long!
 }
 
+enum Company {
+  DLFPICKSEED
+  SEEDRESEARCHOFOREGON
+}
+
 scalar Long
 
 type Mutation {
@@ -20,12 +25,12 @@ type Mutation {
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   deleteUser(where: UserWhereUniqueInput!): User
   deleteManyUsers(where: UserWhereInput): BatchPayload!
-  createPost(data: PostCreateInput!): Post!
-  updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
-  updateManyPosts(data: PostUpdateInput!, where: PostWhereInput): BatchPayload!
-  upsertPost(where: PostWhereUniqueInput!, create: PostCreateInput!, update: PostUpdateInput!): Post!
-  deletePost(where: PostWhereUniqueInput!): Post
-  deleteManyPosts(where: PostWhereInput): BatchPayload!
+  createTechsheet(data: TechsheetCreateInput!): Techsheet!
+  updateTechsheet(data: TechsheetUpdateInput!, where: TechsheetWhereUniqueInput!): Techsheet
+  updateManyTechsheets(data: TechsheetUpdateInput!, where: TechsheetWhereInput): BatchPayload!
+  upsertTechsheet(where: TechsheetWhereUniqueInput!, create: TechsheetCreateInput!, update: TechsheetUpdateInput!): Techsheet!
+  deleteTechsheet(where: TechsheetWhereUniqueInput!): Techsheet
+  deleteManyTechsheets(where: TechsheetWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -45,41 +50,56 @@ type PageInfo {
   endCursor: String
 }
 
-type Post {
+type Query {
+  user(where: UserWhereUniqueInput!): User
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  techsheet(where: TechsheetWhereUniqueInput!): Techsheet
+  techsheets(where: TechsheetWhereInput, orderBy: TechsheetOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Techsheet]!
+  techsheetsConnection(where: TechsheetWhereInput, orderBy: TechsheetOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TechsheetConnection!
+  node(id: ID!): Node
+}
+
+type Subscription {
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  techsheet(where: TechsheetSubscriptionWhereInput): TechsheetSubscriptionPayload
+}
+
+type Techsheet {
   id: ID!
   title: String!
   published: Boolean!
   author: User
 }
 
-type PostConnection {
+type TechsheetConnection {
   pageInfo: PageInfo!
-  edges: [PostEdge]!
-  aggregate: AggregatePost!
+  edges: [TechsheetEdge]!
+  aggregate: AggregateTechsheet!
 }
 
-input PostCreateInput {
+input TechsheetCreateInput {
   title: String!
   published: Boolean
-  author: UserCreateOneWithoutPostsInput
+  author: UserCreateOneWithoutTechsheetsInput
 }
 
-input PostCreateManyWithoutAuthorInput {
-  create: [PostCreateWithoutAuthorInput!]
-  connect: [PostWhereUniqueInput!]
+input TechsheetCreateManyWithoutAuthorInput {
+  create: [TechsheetCreateWithoutAuthorInput!]
+  connect: [TechsheetWhereUniqueInput!]
 }
 
-input PostCreateWithoutAuthorInput {
+input TechsheetCreateWithoutAuthorInput {
   title: String!
   published: Boolean
 }
 
-type PostEdge {
-  node: Post!
+type TechsheetEdge {
+  node: Techsheet!
   cursor: String!
 }
 
-enum PostOrderByInput {
+enum TechsheetOrderByInput {
   id_ASC
   id_DESC
   title_ASC
@@ -92,62 +112,62 @@ enum PostOrderByInput {
   updatedAt_DESC
 }
 
-type PostPreviousValues {
+type TechsheetPreviousValues {
   id: ID!
   title: String!
   published: Boolean!
 }
 
-type PostSubscriptionPayload {
+type TechsheetSubscriptionPayload {
   mutation: MutationType!
-  node: Post
+  node: Techsheet
   updatedFields: [String!]
-  previousValues: PostPreviousValues
+  previousValues: TechsheetPreviousValues
 }
 
-input PostSubscriptionWhereInput {
+input TechsheetSubscriptionWhereInput {
   mutation_in: [MutationType!]
   updatedFields_contains: String
   updatedFields_contains_every: [String!]
   updatedFields_contains_some: [String!]
-  node: PostWhereInput
-  AND: [PostSubscriptionWhereInput!]
-  OR: [PostSubscriptionWhereInput!]
-  NOT: [PostSubscriptionWhereInput!]
+  node: TechsheetWhereInput
+  AND: [TechsheetSubscriptionWhereInput!]
+  OR: [TechsheetSubscriptionWhereInput!]
+  NOT: [TechsheetSubscriptionWhereInput!]
 }
 
-input PostUpdateInput {
+input TechsheetUpdateInput {
   title: String
   published: Boolean
-  author: UserUpdateOneWithoutPostsInput
+  author: UserUpdateOneWithoutTechsheetsInput
 }
 
-input PostUpdateManyWithoutAuthorInput {
-  create: [PostCreateWithoutAuthorInput!]
-  delete: [PostWhereUniqueInput!]
-  connect: [PostWhereUniqueInput!]
-  disconnect: [PostWhereUniqueInput!]
-  update: [PostUpdateWithWhereUniqueWithoutAuthorInput!]
-  upsert: [PostUpsertWithWhereUniqueWithoutAuthorInput!]
+input TechsheetUpdateManyWithoutAuthorInput {
+  create: [TechsheetCreateWithoutAuthorInput!]
+  delete: [TechsheetWhereUniqueInput!]
+  connect: [TechsheetWhereUniqueInput!]
+  disconnect: [TechsheetWhereUniqueInput!]
+  update: [TechsheetUpdateWithWhereUniqueWithoutAuthorInput!]
+  upsert: [TechsheetUpsertWithWhereUniqueWithoutAuthorInput!]
 }
 
-input PostUpdateWithoutAuthorDataInput {
+input TechsheetUpdateWithoutAuthorDataInput {
   title: String
   published: Boolean
 }
 
-input PostUpdateWithWhereUniqueWithoutAuthorInput {
-  where: PostWhereUniqueInput!
-  data: PostUpdateWithoutAuthorDataInput!
+input TechsheetUpdateWithWhereUniqueWithoutAuthorInput {
+  where: TechsheetWhereUniqueInput!
+  data: TechsheetUpdateWithoutAuthorDataInput!
 }
 
-input PostUpsertWithWhereUniqueWithoutAuthorInput {
-  where: PostWhereUniqueInput!
-  update: PostUpdateWithoutAuthorDataInput!
-  create: PostCreateWithoutAuthorInput!
+input TechsheetUpsertWithWhereUniqueWithoutAuthorInput {
+  where: TechsheetWhereUniqueInput!
+  update: TechsheetUpdateWithoutAuthorDataInput!
+  create: TechsheetCreateWithoutAuthorInput!
 }
 
-input PostWhereInput {
+input TechsheetWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -179,35 +199,21 @@ input PostWhereInput {
   published: Boolean
   published_not: Boolean
   author: UserWhereInput
-  AND: [PostWhereInput!]
-  OR: [PostWhereInput!]
-  NOT: [PostWhereInput!]
+  AND: [TechsheetWhereInput!]
+  OR: [TechsheetWhereInput!]
+  NOT: [TechsheetWhereInput!]
 }
 
-input PostWhereUniqueInput {
+input TechsheetWhereUniqueInput {
   id: ID
-}
-
-type Query {
-  user(where: UserWhereUniqueInput!): User
-  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
-  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
-  post(where: PostWhereUniqueInput!): Post
-  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post]!
-  postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
-  node(id: ID!): Node
-}
-
-type Subscription {
-  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
-  post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
 }
 
 type User {
   id: ID!
   email: String!
   name: String!
-  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
+  companies: [Company!]!
+  techsheets(where: TechsheetWhereInput, orderBy: TechsheetOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Techsheet!]
 }
 
 type UserConnection {
@@ -216,20 +222,26 @@ type UserConnection {
   aggregate: AggregateUser!
 }
 
+input UserCreatecompaniesInput {
+  set: [Company!]
+}
+
 input UserCreateInput {
   email: String!
   name: String!
-  posts: PostCreateManyWithoutAuthorInput
+  companies: UserCreatecompaniesInput
+  techsheets: TechsheetCreateManyWithoutAuthorInput
 }
 
-input UserCreateOneWithoutPostsInput {
-  create: UserCreateWithoutPostsInput
+input UserCreateOneWithoutTechsheetsInput {
+  create: UserCreateWithoutTechsheetsInput
   connect: UserWhereUniqueInput
 }
 
-input UserCreateWithoutPostsInput {
+input UserCreateWithoutTechsheetsInput {
   email: String!
   name: String!
+  companies: UserCreatecompaniesInput
 }
 
 type UserEdge {
@@ -254,6 +266,7 @@ type UserPreviousValues {
   id: ID!
   email: String!
   name: String!
+  companies: [Company!]!
 }
 
 type UserSubscriptionPayload {
@@ -274,29 +287,35 @@ input UserSubscriptionWhereInput {
   NOT: [UserSubscriptionWhereInput!]
 }
 
+input UserUpdatecompaniesInput {
+  set: [Company!]
+}
+
 input UserUpdateInput {
   email: String
   name: String
-  posts: PostUpdateManyWithoutAuthorInput
+  companies: UserUpdatecompaniesInput
+  techsheets: TechsheetUpdateManyWithoutAuthorInput
 }
 
-input UserUpdateOneWithoutPostsInput {
-  create: UserCreateWithoutPostsInput
-  update: UserUpdateWithoutPostsDataInput
-  upsert: UserUpsertWithoutPostsInput
+input UserUpdateOneWithoutTechsheetsInput {
+  create: UserCreateWithoutTechsheetsInput
+  update: UserUpdateWithoutTechsheetsDataInput
+  upsert: UserUpsertWithoutTechsheetsInput
   delete: Boolean
   disconnect: Boolean
   connect: UserWhereUniqueInput
 }
 
-input UserUpdateWithoutPostsDataInput {
+input UserUpdateWithoutTechsheetsDataInput {
   email: String
   name: String
+  companies: UserUpdatecompaniesInput
 }
 
-input UserUpsertWithoutPostsInput {
-  update: UserUpdateWithoutPostsDataInput!
-  create: UserCreateWithoutPostsInput!
+input UserUpsertWithoutTechsheetsInput {
+  update: UserUpdateWithoutTechsheetsDataInput!
+  create: UserCreateWithoutTechsheetsInput!
 }
 
 input UserWhereInput {
@@ -342,9 +361,9 @@ input UserWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
-  posts_every: PostWhereInput
-  posts_some: PostWhereInput
-  posts_none: PostWhereInput
+  techsheets_every: TechsheetWhereInput
+  techsheets_some: TechsheetWhereInput
+  techsheets_none: TechsheetWhereInput
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]
