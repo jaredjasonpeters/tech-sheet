@@ -1,32 +1,68 @@
+const { prisma } = require('./prisma-client')
 const { GraphQLServer } = require('graphql-yoga')
-const { findById } = require('../helpers')
-const { Prisma } = require('prisma-binding')
-const Query = require('./resolvers/Query')
-const Mutation = require('./resolvers/Mutation')
-const AuthPayload = require('./resolvers/AuthPayload')
-const Subscription = require('./resolvers/Subscription')
 
 
 const resolvers = {
-    Query,
-    Mutation,
-    AuthPayload,
-    Subscription,
+  Query: {
+    techsheet(root, args, context) {
+      return context.prisma.techsheet({ id: args.techsheetId })
+    },
+    techsheetsByUser(root, args, context) {
+      return context.prisma.user({
+        id: args.userId
+      }).techsheets()
+    },
+    users(root, args, context) {
+      return context.prisma.users()
+    },
+    techsheets(root, args, context) {
+      return context.prisma.techsheets()
+    }
+  },
+  Mutation: {
+    createTechsheet(root, args, context) {
+      return context.prisma.createTechsheet(
+        {
+          title: args.title,
+        },
+      )
+    },
+    createUser(root, args, context) {
+      return context.prisma.createUser(
+        {
+          name: args.name,
+          email: args.email,
+          companies: {
+            set: args.companies
+          }
+        }
+      )
+    },
+    deleteUsers(root, args, context) {
+      return context.prisma.deleteManyUsers()
+    }
+  },
+  User: {
+    techsheets(root, args, context) {
+      return context.prisma.user({
+        id: root.id
+      }).techsheets()
+    }
+  },
+  Techsheet: {
+    author(root, args, context) {
+      return context.prisma.techsheet({
+        id: root.id
+      }).author()
+    }
+  }
 }
 
 const server = new GraphQLServer({
-    typeDefs: './src/schema.graphql',
-    resolvers,
-    context: req => ({
-        ...req,
-        db: new Prisma({
-            typeDefs: 'src/generated/prisma.graphql',
-            endpoint: 'https://us1.prisma.sh/jared-peters-2fd802/dlf_pickseed/dev',
-            secret: 'Oregonseed2018',
-            debug: true,
-        }),
-    }),
+  typeDefs: './schema.graphql',
+  resolvers,
+  context: {
+    prisma
+  },
 })
-
-server.start(() => console.log(`Server is running on http://localhost:4000`))
-
+server.start(() => console.log('Server is running on http://localhost:4000'))

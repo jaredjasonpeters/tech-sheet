@@ -8,7 +8,6 @@ import AppContent from './components/AppContent/app_content'
 
 
 
-
 class App extends Component {
   constructor(props) {
     super(props)

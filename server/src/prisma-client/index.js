@@ -5,6 +5,7 @@ var typeDefs = require("./prisma-schema").typeDefs;
 
 exports.Prisma = prisma_lib_1.makePrismaBindingClass({
   typeDefs,
-  endpoint: "https://us1.prisma.sh/jared-peters-2fd802/dlf/dev"
+  endpoint: "https://us1.prisma.sh/jared-peters-2fd802/dlf/dev",
+  secret: 'Oregonseed2018',
 });
 exports.prisma = new exports.Prisma();

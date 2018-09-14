@@ -1,34 +1,36 @@
-#import Link, LinkSubscriptionPayload, Vote, VoteSubscriptionPayload from "./generated/prisma.graphql"
-
-
 type Query {
-    info: String!
-    feed: [Link!]!
-    link(id: ID!): Link
+  users: [User!]!
+  techsheet(techsheetId: ID!): Techsheet
+  techsheetsByUser(userId: ID!): Techsheet
+  techsheets: [Techsheet!]!
 }
 
 type Mutation {
-    post(url: String!, description: String!): Link!
-    signup(email: String!, password: String!, name: String!): AuthPayload
-    login(email: String!, password: String!): AuthPayload
-    vote(linkId: ID!): Vote
-}
-
-type AuthPayload {
-    token: String
-    user: User
+  createUser(name: String!, email: String!, companies: [Company!] ): User
+  createTechsheet(title: String!): Techsheet
+  deleteUsers: BatchPayload
 }
 
 type User {
-    id: ID!
-    name: String!
-    email: String!
-    links: [Link!]!
+  id: ID! 
+  email: String!
+  name: String!
+  companies: [Company!]
+  techsheets: [Techsheet!]!
 }
 
-type Subscription {
-    newLink: LinkSubscriptionPayload
-    newVote: VoteSubscriptionPayload
+type Techsheet {
+  id: ID! 
+  title: String!
+  published: Boolean!
+  author: User!
 }
 
+type BatchPayload {
+  count: Int!
+}
 
+enum Company {
+  DLFPICKSEED
+  SEEDRESEARCHOFOREGON
+}
