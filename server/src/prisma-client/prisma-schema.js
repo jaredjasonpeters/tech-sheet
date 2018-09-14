@@ -211,6 +211,7 @@ input TechsheetWhereUniqueInput {
 type User {
   id: ID!
   email: String!
+  password: String!
   name: String!
   companies: [Company!]!
   techsheets(where: TechsheetWhereInput, orderBy: TechsheetOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Techsheet!]
@@ -228,6 +229,7 @@ input UserCreatecompaniesInput {
 
 input UserCreateInput {
   email: String!
+  password: String!
   name: String!
   companies: UserCreatecompaniesInput
   techsheets: TechsheetCreateManyWithoutAuthorInput
@@ -240,6 +242,7 @@ input UserCreateOneWithoutTechsheetsInput {
 
 input UserCreateWithoutTechsheetsInput {
   email: String!
+  password: String!
   name: String!
   companies: UserCreatecompaniesInput
 }
@@ -254,6 +257,8 @@ enum UserOrderByInput {
   id_DESC
   email_ASC
   email_DESC
+  password_ASC
+  password_DESC
   name_ASC
   name_DESC
   createdAt_ASC
@@ -265,6 +270,7 @@ enum UserOrderByInput {
 type UserPreviousValues {
   id: ID!
   email: String!
+  password: String!
   name: String!
   companies: [Company!]!
 }
@@ -293,6 +299,7 @@ input UserUpdatecompaniesInput {
 
 input UserUpdateInput {
   email: String
+  password: String
   name: String
   companies: UserUpdatecompaniesInput
   techsheets: TechsheetUpdateManyWithoutAuthorInput
@@ -309,6 +316,7 @@ input UserUpdateOneWithoutTechsheetsInput {
 
 input UserUpdateWithoutTechsheetsDataInput {
   email: String
+  password: String
   name: String
   companies: UserUpdatecompaniesInput
 }
@@ -347,6 +355,20 @@ input UserWhereInput {
   email_not_starts_with: String
   email_ends_with: String
   email_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
   name: String
   name_not: String
   name_in: [String!]

@@ -32,6 +32,7 @@ const resolvers = {
         {
           name: args.name,
           email: args.email,
+          password: args.password,
           companies: {
             set: args.companies
           }
