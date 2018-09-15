@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components'
-import { Context } from '../../Contexts/contexts'
+import { DataContext } from '../../Contexts/contexts'
 import {DLF_Green} from '../../Styled/styled'
 
 export default class TechSheetSidebar extends Component {
@@ -72,7 +72,7 @@ export default class TechSheetSidebar extends Component {
 
         
         return (
-            <Context.Consumer>
+            <DataContext.Consumer>
                 {context => (
                     context.state.theme_style !== 'DLF_BLK' &&
                     <SidebarContainer context={context.state.theme_style}>
@@ -93,7 +93,7 @@ export default class TechSheetSidebar extends Component {
                     </SidebarContainer>
                 )}
 
-            </Context.Consumer>
+            </DataContext.Consumer>
         );
     }
 }

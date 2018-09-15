@@ -4,7 +4,7 @@ import LoginModal from '../Login/login_modal'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
 
-class LogInScreen extends Component {
+class Login extends Component {
     constructor(props) {
         super(props)
     }
@@ -22,5 +22,5 @@ class LogInScreen extends Component {
     }
 }
 
-export default withRouter(LogInScreen)
+export default withRouter(Login)
 

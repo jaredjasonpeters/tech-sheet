@@ -1,10 +1,10 @@
 import React, {Component, Fragment} from 'react'
-import {Context} from '../Contexts/contexts'
+import {DataContext} from '../Contexts/contexts'
 import {Wrapper, $Label, $Input, SectionHeader, FlexInnerWrapper, FlexOuterWrapper} from '../Styled/styled'
 
 const BottomInfo = (props) => {
     return (
-        <Context.Consumer>
+        <DataContext.Consumer>
         {context=>(
             <Fragment>
                 <SectionHeader theme={context.state.theme_style} className='sh bottom_info'>BOTTOM INFO: </SectionHeader>
@@ -58,7 +58,7 @@ const BottomInfo = (props) => {
                 </FlexOuterWrapper>
             </Fragment>
         )}
-        </Context.Consumer>
+        </DataContext.Consumer>
     )
 }
 

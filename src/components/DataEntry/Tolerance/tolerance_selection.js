@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Context } from '../../Contexts/contexts'
+import { DataContext } from '../../Contexts/contexts'
 import { $Label, Wrapper, SubmitButton, ResetButton, Checkbox, DLF_Green } from '../../Styled/styled'
 import styled from 'styled-components'
 
@@ -42,7 +42,7 @@ export default class ToleranceSelection extends Component {
 
     render() {
         return (
-            <Context.Consumer>{(context) => (
+            <DataContext.Consumer>{(context) => (
                 <Fragment>
                     <Wrapper media="true">
                         <SelectionContainer>
@@ -81,7 +81,7 @@ export default class ToleranceSelection extends Component {
                         <SubmitButton reset height="30px" width="auto" bottom="20px" fSize="14px" onClick={this.handleReset}>Clear Selection</SubmitButton>
                     </Wrapper>
                 </Fragment>
-            )}</Context.Consumer>
+            )}</DataContext.Consumer>
         )
     }
 }

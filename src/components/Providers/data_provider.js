@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Context } from '../Contexts/contexts'
+import { DataContext } from '../Contexts/contexts'
 import { Colors, errors, formatName } from '../../utils/utils'
 
-class TechSheetProvider extends Component {
+export default class DataProvider extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -212,13 +212,10 @@ class TechSheetProvider extends Component {
     }
     render() {
         return (
-            <Context.Provider value={{ state: this.state }}>
+            <DataContext.Provider value={{ state: this.state }}>
                 {this.props.children}
-            </Context.Provider>
+            </DataContext.Provider>
         )
     }
 }
 
-export {
-    TechSheetProvider,
-}

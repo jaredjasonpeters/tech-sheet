@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from 'react'
-import { Context } from '../../Contexts/contexts'
+import { DataContext } from '../../Contexts/contexts'
 import NTEProw from '../NTEP/ntep_row'
 import { $Input, InputLabel, DLF_Green, SubmitButton, Wrapper } from '../../Styled/styled'
 
@@ -105,7 +105,7 @@ export default class NTEPtable extends Component {
 
     render() {
         return (
-            <Context.Consumer>
+            <DataContext.Consumer>
                 {context => (
                     <Fragment>
                         <div style={{
@@ -227,7 +227,7 @@ export default class NTEPtable extends Component {
 
                     </Fragment>
                 )}
-            </Context.Consumer>
+            </DataContext.Consumer>
         )
     }
 }

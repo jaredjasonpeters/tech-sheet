@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components'
 import { FlexOuterWrapper, FlexInnerWrapper } from '../Styled/styled'
-import { Context } from '../Contexts/contexts'
+import { DataContext } from '../Contexts/contexts'
 import UserPanel from '../Header/UserPanel/user_panel'
 import StyleSwitcher from '../Header/style_switcher'
 import { Colors } from '../../utils/utils'
@@ -60,7 +60,7 @@ export default class Header extends Component {
     render() {
 
         return (
-            <Context.Consumer>
+            <DataContext.Consumer>
                 {context => (
 
                     <FlexOuterWrapper
@@ -87,7 +87,7 @@ export default class Header extends Component {
                         <UserPanel context={context}/>
                     </FlexOuterWrapper>
                 )}
-            </Context.Consumer>
+            </DataContext.Consumer>
         )
     }
 }

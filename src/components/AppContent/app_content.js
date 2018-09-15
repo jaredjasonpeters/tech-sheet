@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import TechSheetSidebar from './Sidebar/tech_sheet_sidebar';
-import { Context } from '../Contexts/contexts'
+import { DataContext } from '../Contexts/contexts'
 import DataEntryForm from './data_entry_form'
 import { FlexOuterWrapper, FlexInnerWrapper } from '../Styled/styled'
 import styled from 'styled-components';
@@ -15,7 +15,7 @@ export default class AppContent extends Component {
 
     render() {
         return (
-            <Context.Consumer>
+            <DataContext.Consumer>
                 {context => (
                     <FlexOuterWrapper pad="50px 0">
                         <FlexInnerWrapper id="sidebar-container">
@@ -26,7 +26,7 @@ export default class AppContent extends Component {
                         </FlexInnerWrapper>
                     </FlexOuterWrapper>
                 )}
-            </Context.Consumer>
+            </DataContext.Consumer>
         );
     }
 }

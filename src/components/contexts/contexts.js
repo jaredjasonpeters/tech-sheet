@@ -1,7 +1,9 @@
 import React from 'react'
 
-const Context = React.createContext()
+const DataContext = React.createContext()
+const LoginContext = React.createContext()
 
 export {
-    Context,
+    DataContext,
+    LoginContext
 }

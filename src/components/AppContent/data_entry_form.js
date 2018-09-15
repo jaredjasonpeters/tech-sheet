@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { $Form, SubmitButton } from '../Styled/styled'
 import { formatName } from '../../utils/utils'
 import styled, { css } from 'styled-components'
-import { Context } from '../Contexts/contexts'
+import { DataContext } from '../Contexts/contexts'
 import ToleranceTable from '../DataEntry/Tolerance/tolerance_table'
 import TextContent from '../DataEntry/text_content'
 import NTEPDataEntry from '../DataEntry/NTEP/ntep_data_entry'
@@ -25,7 +25,7 @@ class DataEntryForm extends Component {
 
     render() {
         return (
-            <Context.Consumer>
+            <DataContext.Consumer>
                 {(context) => (
                     <$Form id="data-entry-form" >
                         <Identifiers />
@@ -39,7 +39,7 @@ class DataEntryForm extends Component {
                         <SubmitButton reset name='reset_button' onClick={context.state.reset}> Reset </SubmitButton>
                     </$Form>
                 )}
-            </Context.Consumer>
+            </DataContext.Consumer>
         )
     }
 }

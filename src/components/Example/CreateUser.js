@@ -76,7 +76,10 @@ export default class CreateUser extends Component{
                             cursor: 'pointer'
                         }} onClick={this.handleClick} name="SEEDRESEARCHOFOREGON">SEEDRESEARCHOFOREGON</h1>
                 </div>
-                <Mutation mutation={CREATE_USER_MUTATION} variables={{ name, email, companies, password }}>
+                <Mutation 
+                  mutation={CREATE_USER_MUTATION} 
+                  variables={{ name, email, companies, password }}
+                  onCompleted={()=> this.props.history.push('/login')}>
                 {userMutation => <button onClick={userMutation}>Sign Up</button>}
                 </Mutation>
             </div>

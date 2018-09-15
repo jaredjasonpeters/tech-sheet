@@ -1,11 +1,11 @@
 import React, {Component, Fragment} from 'react'
-                import {Context} from '../../Contexts/contexts'
+                import {DataContext} from '../../Contexts/contexts'
                 import {SectionHeader, InputWrapper, InputLabel, $Input, Value, DLF_Pink} from '../../Styled/styled'
                 import {formatName, errors} from '../../../utils/utils'
                 import ToleranceSelection from '../Tolerance/tolerance_selection'
 
                 const ToleranceTable = (props) => (
-                    <Context.Consumer>
+                    <DataContext.Consumer>
                     {context => (
                         <Fragment>
                         <SectionHeader theme={context.state.theme_style} className='sh tolerance_table'> TOLERANCE TABLE </SectionHeader>
@@ -25,7 +25,7 @@ import React, {Component, Fragment} from 'react'
                         {context.state.error_message === errors.tolerance_not_selected && <span style={{ width: '100%', textAlign: 'center', color: DLF_Pink, fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '20px' }}>{context.state.error_message}</span>}
                         </Fragment>
                     )}
-                    </Context.Consumer>
+                    </DataContext.Consumer>
                 )
 
 export default ToleranceTable

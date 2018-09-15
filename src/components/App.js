@@ -1,13 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import { Switch, Route } from 'react-router-dom'
-import Header from './components/Header/header';
-import { TechSheetProvider } from './components/Providers/providers'
-import './App.css';
-import { Context } from './components/Contexts/contexts';
-import LogInScreen from './components/Login/log_in_screen'
-import AppContent from './components/AppContent/app_content'
-import TechSheetList from './components/Example/TechsheetList'
-import CreateUser from './components/Example/CreateUser'
+import Header from './Header/header';
+import DataProvider from './Providers/data_provider'
+import '../styles/App.css';
+import { DataContext } from './Contexts/contexts';
+import Login from './Login/login'
+import AppContent from './AppContent/app_content'
+import TechSheetList from './Example/TechsheetList'
+import CreateUser from './Example/CreateUser'
+import {AUTH_TOKEN} from '../constants'
 
 
 class App extends Component {
@@ -36,16 +37,20 @@ class App extends Component {
     return (
       <Fragment>
       {!this.state.loggedIn &&
-      // <LogInScreen logIn={this.logIn}></LogInScreen>
       <Switch>
         <Route exact path="/" component={CreateUser} />
-        <Route exact path="/login" render={(props) => <LogInScreen logIn={this.logIn}/>} />
+        <Route 
+          exact 
+          path="/login" 
+          render={(props) => 
+          <Login logIn={this.logIn} loginState={this.state.loggedIn}/>} 
+        />
       </Switch>
       } 
 
       {this.state.loggedIn &&
-      <TechSheetProvider>
-        <Context.Consumer>
+      <DataProvider>
+        <DataContext.Consumer>
           {context => (
             <div id="App"
             className="App"
@@ -58,8 +63,8 @@ class App extends Component {
               <AppContent/>
             </div>
           )}
-        </Context.Consumer>
-      </TechSheetProvider>
+        </DataContext.Consumer>
+      </DataProvider>
       }
 
       </Fragment>
