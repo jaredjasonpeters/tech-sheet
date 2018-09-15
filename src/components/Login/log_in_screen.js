@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { FlexOuterWrapper, SubmitButton } from '../Styled/styled'
 import LoginModal from '../Login/login_modal'
+import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router'
 
-export default class LogInScreen extends Component {
+class LogInScreen extends Component {
     constructor(props) {
         super(props)
     }
@@ -19,4 +21,6 @@ export default class LogInScreen extends Component {
         );
     }
 }
+
+export default withRouter(LogInScreen)
 

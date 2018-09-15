@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Switch, Route } from 'react-router-dom'
 import Header from './components/Header/header';
 import { TechSheetProvider } from './components/Providers/providers'
 import './App.css';
@@ -36,7 +37,10 @@ class App extends Component {
       <Fragment>
       {!this.state.loggedIn &&
       // <LogInScreen logIn={this.logIn}></LogInScreen>
-      <CreateUser/>
+      <Switch>
+        <Route exact path="/" component={CreateUser} />
+        <Route exact path="/login" render={(props) => <LogInScreen logIn={this.logIn}/>} />
+      </Switch>
       } 
 
       {this.state.loggedIn &&
