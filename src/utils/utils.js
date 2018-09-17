@@ -38,9 +38,6 @@ const errors = {
 }
 
 
-
-
-
 module.exports = {
   formatName,
   IndexColor,

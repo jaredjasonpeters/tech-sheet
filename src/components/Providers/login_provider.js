@@ -4,7 +4,7 @@ import {LoginContext} from '../Contexts/contexts'
 export default class LoginProvider extends Component{
     constructor(props){
     super(props)
-        this.state={
+        this.state = {
             login: false,
             email: '',
             password: '',
@@ -15,9 +15,9 @@ export default class LoginProvider extends Component{
 
     render(){
         return(
-            <LoginContext.provider state={{state: this.state}}>
+            <LoginContext.Provider state={{state: this.state}}>
             {this.props.children}
-            </LoginContext.provider>
+            </LoginContext.Provider>
         );
     }
 }

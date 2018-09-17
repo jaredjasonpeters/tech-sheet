@@ -1,24 +1,7 @@
 import React, {Component} from 'react';
 import gql from 'graphql-tag'
 import { Mutation } from 'react-apollo'
-
-const CREATE_USER_MUTATION = gql`
-
-mutation userMutation($name: String!, $email: String!, $password: String!,  $companies: [Company]){
-  createUser(
-    name: $name
-    email: $email
-    password: $password
-    companies: $companies
-  ){
-    id
-    name
-    email
-    password
-  }
-}
-      
-`
+import { CREATE_USER_MUTATION } from '../../resolvers/Mutations/create_user_mutation'
 
 export default class CreateUser extends Component{
     constructor(props){

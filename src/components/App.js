@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import { Switch, Route } from 'react-router-dom'
+import '../styles/App.css';
 import Header from './Header/header';
 import DataProvider from './Providers/data_provider'
-import '../styles/App.css';
-import { DataContext } from './Contexts/contexts';
+import LoginProvider from './Providers/login_provider'
+import { DataContext, LoginContext } from './Contexts/contexts';
 import Login from './Login/login'
 import AppContent from './AppContent/app_content'
 import TechSheetList from './Example/TechsheetList'
@@ -37,15 +38,21 @@ class App extends Component {
     return (
       <Fragment>
       {!this.state.loggedIn &&
-      <Switch>
-        <Route exact path="/" component={CreateUser} />
-        <Route 
-          exact 
-          path="/login" 
-          render={(props) => 
-          <Login logIn={this.logIn} loginState={this.state.loggedIn}/>} 
-        />
-      </Switch>
+      <LoginProvider>
+        <LoginContext.Consumer>
+          {context => (
+            <Switch>  
+            <Route exact path="/" component={CreateUser} />
+            <Route 
+              exact 
+              path="/login" 
+              render={(props) => 
+                <Login logIn={this.logIn} loginState={this.state.loggedIn}/>} 
+                />
+            </Switch>
+          )}
+        </LoginContext.Consumer>
+      </LoginProvider>
       } 
 
       {this.state.loggedIn &&
@@ -66,7 +73,6 @@ class App extends Component {
         </DataContext.Consumer>
       </DataProvider>
       }
-
       </Fragment>
     );
   }
