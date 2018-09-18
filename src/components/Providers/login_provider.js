@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { LoginContext } from '../Contexts/contexts'
+import { DLF_Green } from '../Styled/styled'
 
 export default class LoginProvider extends Component{
     constructor(props){
@@ -13,11 +14,23 @@ export default class LoginProvider extends Component{
             
             inputChange: (e) => {
                 var { name, value } = e.target
-                console.log(e.target)
                 this.setState((prevState) => {
                     var newState = Object.assign(prevState)
                     newState[name] = value
                     return newState
+                })
+            },
+            companySelect: (e) => {
+               const name = e.target.getAttribute('name')
+               e.target.style.background = DLF_Green 
+               this.setState(prevState => {
+                const comp = prevState.companies
+                if(!comp.includes(name))comp.push(name)
+                else comp.pop()
+                return {
+                    companies: comp
+                }
+    
                 })
             }
         }

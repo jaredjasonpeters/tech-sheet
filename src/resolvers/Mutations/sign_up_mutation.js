@@ -9,10 +9,10 @@ mutation signUpMutation($name: String!, $email: String!, $password: String!,  $c
     password: $password
     companies: $companies
   ){
-    id
-    name
-    email
-    password
+    token
+    user{
+      id
+    }
   }
 }
       
