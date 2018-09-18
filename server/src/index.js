@@ -1,6 +1,6 @@
 const { prisma } = require('./prisma-client')
 const { GraphQLServer } = require('graphql-yoga')
-const bcrypt  = require('bcrypt')
+const bcrypt = require('bcrypt')
 const jsonwebtoken = require('jsonwebtoken')
 
 
@@ -30,6 +30,7 @@ const resolvers = {
       )
     },
     createUser(root, args, context) {
+      console.log(context)
       return context.prisma.createUser(
         {
           name: args.name,
