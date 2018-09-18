@@ -38,5 +38,15 @@
 			"export default $1;"
 				],
 				"description": "Creating a functional stateless react component"
+	},
+	"Module.Exports": {
+		"prefix": "mod",
+		"body": [
+			"module.exports = {",
+			"",
+			"\t$1,",
+			"\t$2,",
+			"}"
+		]
 	}
 }
