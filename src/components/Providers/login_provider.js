@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {LoginContext} from '../Contexts/contexts'
+import { LoginContext } from '../Contexts/contexts'
 
 export default class LoginProvider extends Component{
     constructor(props){
@@ -9,14 +9,25 @@ export default class LoginProvider extends Component{
             email: '',
             password: '',
             name: '',
-            company: '',
+            companies: [],
+            
+            inputChange: (e) => {
+                var { name, value } = e.target
+                console.log(e.target)
+                this.setState((prevState) => {
+                    var newState = Object.assign(prevState)
+                    newState[name] = value
+                    return newState
+                })
+            }
         }
     }
+    
 
     render(){
         return(
-            <LoginContext.Provider state={{state: this.state}}>
-            {this.props.children}
+            <LoginContext.Provider value={{state: this.state}}>
+                {this.props.children}
             </LoginContext.Provider>
         );
     }
