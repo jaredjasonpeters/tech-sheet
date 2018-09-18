@@ -2442,9 +2442,9 @@ prettier@^1.14.2:
   version "1.14.2"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.14.2.tgz#0ac1c6e1a90baa22a62925f41963c841983282f9"
 
-prisma-client-lib@^0.2.58:
-  version "0.2.58"
-  resolved "https://registry.yarnpkg.com/prisma-client-lib/-/prisma-client-lib-0.2.58.tgz#08226917cd3959f4d1ae4624db6ed7b2cb366909"
+prisma-client-lib@^1.17.0-beta.22:
+  version "1.17.0-beta.22"
+  resolved "https://registry.yarnpkg.com/prisma-client-lib/-/prisma-client-lib-1.17.0-beta.22.tgz#e4961e7da5dedd080bdd3d8487dc24803f923931"
   dependencies:
     "@types/node" "^10.9.4"
     debug "^4.0.1"

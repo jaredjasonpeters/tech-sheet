@@ -16,6 +16,8 @@ enum Company {
   SEEDRESEARCHOFOREGON
 }
 
+scalar DateTime
+
 scalar Long
 
 type Mutation {
@@ -67,6 +69,8 @@ type Subscription {
 
 type Techsheet {
   id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   title: String!
   published: Boolean!
   author: User
@@ -102,18 +106,20 @@ type TechsheetEdge {
 enum TechsheetOrderByInput {
   id_ASC
   id_DESC
-  title_ASC
-  title_DESC
-  published_ASC
-  published_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
   updatedAt_DESC
+  title_ASC
+  title_DESC
+  published_ASC
+  published_DESC
 }
 
 type TechsheetPreviousValues {
   id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   title: String!
   published: Boolean!
 }
@@ -182,6 +188,22 @@ input TechsheetWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
   title: String
   title_not: String
   title_in: [String!]
@@ -210,6 +232,8 @@ input TechsheetWhereUniqueInput {
 
 type User {
   id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   email: String!
   password: String!
   name: String!
@@ -255,20 +279,22 @@ type UserEdge {
 enum UserOrderByInput {
   id_ASC
   id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
   email_ASC
   email_DESC
   password_ASC
   password_DESC
   name_ASC
   name_DESC
-  createdAt_ASC
-  createdAt_DESC
-  updatedAt_ASC
-  updatedAt_DESC
 }
 
 type UserPreviousValues {
   id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   email: String!
   password: String!
   name: String!
@@ -341,6 +367,22 @@ input UserWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
   email: String
   email_not: String
   email_in: [String!]
