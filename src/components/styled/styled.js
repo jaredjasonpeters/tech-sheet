@@ -154,6 +154,7 @@ const FlexInnerWrapper = styled.div`
 display: flex;
 flex-direction: ${props => props['flex-dir'] || 'column'}
 flex-grow: ${props => props.fg || '1'}
+justify-content: ${props => props.justify || 'center'}
 width: ${props => props.width || '100%'};
 height: ${props => props.height || 'auto'};
 background: ${props => props['bg-color'] || 'none'}
@@ -300,16 +301,17 @@ color: white;
 
 const Checkbox = styled.div`
 flex-grow: 1
-min-width: 10px
+min-width: ${props => props['min-width'] || '10px'}
+max-width: 30px
 width: ${props => props.width || '10px'}
-height: 10px
+height: ${props => props.height || '10px'}
 border: 1px solid black
-border-radius: 90px
+border-radius: ${props => props['border-rad'] || '90px'}
 margin: 4px 10px
 background: white
+transition: background 500ms ease-ease
 
-${
-    props => props.checked && css`
+${props => props.checked && css`
     background-color: ${(props.blue) ? ALIST_Blue : DLF_Green}
     max-width: 10px
     width:  10px
@@ -318,6 +320,17 @@ ${
     border-radius: 90px
     margin: 4px 10px
     `}
+${props => props.hover && css`
+    &:hover {
+        background: ${DLF_Green}
+    }
+
+
+
+`
+    }
+
+
 `
 
 export {
