@@ -41,21 +41,21 @@ class App extends Component {
 
           <LoginProvider>
             <LoginContext.Consumer>
-              {context => {
+              {loginContext => {
                 return (
                 <Switch>
                   <Route
                     exact
                     path="/"
                     render={(props) =>
-                      <SignUp logIn={this.logIn} />
+                      <SignUp logIn={this.logIn} props={props}/>
                     }
                   />
                   <Route
                     exact
                     path="/login"
                     render={(props) =>
-                      <Login logIn={this.logIn}/>
+                      <Login logIn={this.logIn} props={props}/>
                     }
                   />
                   <Route
@@ -64,16 +64,22 @@ class App extends Component {
                     render={(props) =>
                     <DataProvider>
                       <DataContext.Consumer>
-                        {context => {
+                        {dataContext => {
                           return (
                           <div id="App"
                             className="App"
-                            context={context}
+                            loginContext={loginContext}
+                            dataContext={dataContext}
                             style={{
                               transition: 'background 500ms ease-in',
                               background: 'white',
                             }}>
-                            <Header id="header" companyName='DLF Pickseed' context={context} />
+                            <Header 
+                              id="header" 
+                              companyName='DLF Pickseed' 
+                              loginContext={loginContext} 
+                              dataContext={dataContext} 
+                            />
                             <AppContent />
                           </div>
                         )}}

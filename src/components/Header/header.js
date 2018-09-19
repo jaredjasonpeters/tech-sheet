@@ -35,7 +35,7 @@ export default class Header extends Component {
         var AppHeader = document.getElementById('App-header')
         var sectionHeaders = [...document.querySelectorAll('div.sh')]
 
-        if (!this.props.context.state.display_form) {
+        if (!this.props.dataContext.state.display_form) {
             var image = document.getElementById('company-logo')
            
             image.style.transition = 'none'
@@ -49,11 +49,11 @@ export default class Header extends Component {
 
 
         setTimeout(() => {
-            App.style.background = Colors[this.props.context.state.theme_style]
-            AppHeader.style.background = Colors[this.props.context.state.theme_style]
+            App.style.background = Colors[this.props.dataContext.state.theme_style]
+            AppHeader.style.background = Colors[this.props.dataContext.state.theme_style]
             sectionHeaders.map(v => {
                 v.style.transition = 'background 500ms ease-in'
-                v.style.background = Colors[this.props.context.state.theme_style]
+                v.style.background = Colors[this.props.dataContext.state.theme_style]
             })
         }, 500)
     }

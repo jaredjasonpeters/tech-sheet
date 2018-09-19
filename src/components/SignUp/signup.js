@@ -116,7 +116,7 @@ class SignUp extends Component {
             <Mutation 
                     mutation={SIGNUP_MUTATION} 
                     variables={{ name, email, password, companies }}
-                    onCompleted={()=> this.props.history.push('/app')}>
+                    onCompleted={()=> this.props.props.history.push('/app')}>
                     {signUpMutation => 
                       <SubmitButton
                       submit
