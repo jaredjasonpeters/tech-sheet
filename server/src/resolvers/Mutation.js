@@ -33,7 +33,7 @@ const Mutation = {
         const user = await context.db.user({ email })
     
         if (!user) {
-          throw new Error(`No user found for email: ${email}`)
+          throw new Error(`No user found for with that email`)
         }
     
         const valid = await compare(password, user.password)

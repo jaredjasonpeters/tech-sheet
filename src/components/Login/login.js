@@ -16,7 +16,7 @@ class Login extends Component {
                 justify="center"
                 align-items="center"
             >
-                <LoginModal logIn={this.props.logIn} />
+                <LoginModal props={this.props}/>
             </FlexOuterWrapper>
         );
     }
