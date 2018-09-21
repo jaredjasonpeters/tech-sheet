@@ -12,6 +12,7 @@ mutation signUpMutation($name: String!, $email: String!, $password: String!,  $c
     token
     user{
       id
+      name
     }
   }
 }

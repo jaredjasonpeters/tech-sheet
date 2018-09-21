@@ -1,6 +1,7 @@
 const { hash, compare } = require('bcrypt')
 const { sign } = require('jsonwebtoken')
 const { APP_SECRET } = require('../utils')
+const { getUserId } = require('../utils')
 
 
 const Mutation = {
@@ -46,6 +47,15 @@ const Mutation = {
           user,
         }
       },
+    updateTitle: async (root, { title }, context) => {
+        const userId = await getUserId(context)
+        return context.db.updateUser({
+            data: {title},
+            where: {
+                id: userId
+            }
+        })
+    }
 }
 
 module.exports = {

@@ -107,16 +107,6 @@ export default class DataProvider extends Component {
                 }
             },
 
-            handleCheck: () => {
-                this.setState((prevState) => {
-                    var newState = Object.assign(prevState)
-                    var checked = newState.isAlist
-                    return {
-                        isAlist: !checked
-                    }
-                })
-            },
-
             saveForm: () => {
                 this.setState((prevState) => {
                     var newState = Object.assign(prevState)

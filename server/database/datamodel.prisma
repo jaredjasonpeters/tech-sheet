@@ -5,6 +5,7 @@ type User {
   email: String!@unique
   password: String!
   name: String!
+  title: String! @default(value: "Minion")
   companies: [Company!]
   techsheets: [Techsheet!]!
 }
@@ -13,7 +14,7 @@ type Techsheet {
   id: ID! @unique
   createdAt: DateTime!
   updatedAt: DateTime!
-  title: String!
+  title: String! 
   published: Boolean! @default(value: "false")
   author: User
 }

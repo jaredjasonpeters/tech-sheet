@@ -13,13 +13,24 @@ export default class LoginProvider extends Component {
             companies: [],
             validation_error: '',
 
-            authenticate: ({ login }) => {
-                console.log(login)
+            authenticate: ({login, signup}) => {
+                console.log(login, signup)
+                if(login) {
+                    sessionStorage.setItem('token', login.token)
                 this.setState(
                     { isAuthenticated: true,
                       name: login.user.name,
                       token: login.token
                     })
+                }
+                if(signup) {
+                    sessionStorage.setItem('token', signup.token)
+                this.setState(
+                    { isAuthenticated: true,
+                        name: signup.user.name,
+                        token: signup.token
+                    })
+                }
             },
 
             signout: () => {
@@ -29,7 +40,6 @@ export default class LoginProvider extends Component {
             inputChange: (e) => {
                 var { name, value } = e.target
                 var filteredValue = value
-                console.log(name, value)
 
                 if (name === 'name') {
                     if(value.match(/[0-9]/gi) || name.length < 1) return 

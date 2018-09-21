@@ -10,6 +10,7 @@ type Query {
 type Mutation {
   signup(email: String!, password: String!, name: String!, companies: [Company] ): AuthPayload!
   login(email: String!, password: String!): AuthPayload!
+  updateTitle(title: String!) : User!
   createTechsheet(title: String!): Techsheet
   deleteUsers: BatchPayload
 }
@@ -18,6 +19,7 @@ type User {
   id: ID! 
   email: String!
   name: String!
+  title: String!
   companies: [Company]
   techsheets: [Techsheet!]!
 }

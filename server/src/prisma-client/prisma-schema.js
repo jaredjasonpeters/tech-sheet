@@ -237,6 +237,7 @@ type User {
   email: String!
   password: String!
   name: String!
+  title: String!
   companies: [Company!]!
   techsheets(where: TechsheetWhereInput, orderBy: TechsheetOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Techsheet!]
 }
@@ -255,6 +256,7 @@ input UserCreateInput {
   email: String!
   password: String!
   name: String!
+  title: String
   companies: UserCreatecompaniesInput
   techsheets: TechsheetCreateManyWithoutAuthorInput
 }
@@ -268,6 +270,7 @@ input UserCreateWithoutTechsheetsInput {
   email: String!
   password: String!
   name: String!
+  title: String
   companies: UserCreatecompaniesInput
 }
 
@@ -289,6 +292,8 @@ enum UserOrderByInput {
   password_DESC
   name_ASC
   name_DESC
+  title_ASC
+  title_DESC
 }
 
 type UserPreviousValues {
@@ -298,6 +303,7 @@ type UserPreviousValues {
   email: String!
   password: String!
   name: String!
+  title: String!
   companies: [Company!]!
 }
 
@@ -327,6 +333,7 @@ input UserUpdateInput {
   email: String
   password: String
   name: String
+  title: String
   companies: UserUpdatecompaniesInput
   techsheets: TechsheetUpdateManyWithoutAuthorInput
 }
@@ -344,6 +351,7 @@ input UserUpdateWithoutTechsheetsDataInput {
   email: String
   password: String
   name: String
+  title: String
   companies: UserUpdatecompaniesInput
 }
 
@@ -425,6 +433,20 @@ input UserWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
   techsheets_every: TechsheetWhereInput
   techsheets_some: TechsheetWhereInput
   techsheets_none: TechsheetWhereInput

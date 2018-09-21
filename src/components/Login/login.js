@@ -31,7 +31,6 @@ class Login extends Component {
     var login = document.getElementById('login')
     
     login.addEventListener('keypress', (e) => {
-      console.log(e)
       if (e.keyCode == 13) {
           e.preventDefault();
           Btn.click()
@@ -99,7 +98,7 @@ class Login extends Component {
                 <$Label font-size="16px">Name:</$Label>
                 <$Input 
                 type="text"
-                value={loginContext.state.name}
+                value={loginContext.state.name || ''}
                 name="name"
                 className="login-modal-input" 
                 height="40px"
@@ -109,14 +108,14 @@ class Login extends Component {
                         
               <FlexInnerWrapper>
                 <$Label font-size="16px">Email:</$Label>
-                <$Input type="email" value={loginContext.state.email} onBlur={loginContext.state.handleBlur} name="email" className="login-modal-input" height="40px"
+                <$Input type="email" value={loginContext.state.email || ''} onBlur={loginContext.state.handleBlur} name="email" className="login-modal-input" height="40px"
                 onChange={loginContext.state.inputChange}
                 autoComplete='off'
                  />
               </FlexInnerWrapper>
               <FlexInnerWrapper>
                 <$Label font-size="16px">Password:</$Label>
-                <$Input type="password" name="password" className="login-modal-input" height="40px"
+                <$Input type="password" value={loginContext.state.password || ''} name="password" className="login-modal-input" height="40px"
                 onChange={loginContext.state.inputChange}
                 autoComplete='off'
                  />

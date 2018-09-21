@@ -21,8 +21,6 @@ export default class UserPanel extends Component {
 
     render() {
 
-        console.log(this.props.loginContext.state.name)
-
         var initTextColor = this.props.dataContext.state.theme_style === 'DLF_BLK' ? 'black' : 'white';
        
         return (
