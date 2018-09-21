@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from "react";
-import { SubmitButton, FlexInnerWrapper, FlexOuterWrapper, $Label, $Input, Checkbox } from '../Styled/styled'
+import {SubmitButton, FlexInnerWrapper, FlexOuterWrapper, $Label, $Input, Checkbox } from '../Styled/styled'
 import { LoginContext } from "../Contexts/contexts";
 import { Mutation } from 'react-apollo'
 import { SIGNUP_MUTATION } from'../../resolvers/Mutations/sign_up_mutation'
 import { LOGIN_MUTATION } from '../../resolvers/Mutations/login_mutation'
+import { withRouter } from 'react-router-dom'
 
 class Login extends Component {
   constructor(props) {
@@ -13,23 +14,25 @@ class Login extends Component {
       error: ''
     }
     this.switch = this.switch.bind(this)
-    this.handleLoginError = this.handleLoginError.bind(this)
   }
+
   switch(){
     this.setState((prevState) => {
       return {signup: !prevState.signup}
     })
   }
 
-  handleLoginError(e){
-    console.log(e)
+  componentDidUpdate() {
+    if(this.props.isAuthenticated) this.props.props.history.push('/app')
   }
+
+ 
 
   render(){
     return (
       <LoginContext.Consumer>
         {loginContext => {
-          const {name, email, password, companies} = loginContext.state
+          const {name, email, password, companies, authenticate} = loginContext.state
 
           return (
         <FlexOuterWrapper
@@ -132,7 +135,7 @@ class Login extends Component {
             <Mutation 
                     mutation={SIGNUP_MUTATION} 
                     variables={{ name, email, password, companies }}
-                    onCompleted={()=> this.props.props.history.push('/app')}>
+                    onCompleted={authenticate}>
                       {signUpMutation => 
                         <SubmitButton
                         submit
@@ -151,24 +154,26 @@ class Login extends Component {
           <Mutation
                     mutation={LOGIN_MUTATION} 
                     variables={{ email, password }}
-                    onCompleted={()=> this.props.props.history.push('/app')}
+                    onCompleted={authenticate}
                     onError={({graphQLErrors})=> {
                       graphQLErrors.map(({message}) => this.setState({error: message}))
                     }}>
-                    {(loginMutation, {loading, error}) => (
-                      <Fragment>
-                      <SubmitButton
-                      submit
-                      height="40px"
-                      font-fam="Michroma"
-                      letter-spac="4px"
-                      onClick={loginMutation}
-                      >
-                      LOGIN
-                      </SubmitButton>
-                      <ErrorMessage error={this.state.error}/> 
-                      </Fragment>
-                      )           
+                    {(loginMutation, {loading, error}) => {
+                        return (
+                          <Fragment>
+                          <SubmitButton
+                          submit
+                          height="40px"
+                          font-fam="Michroma"
+                          letter-spac="4px"
+                          onClick={loginMutation}
+                          >
+                          LOGIN
+                          </SubmitButton>
+                          <ErrorMessage error={this.state.error}/> 
+                          </Fragment>
+                        ) 
+                      }          
                     }
           </Mutation>
           }
@@ -215,3 +220,4 @@ const ErrorMessage = (props) => {
     </h4>
   )
 }
+

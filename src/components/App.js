@@ -8,21 +8,22 @@ import { DataContext, LoginContext } from './Contexts/contexts';
 import Login from './Login/login'
 import AppContent from './AppContent/app_content'
 import { AUTH_TOKEN } from '../constants'
+import FourOFour from './404'
+import PrivateRoute from './PrivateRoute'
+import Protected from './Protected'
+import ProtectedApplication from './ProtectedApplication'
+import { Redirect } from 'react-router-dom'
 
 
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      
-    }
   }
+
 
   render() {
     return (
-      <Fragment>
-
-          <LoginProvider>
+           <LoginProvider>
             <LoginContext.Consumer>
               {loginContext => {
                 return (
@@ -31,10 +32,13 @@ class App extends Component {
                     exact
                     path="/"
                     render={(props) =>
-                      <Login props={props}/>
+                      <Login props={props} isAuthenticated={loginContext.state.isAuthenticated}/>
                     }
                   />
-
+                  {loginContext.state.isAuthenticated && <Redirect from="/login" to="/app"/>}
+                  <PrivateRoute path="/app" component={Protected} logincontext={loginContext}/>
+                  
+                  {/* {loginContext.state.login ?   
                   <Route
                     exact
                     path="/app"
@@ -62,13 +66,14 @@ class App extends Component {
                         )}}
                       </DataContext.Consumer>
                     </DataProvider>
-                   }/>
+                   }/> :
+                   <FourOFour/>
+                  } */}
                 </Switch>
               )}}
             </LoginContext.Consumer>
           </LoginProvider>
-      </Fragment>
-    );
+      );
   }
 }
 

@@ -6,11 +6,19 @@ export default class LoginProvider extends Component{
     constructor(props){
     super(props)
         this.state = {
-            login: false,
+            isAuthenticated: false,
             email: '',
             password: '',
             name: '',
             companies: [],
+
+            authenticate: ({login}) => {
+                this.setState({isAuthenticated: true})
+            },
+
+            signout: () => {
+                this.setState({isAuthenticated: false})
+            },
             
             inputChange: (e) => {
                 var { name, value } = e.target
@@ -35,8 +43,8 @@ export default class LoginProvider extends Component{
             }
         }
     }
-    
 
+   
     render(){
         return(
             <LoginContext.Provider value={{state: this.state}}>
