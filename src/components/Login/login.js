@@ -4,7 +4,7 @@ import { LoginContext } from "../Contexts/contexts";
 import { Mutation } from 'react-apollo'
 import { SIGNUP_MUTATION } from'../../resolvers/Mutations/sign_up_mutation'
 import { LOGIN_MUTATION } from '../../resolvers/Mutations/login_mutation'
-import { withRouter } from 'react-router-dom'
+
 
 class Login extends Component {
   constructor(props) {
