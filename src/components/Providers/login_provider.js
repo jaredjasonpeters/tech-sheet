@@ -10,11 +10,11 @@ export default class LoginProvider extends Component {
             email: null,
             password: null,
             name: null,
+            title: "minion",
             companies: [],
             validation_error: '',
 
             authenticate: ({login, signup}) => {
-                console.log(login, signup)
                 if(login) {
                     sessionStorage.setItem('token', login.token)
                 this.setState(
@@ -63,6 +63,9 @@ export default class LoginProvider extends Component {
                 }
 
 
+            },
+            editTitle: (e) => {
+                this.setState({ title: 'Barry' })
             },
             companySelect: (e) => {
                 const name = e.target.getAttribute('name')

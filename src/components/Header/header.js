@@ -29,15 +29,15 @@ export default class Header extends Component {
     }
 
 
-    componentDidUpdate() {
-
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log(prevProps, prevState, snapshot)
         var App = document.getElementById('App')
         var AppHeader = document.getElementById('App-header')
         var sectionHeaders = [...document.querySelectorAll('div.sh')]
 
-        if (!this.props.dataContext.state.display_form) {
+        
+        if (!this.props.loginContext.state.isAuthenticated) {
             var image = document.getElementById('company-logo')
-           
             image.style.transition = 'none'
             image.style.opacity = 0;
 
@@ -46,7 +46,6 @@ export default class Header extends Component {
                 image.style.opacity = 1
             }, 500)
         }
-
 
         setTimeout(() => {
             App.style.background = Colors[this.props.dataContext.state.theme_style]

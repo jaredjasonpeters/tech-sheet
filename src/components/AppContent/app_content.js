@@ -16,13 +16,13 @@ export default class AppContent extends Component {
     render() {
         return (
             <DataContext.Consumer>
-                {context => (
+                {dataContext => (
                     <FlexOuterWrapper pad="50px 0">
                         <FlexInnerWrapper id="sidebar-container">
-                            {!context.state.display_form && <TechSheetSidebar />}
+                            {!dataContext.state.display_form && <TechSheetSidebar dataContext={dataContext} />}
                         </FlexInnerWrapper>
                         <FlexInnerWrapper>
-                            {context.state.display_form && <DataEntryForm />}
+                            {dataContext.state.display_form && <DataEntryForm />}
                         </FlexInnerWrapper>
                     </FlexOuterWrapper>
                 )}

@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react'
 import { FlexOuterWrapper, FlexInnerWrapper, DLF_Green } from '../../Styled/styled'
 import styled, { css } from 'styled-components'
 import {Colors} from '../../../utils/utils'
+import { Mutation } from 'react-apollo'
+import { EDIT_TITLE_MUTATION } from '../../../resolvers/Mutations/edit_title_mutation'
 
 
 export default class UserPanel extends Component {
@@ -9,20 +11,16 @@ export default class UserPanel extends Component {
         super(props)
         this.state = {
             name: this.props.loginContext.state.name,
-            user_role: 'Turf Scientist',
+            title: this.props.loginContext.state.title,
             profile_image_url: 'https://www.dlfpickseed.com/Files/Images/DLF_Pickseed_USA/Staff_Images/Leah_Brilman.jpg',
-            user_options: [
-                'Edit Account',
-                'Change Image',
-                'Change Title'
-            ],
         }
     }
 
     render() {
 
         var initTextColor = this.props.dataContext.state.theme_style === 'DLF_BLK' ? 'black' : 'white';
-       
+        const { editTitle } = this.props.loginContext.state
+        const { title } = this.state
         return (
 
 
@@ -37,11 +35,23 @@ export default class UserPanel extends Component {
                     </UserName>
                     <UserOptions 
                         textColor={initTextColor}>
-                        {this.state.user_options.map((v, i) => <a key={`link-${i}`}><li key={`option-${i}`}>{v}</li></a>)}
+                            <Mutation
+                            mutation={EDIT_TITLE_MUTATION} 
+                            variables={{ title }}
+                            onCompleted={editTitle}
+                            onError={({graphQLErrors}) => {
+                                graphQLErrors.map(({message}) => this.setState({error: message}))
+                            }}>
+                            {editTitleMutation => (
+                                    <a onClick={editTitleMutation}>
+                                        <li>Change Title</li>
+                                    </a>
+                            )}
+                            </Mutation>
                     </UserOptions>
                     <UserRole 
                         textColor={initTextColor}>
-                        {this.state.user_role.toUpperCase()}
+                        {this.state.title.toUpperCase()}
                     </UserRole>
                 </FlexInnerWrapper>
             </FlexInnerWrapper>

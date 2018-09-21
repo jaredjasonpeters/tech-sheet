@@ -10,6 +10,7 @@ export default class ProtectedApplication extends Component {
         super(props)
     }
     render(){
+        const loginContext = this.props.loginContext
         return (
             <DataProvider>
                 <DataContext.Consumer>
@@ -24,7 +25,7 @@ export default class ProtectedApplication extends Component {
                     <Header 
                         id="header" 
                         companyName='DLF Pickseed' 
-                        loginContext={this.props.loginContext} 
+                        loginContext={loginContext} 
                         dataContext={dataContext} 
                     />
                     <AppContent />

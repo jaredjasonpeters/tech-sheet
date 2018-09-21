@@ -36,39 +36,8 @@ class App extends Component {
                     }
                   />
                   
-                  <PrivateRoute path="/app" component={ProtectedApplication} logincontext={loginContext}/>
+                  <PrivateRoute path="/app" component={ProtectedApplication} loginContext={loginContext}/>
                   
-                  {/* {loginContext.state.login ?   
-                  <Route
-                    exact
-                    path="/app"
-                    render={(props) =>
-                    <DataProvider>
-                      <DataContext.Consumer>
-                        {dataContext => {
-                          return (
-                          <div id="App"
-                            className="App"
-                            loginContext={loginContext}
-                            dataContext={dataContext}
-                            style={{
-                              transition: 'background 500ms ease-in',
-                              background: 'white',
-                            }}>
-                            <Header 
-                              id="header" 
-                              companyName='DLF Pickseed' 
-                              loginContext={loginContext} 
-                              dataContext={dataContext} 
-                            />
-                            <AppContent />
-                          </div>
-                        )}}
-                      </DataContext.Consumer>
-                    </DataProvider>
-                   }/> :
-                   <FourOFour/>
-                  } */}
                 </Switch>
               )}}
             </LoginContext.Consumer>

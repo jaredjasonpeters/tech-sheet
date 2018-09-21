@@ -7,6 +7,7 @@ export default class TechSheetSidebar extends Component {
     constructor(props) {
         super(props)
         this.state = {
+                theme_style: props.dataContext.state.theme_style,
                 data: {
                     DLF_Pickseed_Pro_Turf: {
                         techsheets: [
@@ -56,16 +57,19 @@ export default class TechSheetSidebar extends Component {
         }, 750)
     }
 
-    componentDidUpdate(){
-        var Sidebar = document.getElementById('sidebar-container');
-        Sidebar.style.transition = 'none'
-        Sidebar.style.opacity = 0;         
-      
-
-        setTimeout(() => {
-            Sidebar.style.transition = 'opacity 750ms ease-in'
-            Sidebar.style.opacity = 1
-        }, 750)
+    componentDidUpdate(prevProps, prevState){
+        const {theme_style} = prevProps.dataContext.state
+       
+        if(theme_style !== this.props.dataContext.state.theme_style) {
+            var Sidebar = document.getElementById('sidebar-container');
+            Sidebar.style.transition = 'none'
+            Sidebar.style.opacity = 0;  
+            
+            setTimeout(() => {
+                Sidebar.style.transition = 'opacity 750ms ease-in'
+                Sidebar.style.opacity = 1
+            }, 750)
+        }
     }
 
     render() {
