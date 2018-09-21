@@ -26,6 +26,19 @@ class Login extends Component {
     if(this.props.isAuthenticated) this.props.route.history.push('/app')
   }
 
+  componentDidMount() {
+    var Btn = [...document.getElementsByClassName('submit-btn')][0]
+    var login = document.getElementById('login')
+    
+    login.addEventListener('keypress', (e) => {
+      console.log(e)
+      if (e.keyCode == 13) {
+          e.preventDefault();
+          Btn.click()
+      }
+  })
+}
+
  
 
   render(){
@@ -36,6 +49,7 @@ class Login extends Component {
 
           return (
         <FlexOuterWrapper
+            id="login"
             height="100vh"
             width="100vw"
             justify="center"
@@ -133,7 +147,8 @@ class Login extends Component {
                     onClick={loginContext.state.companySelect}/>
                 </FlexInnerWrapper>
                 
-              <Mutation 
+              <Mutation
+                       
                       mutation={SIGNUP_MUTATION} 
                       variables={{ name, email, password, companies }}
                       onCompleted={authenticate}
@@ -142,11 +157,13 @@ class Login extends Component {
                       }}>
                         {signUpMutation => 
                           <SubmitButton
+                          className="submit-btn"
                           submit
                           height="40px"
                           font-fam="Michroma"
                           letter-spac="4px"
-                          onClick={signUpMutation}>
+                          onClick={signUpMutation}
+                          onKeyDown={signUpMutation}>
                           SIGN UP
                           </SubmitButton>
                         }
@@ -180,6 +197,7 @@ class Login extends Component {
                             return (
                               <Fragment>
                               <SubmitButton
+                              className="submit-btn"
                               submit
                               height="40px"
                               font-fam="Michroma"
