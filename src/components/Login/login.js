@@ -23,7 +23,7 @@ class Login extends Component {
   }
 
   componentDidUpdate() {
-    if(this.props.isAuthenticated) this.props.props.history.push('/app')
+    if(this.props.isAuthenticated) this.props.route.history.push('/app')
   }
 
  

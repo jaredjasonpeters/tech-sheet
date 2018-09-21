@@ -32,11 +32,11 @@ class App extends Component {
                     exact
                     path="/"
                     render={(props) =>
-                      <Login props={props} isAuthenticated={loginContext.state.isAuthenticated}/>
+                      <Login route={props} isAuthenticated={loginContext.state.isAuthenticated}/>
                     }
                   />
-                  {loginContext.state.isAuthenticated && <Redirect from="/login" to="/app"/>}
-                  <PrivateRoute path="/app" component={Protected} logincontext={loginContext}/>
+                  
+                  <PrivateRoute path="/app" component={ProtectedApplication} logincontext={loginContext}/>
                   
                   {/* {loginContext.state.login ?   
                   <Route

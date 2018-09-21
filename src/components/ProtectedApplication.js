@@ -11,15 +11,13 @@ export default class ProtectedApplication extends Component {
     }
     render(){
         return (
-                <LoginContext.Consumer>
-                    {loginContext => {
                         <DataProvider>
                             <DataContext.Consumer>
                             {dataContext => {
                                 return (
                                 <div id="App"
                                 className="App"
-                                loginContext={loginContext}
+                                loginContext={this.props.loginContext}
                                 dataContext={dataContext}
                                 style={{
                                     transition: 'background 500ms ease-in',
@@ -28,7 +26,7 @@ export default class ProtectedApplication extends Component {
                                 <Header 
                                     id="header" 
                                     companyName='DLF Pickseed' 
-                                    loginContext={loginContext} 
+                                    loginContext={this.props.loginContext} 
                                     dataContext={dataContext} 
                                 />
                                 <AppContent />
@@ -36,8 +34,6 @@ export default class ProtectedApplication extends Component {
                             )}}
                             </DataContext.Consumer>
                         </DataProvider>
-                    }}
-                </LoginContext.Consumer>
         )
     }
 }
