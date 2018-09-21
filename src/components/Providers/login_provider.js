@@ -7,13 +7,19 @@ export default class LoginProvider extends Component {
         super(props)
         this.state = {
             isAuthenticated: false,
-            email: '',
-            password: '',
-            name: '',
+            email: null,
+            password: null,
+            name: null,
             companies: [],
+            validation_error: '',
 
             authenticate: ({ login }) => {
-                this.setState({ isAuthenticated: true })
+                console.log(login)
+                this.setState(
+                    { isAuthenticated: true,
+                      name: login.user.name,
+                      token: login.token
+                    })
             },
 
             signout: () => {
@@ -26,18 +32,27 @@ export default class LoginProvider extends Component {
                 console.log(name, value)
 
                 if (name === 'name') {
-                    if(value.match(/[0-9]/gi)) return 
-                    filteredValue = value.match(/[A-Za-z ]/gi).join('')
+                    if(value.match(/[0-9]/gi) || name.length < 1) return 
+                    if(value) filteredValue = value.match(/[A-Za-z ]/gi).join('')
                 }
-                if (name === 'email') {
-
-                }
-
+               
                 this.setState((prevState) => {
                     var newState = Object.assign(prevState)
                     newState[name] = filteredValue
                     return newState
                 })
+            },
+            handleBlur: (e) => {
+                var { name, value } = e.target
+                if (name === 'email') {
+                    if(!value.match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
+                        this.setState({validation_error: 'Please enter a valid Email'})
+                        console.log(this.state.validation_error)
+                    }
+                    this.setState({email: value})
+                }
+
+
             },
             companySelect: (e) => {
                 const name = e.target.getAttribute('name')

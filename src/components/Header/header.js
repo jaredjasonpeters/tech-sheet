@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components'
 import { FlexOuterWrapper, FlexInnerWrapper } from '../Styled/styled'
-import { DataContext } from '../Contexts/contexts'
+import { DataContext, LoginContext } from '../Contexts/contexts'
 import UserPanel from '../Header/UserPanel/user_panel'
 import StyleSwitcher from '../Header/style_switcher'
 import { Colors } from '../../utils/utils'
@@ -61,7 +61,7 @@ export default class Header extends Component {
 
         return (
             <DataContext.Consumer>
-                {context => (
+                {dataContext => (
 
                     <FlexOuterWrapper
                         id="header-wrapper"
@@ -79,12 +79,16 @@ export default class Header extends Component {
                                 transition: 'background 500ms ease-in'
                             }}>
                             <FlexInnerWrapper width="auto" flex-dir="row" justify="space-between" >
-                                <img id="company-logo" src={`/images/${context.state.theme_style}.png`} className="App-logo" alt="logo" />
+                                <img id="company-logo" src={`/images/${dataContext.state.theme_style}.png`} className="App-logo" alt="logo" />
                                 <h1 className="App-title">TECH SHEETS APP</h1>
                             </FlexInnerWrapper>
                         </FlexInnerWrapper>
                         <StyleSwitcher />
-                        <UserPanel context={context}/>
+                        <LoginContext.Consumer>
+                            {loginContext =>
+                        <UserPanel dataContext={dataContext} loginContext={loginContext}/>
+                            }
+                        </LoginContext.Consumer>
                     </FlexOuterWrapper>
                 )}
             </DataContext.Consumer>

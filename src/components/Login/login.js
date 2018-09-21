@@ -109,14 +109,16 @@ class Login extends Component {
                         
               <FlexInnerWrapper>
                 <$Label font-size="16px">Email:</$Label>
-                <$Input type="email" name="email" className="login-modal-input" height="40px"
+                <$Input type="email" value={loginContext.state.email} onBlur={loginContext.state.handleBlur} name="email" className="login-modal-input" height="40px"
                 onChange={loginContext.state.inputChange}
+                autoComplete='off'
                  />
               </FlexInnerWrapper>
               <FlexInnerWrapper>
                 <$Label font-size="16px">Password:</$Label>
                 <$Input type="password" name="password" className="login-modal-input" height="40px"
                 onChange={loginContext.state.inputChange}
+                autoComplete='off'
                  />
               </FlexInnerWrapper>
 
@@ -156,7 +158,8 @@ class Login extends Component {
                       onError={({graphQLErrors}) => {
                         graphQLErrors.map(({message}) => this.setState({error: message}))
                       }}>
-                        {signUpMutation => 
+                        {signUpMutation => {
+                        return (
                           <SubmitButton
                           className="submit-btn"
                           submit
@@ -165,10 +168,9 @@ class Login extends Component {
                           height="40px"
                           font-fam="Michroma"
                           letter-spac="4px"
-                          onClick={signUpMutation}
-                          onKeyDown={signUpMutation}>
+                          onClick={signUpMutation}>
                           SIGN UP
-                          </SubmitButton>
+                          </SubmitButton>)}
                         }
               </Mutation>
               <SignUpSwitcher switch={this.switch}/>

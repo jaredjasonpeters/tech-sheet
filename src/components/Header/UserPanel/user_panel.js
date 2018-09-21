@@ -8,7 +8,7 @@ export default class UserPanel extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            name: 'Leah Brilman',
+            name: this.props.loginContext.state.name,
             user_role: 'Turf Scientist',
             profile_image_url: 'https://www.dlfpickseed.com/Files/Images/DLF_Pickseed_USA/Staff_Images/Leah_Brilman.jpg',
             user_options: [
@@ -21,7 +21,9 @@ export default class UserPanel extends Component {
 
     render() {
 
-        var initTextColor = this.props.context.state.theme_style === 'DLF_BLK' ? 'black' : 'white';
+        console.log(this.props.loginContext.state.name)
+
+        var initTextColor = this.props.dataContext.state.theme_style === 'DLF_BLK' ? 'black' : 'white';
        
         return (
 
