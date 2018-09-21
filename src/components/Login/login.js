@@ -39,149 +39,165 @@ class Login extends Component {
             height="100vh"
             width="100vw"
             justify="center"
-            align-items="center"
-        >
-        <FlexOuterWrapper
-          width="500px"
-          justify="center"
-          pad="40px"
-        >
-          <FlexInnerWrapper center margin="0 0 40px 0">
-            <img
-              id="modal-logo"
-              src={`/images/DLF_BLK.png`}
-              className="App-logo"
-              alt="logo"
-              style={{
-                width: '40%',
-                height: '10%',
-                objectFit: 'scale-down',
-                alignSelf: 'center',
-                marginBottom: '20px'
-
-              }}
-            />
-            <h1
-              className="App-title"
-              style={{
-                fontFamily: 'Michroma, sans-serif',
-                letterSpacing: '4px',
-                fontWeight: '800',
-                fontSize: '22px',
-              }}>
-              TECH SHEETS APP
-            </h1>
-          </FlexInnerWrapper>
+            align-items="center">
 
           <FlexOuterWrapper
-            bg-color="#e0e0e0"
-            pad="30px"
-            br="5px"
+            width="500px"
             justify="center"
-          >
-          {this.state.signup && 
-            <FlexInnerWrapper>
-              <$Label font-size="16px">Name:</$Label>
-              <$Input 
-              type="text"
-              name="name"
-              className="login-modal-input" 
-              height="40px"
-              onChange={loginContext.state.inputChange}/>
-            </FlexInnerWrapper>
-          }
+            pad="40px">
 
-            <FlexInnerWrapper>
-              <$Label font-size="16px">Email:</$Label>
-              <$Input type="email" name="email" className="login-modal-input" height="40px"
-              onChange={loginContext.state.inputChange} />
-            </FlexInnerWrapper>
-            <FlexInnerWrapper>
-              <$Label font-size="16px">Password:</$Label>
-              <$Input type="password" name="password" className="login-modal-input" height="40px"
-              onChange={loginContext.state.inputChange} />
+            <FlexInnerWrapper center margin="0 0 40px 0">
+              <img
+                id="modal-logo"
+                src={`/images/DLF_BLK.png`}
+                className="App-logo"
+                alt="logo"
+                style={{
+                  width: '40%',
+                  height: '10%',
+                  objectFit: 'scale-down',
+                  alignSelf: 'center',
+                  marginBottom: '20px'
+
+                }}
+              />
+              <h1
+                className="App-title"
+                style={{
+                  fontFamily: 'Michroma, sans-serif',
+                  letterSpacing: '4px',
+                  fontWeight: '800',
+                  fontSize: '22px',
+                }}>
+                TECH SHEETS APP
+              </h1>
             </FlexInnerWrapper>
 
+            <FlexOuterWrapper
+              bg-color="#e0e0e0"
+              pad="30px"
+              br="5px"
+              justify="center"
+            >
             {this.state.signup && 
               <Fragment>
-              <FlexInnerWrapper margin="0 0 30px 0">
-              <$Label font-size="16px"> Company: </$Label>
+              <FlexInnerWrapper>
+                <$Label font-size="16px">Name:</$Label>
+                <$Input 
+                type="text"
+                name="name"
+                className="login-modal-input" 
+                height="40px"
+                onChange={loginContext.state.inputChange}
+                />
               </FlexInnerWrapper>
-            
-              <FlexInnerWrapper flex-dir="row">
-                <$Label> DLF Pickseed </$Label>
-                <Checkbox
-                  hover
-                  name="DLFPICKSEED"
-                  width="30px"
-                  height="30px"
-                  border-rad="0px"
-                  min-width="30px" 
-                  onClick={loginContext.state.companySelect}/>
+                        
+              <FlexInnerWrapper>
+                <$Label font-size="16px">Email:</$Label>
+                <$Input type="email" name="email" className="login-modal-input" height="40px"
+                onChange={loginContext.state.inputChange}
+                 />
+              </FlexInnerWrapper>
+              <FlexInnerWrapper>
+                <$Label font-size="16px">Password:</$Label>
+                <$Input type="password" name="password" className="login-modal-input" height="40px"
+                onChange={loginContext.state.inputChange}
+                 />
               </FlexInnerWrapper>
 
-              <FlexInnerWrapper flex-dir="row">
-                <$Label> Seed Research of Oregon </$Label>
-                <Checkbox
-                  hover
-                  name="SEEDRESEARCHOFOREGON"
-                  width="30px"
-                  height="30px"
-                  border-rad="0px"
-                  min-width="30px" 
-                  onClick={loginContext.state.companySelect}/>
-              </FlexInnerWrapper>
+                <FlexInnerWrapper margin="0 0 30px 0">
+                <$Label font-size="16px"> Company: </$Label>
+                </FlexInnerWrapper>
               
-            <Mutation 
-                    mutation={SIGNUP_MUTATION} 
-                    variables={{ name, email, password, companies }}
-                    onCompleted={authenticate}>
-                      {signUpMutation => 
-                        <SubmitButton
-                        submit
-                        height="40px"
-                        font-fam="Michroma"
-                        letter-spac="4px"
-                        onClick={signUpMutation}>
-                        SIGN UP
-                        </SubmitButton>
-                      }
-            </Mutation>
-            </Fragment>        
-          }
-          {!this.state.signup && 
-           
-          <Mutation
-                    mutation={LOGIN_MUTATION} 
-                    variables={{ email, password }}
-                    onCompleted={authenticate}
-                    onError={({graphQLErrors})=> {
-                      graphQLErrors.map(({message}) => this.setState({error: message}))
-                    }}>
-                    {(loginMutation, {loading, error}) => {
-                        return (
-                          <Fragment>
+                <FlexInnerWrapper flex-dir="row">
+                  <$Label> DLF Pickseed </$Label>
+                  <Checkbox
+                    hover
+                    name="DLFPICKSEED"
+                    width="30px"
+                    height="30px"
+                    border-rad="0px"
+                    min-width="30px" 
+                    onClick={loginContext.state.companySelect}/>
+                </FlexInnerWrapper>
+
+                <FlexInnerWrapper flex-dir="row">
+                  <$Label> Seed Research of Oregon </$Label>
+                  <Checkbox
+                    hover
+                    name="SEEDRESEARCHOFOREGON"
+                    width="30px"
+                    height="30px"
+                    border-rad="0px"
+                    min-width="30px" 
+                    onClick={loginContext.state.companySelect}/>
+                </FlexInnerWrapper>
+                
+              <Mutation 
+                      mutation={SIGNUP_MUTATION} 
+                      variables={{ name, email, password, companies }}
+                      onCompleted={authenticate}
+                      onError={({graphQLErrors}) => {
+                        graphQLErrors.map(({message}) => this.setState({error: message}))
+                      }}>
+                        {signUpMutation => 
                           <SubmitButton
                           submit
                           height="40px"
                           font-fam="Michroma"
                           letter-spac="4px"
-                          onClick={loginMutation}
-                          >
-                          LOGIN
+                          onClick={signUpMutation}>
+                          SIGN UP
                           </SubmitButton>
-                          <ErrorMessage error={this.state.error}/> 
-                          </Fragment>
-                        ) 
-                      }          
-                    }
-          </Mutation>
-          }
-          {this.state.signup &&
-            <SignUpSwitcher switch={this.switch}/>
-          }
-          </FlexOuterWrapper>
-        </FlexOuterWrapper >
+                        }
+              </Mutation>
+              <SignUpSwitcher switch={this.switch}/>
+              </Fragment>        
+            }
+            {!this.state.signup && 
+              <Fragment>
+
+              <FlexInnerWrapper>
+              <$Label font-size="16px">Email:</$Label>
+              <$Input type="email" name="email" className="login-modal-input" height="40px"
+              onChange={loginContext.state.inputChange} />
+              </FlexInnerWrapper>
+
+              <FlexInnerWrapper>
+              <$Label font-size="16px">Password:</$Label>
+              <$Input type="password" name="password" className="login-modal-input" height="40px"
+              onChange={loginContext.state.inputChange} />
+              </FlexInnerWrapper>
+
+              <Mutation
+                        mutation={LOGIN_MUTATION} 
+                        variables={{ email, password }}
+                        onCompleted={authenticate}
+                        onError={({graphQLErrors})=> {
+                          graphQLErrors.map(({message}) => this.setState({error: message}))
+                        }}>
+                        {(loginMutation, {loading, error}) => {
+                            return (
+                              <Fragment>
+                              <SubmitButton
+                              submit
+                              height="40px"
+                              font-fam="Michroma"
+                              letter-spac="4px"
+                              onClick={loginMutation}
+                              >
+                              LOGIN
+                              </SubmitButton>
+                              <ErrorMessage error={this.state.error}/> 
+                              </Fragment>
+                            ) 
+                          }          
+                        }
+              </Mutation>
+            </Fragment>
+            }
+            </FlexOuterWrapper>
+          </FlexOuterWrapper >
         </FlexOuterWrapper>
         )}}
       </LoginContext.Consumer>

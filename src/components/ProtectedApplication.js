@@ -11,29 +11,27 @@ export default class ProtectedApplication extends Component {
     }
     render(){
         return (
-                        <DataProvider>
-                            <DataContext.Consumer>
-                            {dataContext => {
-                                return (
-                                <div id="App"
-                                className="App"
-                                loginContext={this.props.loginContext}
-                                dataContext={dataContext}
-                                style={{
-                                    transition: 'background 500ms ease-in',
-                                    background: 'white',
-                                }}>
-                                <Header 
-                                    id="header" 
-                                    companyName='DLF Pickseed' 
-                                    loginContext={this.props.loginContext} 
-                                    dataContext={dataContext} 
-                                />
-                                <AppContent />
-                                </div>
-                            )}}
-                            </DataContext.Consumer>
-                        </DataProvider>
+            <DataProvider>
+                <DataContext.Consumer>
+                {dataContext => {
+                    return (
+                    <div id="App"
+                    className="App"
+                    style={{
+                        transition: 'background 500ms ease-in',
+                        background: 'white',
+                    }}>
+                    <Header 
+                        id="header" 
+                        companyName='DLF Pickseed' 
+                        loginContext={this.props.loginContext} 
+                        dataContext={dataContext} 
+                    />
+                    <AppContent />
+                    </div>
+                )}}
+                </DataContext.Consumer>
+            </DataProvider>
         )
     }
 }

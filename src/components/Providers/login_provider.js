@@ -22,9 +22,20 @@ export default class LoginProvider extends Component{
             
             inputChange: (e) => {
                 var { name, value } = e.target
+                var filteredValue = value
+                console.log(name, value)
+
+                if(name === 'name'  && value.length > 2 ) {
+                    console.log(value)
+                    filteredValue = value
+                }
+                if(name === 'email'){
+                    
+                }
+
                 this.setState((prevState) => {
                     var newState = Object.assign(prevState)
-                    newState[name] = value
+                    newState[name] = filteredValue
                     return newState
                 })
             },
