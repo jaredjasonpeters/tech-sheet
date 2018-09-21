@@ -99,6 +99,7 @@ class Login extends Component {
                 <$Label font-size="16px">Name:</$Label>
                 <$Input 
                 type="text"
+                value={loginContext.state.name}
                 name="name"
                 className="login-modal-input" 
                 height="40px"
@@ -159,6 +160,8 @@ class Login extends Component {
                           <SubmitButton
                           className="submit-btn"
                           submit
+                          align-self="center"
+                          width="300px"
                           height="40px"
                           font-fam="Michroma"
                           letter-spac="4px"
@@ -172,7 +175,7 @@ class Login extends Component {
               </Fragment>        
             }
             {!this.state.signup && 
-              <Fragment>
+             <Fragment>
 
               <FlexInnerWrapper>
               <$Label font-size="16px">Email:</$Label>
@@ -199,6 +202,8 @@ class Login extends Component {
                               <SubmitButton
                               className="submit-btn"
                               submit
+                              align-self="center"
+                              width="300px"
                               height="40px"
                               font-fam="Michroma"
                               letter-spac="4px"
