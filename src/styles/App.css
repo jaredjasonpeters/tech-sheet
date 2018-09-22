@@ -11,6 +11,7 @@
  font-family: 'Nunito', sans-serif;
  padding: 2.5%;
  border: 2px solid white;
+
 }
 
 .App-logo {
@@ -26,12 +27,14 @@
 
 .App-title {
   font-size: 1em;
+  color: white;
   margin: 0 40px 0 40px;
   align-self: center;
   font-family: 'Michroma', sans-serif;
   letter-spacing: 4px;
   padding-bottom: 5px;
   border-bottom: 3px solid white;
+  
 }
 
 .App-intro {

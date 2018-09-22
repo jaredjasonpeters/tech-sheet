@@ -13,6 +13,9 @@ export default class AppContent extends Component {
         }
     }
 
+    
+
+
     render() {
         return (
             <DataContext.Consumer>
@@ -22,7 +25,12 @@ export default class AppContent extends Component {
                             {!dataContext.state.display_form && <TechSheetSidebar dataContext={dataContext} />}
                         </FlexInnerWrapper>
                         <FlexInnerWrapper>
-                            {dataContext.state.display_form && <DataEntryForm />}
+                            {dataContext.state.display_form &&
+                                <Fragment>
+                                    <CloseDataEntry />
+                                    <DataEntryForm />
+                                </Fragment>
+                            }
                         </FlexInnerWrapper>
                     </FlexOuterWrapper>
                 )}
@@ -31,6 +39,34 @@ export default class AppContent extends Component {
     }
 }
 
+const CloseDiv = styled.div`
+    width: 100%;
+    color: #ce1141;
+    font-size: 50px;
+    cursor: pointer;
+    text-align: center;
+    background: white;
+    opacity: 0;
+    transition: font-size 400ms ease-in, opacity 400ms ease-in;
+    &:hover {
+        font-size: 60px;
+    }
+`
 
+class CloseDataEntry extends Component {
 
+    componentDidMount(){
+        const CloseDiv = document.getElementById('close-div')
+        setTimeout(() => {
+            CloseDiv.style.opacity = 1
+        }, 1750)
+    }
 
+    render(){
+            return (
+            <CloseDiv id='close-div' onClick={() => alert('meh, close!')}>
+                X
+            </CloseDiv>
+        )
+    }
+}

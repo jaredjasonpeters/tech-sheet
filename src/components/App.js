@@ -10,7 +10,6 @@ import AppContent from './AppContent/app_content'
 import { AUTH_TOKEN } from '../constants'
 import FourOFour from './404'
 import PrivateRoute from './PrivateRoute'
-import Protected from './Protected'
 import ProtectedApplication from './ProtectedApplication'
 import { Redirect } from 'react-router-dom'
 

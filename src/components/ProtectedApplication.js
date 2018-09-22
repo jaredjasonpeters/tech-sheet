@@ -20,7 +20,7 @@ export default class ProtectedApplication extends Component {
                     className="App"
                     style={{
                         transition: 'background 500ms ease-in',
-                        background: 'white',
+                        background: '#80bc00',
                     }}>
                     <Header 
                         id="header" 

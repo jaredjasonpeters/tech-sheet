@@ -6,7 +6,7 @@ export default class LoginProvider extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            isAuthenticated: false,
+            isAuthenticated: true,
             email: null,
             password: null,
             name: null,

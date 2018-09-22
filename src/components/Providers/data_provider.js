@@ -6,7 +6,7 @@ export default class DataProvider extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            theme_style: 'DLF_BLK',
+            theme_style: 'DLF_Pickseed_Pro_Turf',
             display_form: false,
             count: 0,
             isAlist: false,
@@ -26,8 +26,8 @@ export default class DataProvider extends Component {
 
             chooseTheme: (e) => {
                 var target = e.target
-                var title = document.querySelector('.App-title')
-                title.style.color = 'white'
+                // var title = document.querySelector('.App-title')
+                // title.style.color = 'white'
                 var currentActive = document.querySelector('h3[active=true]')
                 if (currentActive) {
                     currentActive.style.color = 'white'
@@ -48,7 +48,7 @@ export default class DataProvider extends Component {
             displayForm: () => {
                 this.setState((prevState) => {
                     var newState = Object.assign(prevState)
-                    if (this.state.theme_style !== 'DLF_BLK') newState['display_form'] = !prevState['display_form']
+                    if (this.state.theme_style) newState['display_form'] = !prevState['display_form']
                     else newState.error_message = errors.style_not_selected
                     return newState
                 })
