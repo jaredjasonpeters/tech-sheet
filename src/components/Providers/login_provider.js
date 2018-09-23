@@ -16,7 +16,11 @@ export default class LoginProvider extends Component {
 
             logoutUser: () => {
                 sessionStorage.removeItem('token')
-                this.setState({ isAuthenticated: false })
+                this.setState({ 
+                    isAuthenticated: false,
+                    email: null,
+                    password: null,
+                })
             },
             authenticate: ({login, signup}) => {
                
@@ -25,7 +29,6 @@ export default class LoginProvider extends Component {
                 this.setState(
                     { isAuthenticated: true,
                       name: login.user.name,
-                      token: login.token
                     })
                 }
                 if(signup) {
@@ -33,7 +36,6 @@ export default class LoginProvider extends Component {
                 this.setState(
                     { isAuthenticated: true,
                         name: signup.user.name,
-                        token: signup.token
                     })
                 }
                 
