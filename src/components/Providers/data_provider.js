@@ -26,8 +26,7 @@ export default class DataProvider extends Component {
 
             chooseTheme: (e) => {
                 var target = e.target
-                // var title = document.querySelector('.App-title')
-                // title.style.color = 'white'
+                
                 var currentActive = document.querySelector('h3[active=true]')
                 if (currentActive) {
                     currentActive.style.color = 'white'
@@ -197,6 +196,18 @@ export default class DataProvider extends Component {
                     newState.tables[`table-${count}`] = {}
                     return newState
                 })
+            },
+
+            closeDataEntry: () => {
+                const entryFormWrapper = document.getElementById('entry-form-wrapper')
+                setTimeout(() => {
+                    entryFormWrapper.style.opacity = 0;
+                }, 750)
+                
+                setTimeout(()=>{
+                    this.setState({ display_form: false })
+                }, 1700)
+                
             }
         }
     }

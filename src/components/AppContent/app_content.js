@@ -13,6 +13,8 @@ export default class AppContent extends Component {
         }
     }
 
+   
+
     
 
 
@@ -26,10 +28,14 @@ export default class AppContent extends Component {
                         </FlexInnerWrapper>
                         <FlexInnerWrapper>
                             {dataContext.state.display_form &&
-                                <Fragment>
+                                <div 
+                                id="entry-form-wrapper"
+                                style={{
+                                    transition: 'opacity 1500ms cubic-bezier(.77,.18,.27,1.5)'
+                                }}>
                                     <CloseDataEntry />
                                     <DataEntryForm />
-                                </Fragment>
+                                </div>
                             }
                         </FlexInnerWrapper>
                     </FlexOuterWrapper>
@@ -47,7 +53,7 @@ const CloseDiv = styled.div`
     text-align: center;
     background: white;
     opacity: 0;
-    transition: font-size 400ms ease-in, opacity 400ms ease-in;
+    transition: font-size 200ms ease-in-out, opacity 400ms ease-in;
     &:hover {
         font-size: 60px;
     }
@@ -61,12 +67,17 @@ class CloseDataEntry extends Component {
             CloseDiv.style.opacity = 1
         }, 1750)
     }
+    
 
     render(){
             return (
-            <CloseDiv id='close-div' onClick={() => alert('meh, close!')}>
-                X
-            </CloseDiv>
+            <DataContext.Consumer>
+                { dataContext =>
+                    <CloseDiv id='close-div' onClick={dataContext.state.closeDataEntry}>
+                        X
+                    </CloseDiv>
+                }
+            </DataContext.Consumer>
         )
     }
 }

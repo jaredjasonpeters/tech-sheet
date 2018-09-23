@@ -58,6 +58,8 @@ export default class Header extends Component {
     }
     render() {
 
+        const {isAuthenticated} = this.props.loginContext.state
+
         return (
             <DataContext.Consumer>
                 {dataContext => (
@@ -79,7 +81,12 @@ export default class Header extends Component {
                             }}>
                             <FlexInnerWrapper width="auto" flex-dir="row" justify="space-between" >
                                 <img id="company-logo" src={`/images/${dataContext.state.theme_style}.png`} className="App-logo" alt="logo" />
-                                <h1 className="App-title">TECH SHEETS APP</h1>
+                                <h1 
+                                className="App-title"
+                                style={{
+                                    color: isAuthenticated && 'white'
+                                }}
+                                >TECH SHEETS APP</h1>
                             </FlexInnerWrapper>
                         </FlexInnerWrapper>
                         <StyleSwitcher />

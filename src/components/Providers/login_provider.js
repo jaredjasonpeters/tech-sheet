@@ -6,7 +6,7 @@ export default class LoginProvider extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            isAuthenticated: true,
+            isAuthenticated: false,
             email: null,
             password: null,
             name: null,
@@ -14,7 +14,12 @@ export default class LoginProvider extends Component {
             companies: [],
             validation_error: '',
 
+            logoutUser: () => {
+                sessionStorage.removeItem('token')
+                this.setState({ isAuthenticated: false })
+            },
             authenticate: ({login, signup}) => {
+               
                 if(login) {
                     sessionStorage.setItem('token', login.token)
                 this.setState(
@@ -31,6 +36,7 @@ export default class LoginProvider extends Component {
                         token: signup.token
                     })
                 }
+                
             },
 
             signout: () => {

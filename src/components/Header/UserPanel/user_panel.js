@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components'
 import {Colors} from '../../../utils/utils'
 import { Mutation } from 'react-apollo'
 import { EDIT_TITLE_MUTATION } from '../../../resolvers/Mutations/edit_title_mutation'
+import { Redirect } from 'react-router-dom'
 
 
 export default class UserPanel extends Component {
@@ -17,6 +18,7 @@ export default class UserPanel extends Component {
     }
 
     render() {
+        const { logoutUser, isAuthenticated } = this.props.loginContext.state
 
         var initTextColor = this.props.dataContext.state.theme_style === 'DLF_BLK' ? 'black' : 'white';
         const { editTitle } = this.props.loginContext.state
@@ -48,6 +50,8 @@ export default class UserPanel extends Component {
                                     </a>
                             )}
                             </Mutation>
+                            <LogoutUser onClick={ logoutUser } >LOGOUT</LogoutUser>
+                            {!isAuthenticated && <Redirect to="/" />}
                     </UserOptions>
                     <UserRole 
                         textColor={initTextColor}>
@@ -118,4 +122,11 @@ flex-grow: 1;
 align-self: center
 text-align: center
 font-size: 10px;
+`
+const LogoutUser = styled.h5`
+color: white;
+cursor: pointer;
+
+
+
 `
