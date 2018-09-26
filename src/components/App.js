@@ -22,26 +22,27 @@ class App extends Component {
 
   render() {
     return (
-           <LoginProvider>
-            <LoginContext.Consumer>
-              {loginContext => {
-                return (
-                <Switch>
-                  <Route
-                    exact
-                    path="/"
-                    render={(props) =>
-                      <Login route={props} isAuthenticated={loginContext.state.isAuthenticated}/>
-                    }
-                  />
-                  
-                  <PrivateRoute path="/app" component={ProtectedApplication} loginContext={loginContext}/>
-                  
-                </Switch>
-              )}}
-            </LoginContext.Consumer>
-          </LoginProvider>
-      );
+      <LoginProvider>
+        <LoginContext.Consumer>
+          {loginContext => {
+            return (
+              <Switch>
+                <Route
+                  exact
+                  path="/"
+                  render={(props) =>
+                    <Login isAuthenticated={loginContext.state.isAuthenticated} />
+                  }
+                />
+
+                <PrivateRoute path="/app" component={ProtectedApplication} loginContext={loginContext} />
+
+              </Switch>
+            )
+          }}
+        </LoginContext.Consumer>
+      </LoginProvider>
+    );
   }
 }
 
