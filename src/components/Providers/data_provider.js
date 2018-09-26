@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { DataContext } from '../Contexts/contexts'
-import { Colors, errors, formatName } from '../../utils/utils'
+import { errors, formatName } from '../../utils/utils'
 
 export default class DataProvider extends Component {
     constructor(props) {
@@ -26,22 +26,8 @@ export default class DataProvider extends Component {
 
             chooseTheme: (e) => {
                 var target = e.target
-                
-                var currentActive = document.querySelector('h3[active=true]')
-                if (currentActive) {
-                    currentActive.style.color = 'white'
-                    currentActive.setAttribute('active', false)
-                }
-                target.setAttribute('active', true)
-                var isActive = target.getAttribute('active')
-                var name = target.getAttribute('name')
-
-                if (isActive) {
-                    target.style.color = Colors[name];
-                }
-
+                const { name } = target.dataset 
                 this.setState({ theme_style: name });
-
             },
 
             displayForm: () => {

@@ -28,6 +28,7 @@ export default class StyleSwitcher extends Component {
               {this.state.styles.map(
                 (v, i) => <Styles
                   context={context}
+                  data-name={v}
                   name={v}
                   key={`style-${i}`}
                   onClick={context.state.chooseTheme}>{formatName(v)}
@@ -65,7 +66,7 @@ text-align: center;
 align-self: center;
 cursor: pointer
 transition: color 1s
-color: ${props => props.context.state.theme_style === 'DLF_BLK' ? 'black' : 'white'}
+color: ${props => (props.context.state.theme_style === props.name) ? Colors[props.name] : 'white'}
 &:hover {
   color: ${props => Colors[props.name]}
 }

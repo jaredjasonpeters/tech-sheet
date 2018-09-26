@@ -14,10 +14,10 @@ class Login extends Component {
             signup: true,
             error: ''
         }
-        this.switch = this.switch.bind(this)
+    this.toggleSignUp = this.toggleSignUp.bind(this)
     }
 
-    switch() {
+    toggleSignUp() {
         this.setState((prevState) => {
             return { signup: !prevState.signup }
         })
@@ -168,7 +168,7 @@ class Login extends Component {
                                                 }
                                                 }
                                             </Mutation>
-                                            <SignUpSwitcher switch={this.switch} />
+                                            <SignUpSwitcher toggle={this.toggleSignUp} signup={this.state.signup} />
                                         </Fragment>
                                     }
                                     {!this.state.signup &&
@@ -207,7 +207,8 @@ class Login extends Component {
                                                                 onClick={loginMutation}
                                                             >
                                                                 LOGIN
-                              </SubmitButton>
+                                                            </SubmitButton>
+                                                            <SignUpSwitcher toggle={this.toggleSignUp} signup={this.state.signup} />
                                                             <ErrorMessage error={this.state.error} />
                                                         </Fragment>
                                                     )
@@ -231,7 +232,7 @@ export default withRouter(Login);
 const SignUpSwitcher = (props) => {
     return (
         <h5
-            onClick={props.switch}
+            onClick={props.toggle}
             style={{
                 width: '100%',
                 textAlign: 'center',
@@ -239,7 +240,7 @@ const SignUpSwitcher = (props) => {
                 cursor: 'pointer',
                 fontFamily: 'Nunito'
             }} >
-            Already signed up click here to LOGIN
+            {props.signup ? 'Already signed up click here to LOGIN' : 'Don\'t have an account SIGNUP'}
   </h5>
     )
 }
