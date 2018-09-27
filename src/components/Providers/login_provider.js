@@ -17,29 +17,31 @@ export default class LoginProvider extends Component {
 
             logoutUser: () => {
                 sessionStorage.removeItem('token')
-                this.setState({ 
+                this.setState({
                     isAuthenticated: false,
                     email: null,
                     password: null,
                 })
             },
-            authenticate: ({login, signup}) => {
-               
-                if(login) {
+            authenticate: ({ login, signup }) => {
+
+                if (login) {
                     sessionStorage.setItem('token', login.token)
-                this.setState(
-                    { isAuthenticated: true,
-                      name: login.user.name,
-                    })
+                    this.setState(
+                        {
+                            isAuthenticated: true,
+                            name: login.user.name,
+                        })
                 }
-                if(signup) {
+                if (signup) {
                     sessionStorage.setItem('token', signup.token)
-                this.setState(
-                    { isAuthenticated: true,
-                        name: signup.user.name,
-                    })
+                    this.setState(
+                        {
+                            isAuthenticated: true,
+                            name: signup.user.name,
+                        })
                 }
-                
+
             },
 
             signout: () => {
@@ -51,10 +53,10 @@ export default class LoginProvider extends Component {
                 var filteredValue = value
 
                 if (name === 'name') {
-                    if(value.match(/[0-9]/gi) || name.length < 1) return 
-                    if(value) filteredValue = value.match(/[A-Za-z ]/gi).join('')
+                    if (value.match(/[0-9]/gi) || name.length < 1) return
+                    if (value) filteredValue = value.match(/[A-Za-z ]/gi).join('')
                 }
-               
+
                 this.setState((prevState) => {
                     var newState = Object.assign(prevState)
                     newState[name] = filteredValue
@@ -64,11 +66,11 @@ export default class LoginProvider extends Component {
             handleBlur: (e) => {
                 var { name, value } = e.target
                 if (name === 'email') {
-                    if(!value.match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
-                        this.setState({validation_error: 'Please enter a valid Email'})
+                    if (!value.match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
+                        this.setState({ validation_error: 'Please enter a valid Email' })
                         console.log(this.state.validation_error)
                     }
-                    this.setState({email: value})
+                    this.setState({ email: value })
                 }
 
 
@@ -78,16 +80,16 @@ export default class LoginProvider extends Component {
             },
             toggleDLF: (e) => {
                 const company = e.target.dataset.enum
-                if(company === 'DLFPICKSEED') {
-                    this.setState({ DLFPICKSEED: !this.state['DLFPICKSEED']})
-                } 
-             },
-             toggleSRO: (e) => {
+                if (company === 'DLFPICKSEED') {
+                    this.setState({ DLFPICKSEED: !this.state['DLFPICKSEED'] })
+                }
+            },
+            toggleSRO: (e) => {
                 const company = e.target.dataset.enum
-                if(company === 'SEEDRESEARCHOFOREGON') {
+                if (company === 'SEEDRESEARCHOFOREGON') {
                     this.setState({ SEEDRESEARCHOFOREGON: !this.state['SEEDRESEARCHOFOREGON'] })
-                } 
-             }
+                }
+            }
         }
     }
 

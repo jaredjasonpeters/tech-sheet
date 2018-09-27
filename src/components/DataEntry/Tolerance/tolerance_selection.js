@@ -67,12 +67,12 @@ export default class ToleranceSelection extends Component {
                         </SelectionContainer>
                         <SelectionContainer>
                             <$Label margin="0" height="50px"> Cold Tolerance </$Label>
-                            <Checkbox checked={this.state.drought_tolerance} name="drought_tolerance" selected onClick={this.handleClick} />
+                            <Checkbox checked={this.state.drought_tolerance} name="drought_tolerance" onClick={this.handleClick} />
 
                         </SelectionContainer>
                         <SelectionContainer>
                             <$Label margin="0" height="50px"> Wear Tolerance </$Label>
-                            <Checkbox checked={this.state.wear_tolerance} name="wear_tolerance" selected onClick={this.handleClick} />
+                            <Checkbox checked={this.state.wear_tolerance} name="wear_tolerance" onClick={this.handleClick} />
 
                         </SelectionContainer>
                     </Wrapper>

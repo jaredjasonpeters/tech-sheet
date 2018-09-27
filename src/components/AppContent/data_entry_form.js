@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import { $Form, SubmitButton } from '../Styled/styled'
-import { formatName } from '../../utils/utils'
-import styled, { css } from 'styled-components'
+import { $Form, SubmitButton, FlexOuterWrapper, } from '../Styled/styled'
 import { DataContext } from '../Contexts/contexts'
 import ToleranceTable from '../DataEntry/Tolerance/tolerance_table'
 import TextContent from '../DataEntry/text_content'
@@ -34,10 +32,10 @@ class DataEntryForm extends Component {
                         <TextContent />
                         <NTEPDataEntry></NTEPDataEntry>
                         <BottomInfo />
-                        <br />
-                        <br />
-                        <SubmitButton submit name='save_button' onClick={context.state.saveForm}> Save </SubmitButton>
-                        <SubmitButton reset name='reset_button' onClick={context.state.reset}> Reset </SubmitButton>
+                        <FlexOuterWrapper flex-dir="row" justify="center">
+                            <SubmitButton submit name='save_button' onClick={context.state.saveForm}> Save </SubmitButton>
+                            <SubmitButton reset name='reset_button' onClick={context.state.reset}> Reset </SubmitButton>
+                        </FlexOuterWrapper>
                     </$Form>
                 )}
             </DataContext.Consumer>

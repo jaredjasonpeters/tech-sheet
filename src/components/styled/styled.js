@@ -120,6 +120,7 @@ ${props => props.media && `
 
 const FlexOuterWrapper = styled.div`
 display: flex;
+align-content: ${props => props['align-content'] || 'flex-start'}
 align-self: ${props => props['align-self'] || 'center'}
 flex-direction: ${props => props['flex-dir'] || 'row'};
 justify-content: ${props => props.justify || 'flex-start'};

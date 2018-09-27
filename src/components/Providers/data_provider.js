@@ -7,7 +7,8 @@ export default class DataProvider extends Component {
         super(props)
         this.state = {
             theme_style: 'DLF_Pickseed_Pro_Turf',
-            display_form: false,
+            display_form: true,
+            display_modal: false,
             count: 0,
             isAlist: false,
             variety_name: '',
@@ -38,6 +39,19 @@ export default class DataProvider extends Component {
                     else newState.error_message = errors.style_not_selected
                     return newState
                 })
+            },
+
+            displayModal: (e) => {
+                this.setState({ display_modal: true })
+            },
+            
+            closeModal: (e) => {
+                e.preventDefault()
+                if(e.target.dataset.overlay) {
+                    this.setState({ display_modal: false })
+                } else {
+                    return
+                }
             },
 
             handleCheck: () => {

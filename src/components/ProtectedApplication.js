@@ -4,6 +4,7 @@ import LoginProvider from './Providers/login_provider'
 import { DataContext, LoginContext } from './Contexts/contexts'
 import AppContent from './AppContent/app_content'
 import Header from './Header/header'
+import Modal from './Modal/modal'
 
 export default class ProtectedApplication extends Component {
     constructor(props) {
@@ -22,6 +23,7 @@ export default class ProtectedApplication extends Component {
                         transition: 'background 500ms ease-in',
                         background: '#80bc00',
                     }}>
+                    { dataContext.state.display_modal && <Modal/> }
                     <Header 
                         id="header" 
                         companyName='DLF Pickseed' 
