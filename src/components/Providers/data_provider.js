@@ -14,6 +14,7 @@ export default class DataProvider extends Component {
             species_name: '',
             sliders: {},
             tables: {},
+            image: '',
             quick_facts: '',
             adaptation: '',
             seeding_rate: '',
@@ -104,6 +105,7 @@ export default class DataProvider extends Component {
                         tolerance_table: {
                             info: this.state.sliders.map(v => [v, this.state[v]])
                         },
+                        image: this.state.image,
                         content: {
                             quick_facts: this.state.quick_facts,
                             adaptation: this.state.adaptation

@@ -8,7 +8,7 @@ import TextContent from '../DataEntry/text_content'
 import NTEPDataEntry from '../DataEntry/NTEP/ntep_data_entry'
 import BottomInfo from '../DataEntry/bottom_info'
 import Identifiers from '../DataEntry/identifiers';
-
+import ImageSelector from '../DataEntry/image_selector'
 
 class DataEntryForm extends Component {
     constructor(props) {
@@ -30,6 +30,7 @@ class DataEntryForm extends Component {
                     <$Form id="data-entry-form" >
                         <Identifiers />
                         <ToleranceTable />
+                        <ImageSelector />
                         <TextContent />
                         <NTEPDataEntry></NTEPDataEntry>
                         <BottomInfo />
