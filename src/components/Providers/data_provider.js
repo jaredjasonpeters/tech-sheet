@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { DataContext } from '../Contexts/contexts'
 import { errors, formatName } from '../../utils/utils'
+import { DLF_Green } from '../Styled/styled'
 
 export default class DataProvider extends Component {
     constructor(props) {
@@ -47,10 +48,15 @@ export default class DataProvider extends Component {
             
             closeModal: (e) => {
                 e.preventDefault()
+                const button = e.target
+                const {src} = e.target.dataset
                 if(e.target.dataset.overlay) {
                     this.setState({ display_modal: false })
-                } else {
-                    return
+                } 
+                if(src) {
+                button.style.background = DLF_Green
+                setTimeout(() => this.setState({image: src, display_modal: false }), 1200)
+                
                 }
             },
 
@@ -150,6 +156,7 @@ export default class DataProvider extends Component {
                     species_name: '',
                     sliders: {},
                     tables: {},
+                    image: '',
                     quick_facts: '',
                     adaptation: '',
                     seeding_rate: '',

@@ -15,15 +15,9 @@ class Modal extends Component {
             'https://images.unsplash.com/photo-1526985770201-28664c058c1f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=37afc3776e5c9c84d11a966ff6130e0f&auto=format&fit=crop&w=500&q=60',
             'https://images.unsplash.com/photo-1519050956495-735ca6f00931?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=25764c952f7576e5cf407ebb687d959c&auto=format&fit=crop&w=500&q=60',
 
-        ]
+        ],
       }
-      this.handleSelectImageClick = this.handleSelectImageClick.bind(this)
-
-    }
-
-    handleSelectImageClick(e) {
-        const button = e.target
-        button.style.background === 'green' ? button.style.background = 'white' : button.style.background = 'green'
+        
     }
 
     render() {
@@ -38,7 +32,7 @@ class Modal extends Component {
                             return (
                                 <ThumbnailWrapper>
                                     <Thumbnail key={v} src={v} />
-                                    <SelectImage data-button onClick={this.handleSelectImageClick}> + </SelectImage>
+                                    <SelectImage data-src={v} onClick={state.closeModal}> + </SelectImage>
                                 </ThumbnailWrapper>
                             )
                         })}

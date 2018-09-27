@@ -23,7 +23,7 @@ export default class ProtectedApplication extends Component {
                         transition: 'background 500ms ease-in',
                         background: '#80bc00',
                     }}>
-                    { dataContext.state.display_modal && <Modal/> }
+                    { dataContext.state.display_modal && <Modal dataContext={dataContext}/> }
                     <Header 
                         id="header" 
                         companyName='DLF Pickseed' 
