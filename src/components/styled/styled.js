@@ -58,18 +58,33 @@ color: ${props => props.color || 'black'}
 ${props => props.checked && css`
 color: ${DLF_Green}
 `
-    }
+}
 `
 const $Input = styled.input.attrs({ type: 'text', })`
 flex-grow: ${props => props.flex || '6'};
+background: ${props => props.background || 'white'}
+align-self: ${props => props['align-self'] || 'flex-start'}
 margin: ${props => props.margin || '10px 10px 10px 10px'};
 height: ${props => props.height || '10px'};
 max-width: ${props => props.maxW};
 width: ${props => props.width};
+border: ${props => props.border || 'none' }
 border-radius: ${props => props['border-rad'] || '0px'};
 padding: ${props => props.pad || '5px'};
 font-family: ${props => props['font-family'] || 'sans-serif'}
 font-weight: ${props => props['font-weight'] || '400'}
+
+${props => props.search && `
+
+color: white;
+
+    &:active,
+    &:focus {
+        background-color: #333333;
+        outline: none;
+    }
+    `
+}
 `
 
 const Select = styled.select`

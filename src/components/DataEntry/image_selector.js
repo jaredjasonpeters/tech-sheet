@@ -22,9 +22,11 @@ class ImageSelector extends Component {
                             {dataContext.state.image && <SelectedImage src={dataContext.state.image} alt='plant' />}
                             <SubmitButton
                                 submit
+                                max="100px"
+                                font-size="40px"
                                 onClick={dataContext.state.displayModal}
                                 flex-grow="1"
-                            >Select Image
+                            >{String.fromCodePoint(0x2B07)}
                             </SubmitButton>
 
                         </FlexOuterWrapper>

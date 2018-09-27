@@ -63,8 +63,8 @@ input:not([type=Submit]){
 input:focus,
 input:active,
 textarea:focus {
-  border: 3px solid #00aeef;
-  background-color: white;
+  /* border: 3px solid #00aeef;
+  background-color: white; */
   font-size: 18px;
   font-family: 'Nunito', sans-serif;
   font-weight: 800;

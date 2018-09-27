@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
 import { DataContext } from '../Contexts/contexts'
 import { FlexOuterWrapper, FlexInnerWrapper } from '../Styled/styled'
+import SearchBar from './search_bar'
 
 class Modal extends Component {
     constructor(props) {
@@ -16,8 +17,7 @@ class Modal extends Component {
             'https://images.unsplash.com/photo-1519050956495-735ca6f00931?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=25764c952f7576e5cf407ebb687d959c&auto=format&fit=crop&w=500&q=60',
 
         ],
-      }
-        
+      }  
     }
 
     render() {
@@ -25,7 +25,6 @@ class Modal extends Component {
         <DataContext.Consumer>
             {({state}) =>
                 <Overlay data-overlay onClick={state.closeModal}>
-
                     <FlexOuterWrapper flex-dir="row" pad="0" margin="20px" width="80%" align-self="flex-start" align-content="stretch" align-items="center">
                         <SearchBar/>
                         {this.state.images.map( (v, i) => {
@@ -42,7 +41,6 @@ class Modal extends Component {
         </DataContext.Consumer>
       )
     }
-
 }
 
 export default Modal
@@ -58,7 +56,6 @@ background: rgba(0,0,0,0.9);
 position: absolute;
 top: 0;
 left: 0;
-
 `
 
 const Thumbnail = styled.img`
@@ -73,7 +70,6 @@ transition: filter 400ms ease-in-out
 &:hover {
     filter: grayscale(80%)
 }
-
 `
 const ThumbnailWrapper = styled.div`
 flex-grow: 1
@@ -84,26 +80,16 @@ max-height: 200px
 align-items: center
 justify-content: space-evenly
 flex-wrap: wrap
-
-`
-
-const SearchBar = styled.div`
-flex-grow: 1
-align-self: center
-width: 100%
-height: 100px;
-background: white;
-border-radius: 10px;
-margin-bottom: 10px
-
 `
 
 const SelectImage = styled.button`
 width: 100%
+max-width: 100px;
 height: 40px;
 background: white
 box-shadow: none;
 border-radius: 10px;
+border: none;
 font-size: 25px;
 font-weight: 800;
 font-family: Michroma
