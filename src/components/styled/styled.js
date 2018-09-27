@@ -308,7 +308,7 @@ height: ${props => props.height || '10px'}
 border: 1px solid black
 border-radius: ${props => props['border-rad'] || '90px'}
 margin: 4px 10px
-background: white
+background: ${props => props.selected ? DLF_Green : 'white'}
 transition: background 500ms ease-ease
 
 ${props => props.checked && css`
@@ -320,17 +320,6 @@ ${props => props.checked && css`
     border-radius: 90px
     margin: 4px 10px
     `}
-${props => props.hover && css`
-    &:hover {
-        background: ${DLF_Green}
-    }
-
-
-
-`
-    }
-
-
 `
 
 export {

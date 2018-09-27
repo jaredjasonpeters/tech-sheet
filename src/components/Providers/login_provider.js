@@ -11,7 +11,8 @@ export default class LoginProvider extends Component {
             password: null,
             name: null,
             title: "minion",
-            companies: [],
+            SEEDRESEARCHOFOREGON: false,
+            DLFPICKSEED: false,
             validation_error: '',
 
             logoutUser: () => {
@@ -75,22 +76,20 @@ export default class LoginProvider extends Component {
             editTitle: (e) => {
                 this.setState({ title: 'Barry' })
             },
-            companySelect: (e) => {
-                const name = e.target.getAttribute('name')
-                e.target.style.background = DLF_Green
-                this.setState(prevState => {
-                    const comp = prevState.companies
-                    if (!comp.includes(name)) comp.push(name)
-                    else comp.pop()
-                    return {
-                        companies: comp
-                    }
-
-                })
-            }
+            toggleDLF: (e) => {
+                const company = e.target.dataset.enum
+                if(company === 'DLFPICKSEED') {
+                    this.setState({ DLFPICKSEED: !this.state['DLFPICKSEED']})
+                } 
+             },
+             toggleSRO: (e) => {
+                const company = e.target.dataset.enum
+                if(company === 'SEEDRESEARCHOFOREGON') {
+                    this.setState({ SEEDRESEARCHOFOREGON: !this.state['SEEDRESEARCHOFOREGON'] })
+                } 
+             }
         }
     }
-
 
     render() {
         return (

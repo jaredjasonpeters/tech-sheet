@@ -31,7 +31,7 @@ class App extends Component {
                   exact
                   path="/"
                   render={(props) =>
-                    <Login isAuthenticated={loginContext.state.isAuthenticated} />
+                    <Login isAuthenticated={loginContext.state.isAuthenticated} loginContext={loginContext} />
                   }
                 />
 

@@ -12,7 +12,7 @@ class Login extends Component {
         super(props);
         this.state = {
             signup: true,
-            error: ''
+            error: '',
         }
     this.toggleSignUp = this.toggleSignUp.bind(this)
     }
@@ -23,7 +23,7 @@ class Login extends Component {
         })
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps, prevState) {
         if (this.props.isAuthenticated) this.props.history.push('/app')
     }
 
@@ -31,14 +31,15 @@ class Login extends Component {
 
     }
 
-
-
     render() {
-        console.log(this.props.history)
+        
         return (
             <LoginContext.Consumer>
                 {loginContext => {
-                    const { name, email, password, companies, authenticate } = loginContext.state
+                    const { name, email, password, authenticate, DLFPICKSEED, SEEDRESEARCHOFOREGON } = loginContext.state
+                    const companies = [];
+                          if(DLFPICKSEED) companies.push('DLFPICKSEED')
+                          if(SEEDRESEARCHOFOREGON) companies.push('SEEDRESEARCHOFOREGON')
 
                     return (
                         <FlexOuterWrapper
@@ -46,14 +47,13 @@ class Login extends Component {
                             height="100vh"
                             width="100vw"
                             justify="center"
-                            align-items="center">
-
-
+                            align-items="center"
+                            >
                             <FlexOuterWrapper
                                 width="500px"
                                 justify="center"
-                                pad="40px">
-
+                                pad="40px"
+                                >
                                 <FlexInnerWrapper center margin="0 0 40px 0">
                                     <img
                                         id="modal-logo"
@@ -66,7 +66,6 @@ class Login extends Component {
                                             objectFit: 'scale-down',
                                             alignSelf: 'center',
                                             marginBottom: '20px'
-
                                         }}
                                     />
                                     <h1
@@ -76,9 +75,10 @@ class Login extends Component {
                                             letterSpacing: '4px',
                                             fontWeight: '800',
                                             fontSize: '22px',
-                                        }}>
+                                        }}
+                                    >
                                         TECH SHEETS APP
-              </h1>
+                                    </h1>
                                 </FlexInnerWrapper>
 
                                 <FlexOuterWrapper
@@ -86,7 +86,7 @@ class Login extends Component {
                                     pad="30px"
                                     br="5px"
                                     justify="center"
-                                >
+                                    >
                                     {this.state.signup &&
                                         <Fragment>
                                             <FlexInnerWrapper>
@@ -123,29 +123,30 @@ class Login extends Component {
                                             <FlexInnerWrapper flex-dir="row">
                                                 <$Label> DLF Pickseed </$Label>
                                                 <Checkbox
-                                                    hover
-                                                    name="DLFPICKSEED"
+                                                    selected={DLFPICKSEED}
+                                                    data-enum="DLFPICKSEED"
                                                     width="30px"
                                                     height="30px"
                                                     border-rad="0px"
                                                     min-width="30px"
-                                                    onClick={loginContext.state.companySelect} />
+                                                    onClick={loginContext.state.toggleDLF} 
+                                                />
                                             </FlexInnerWrapper>
 
                                             <FlexInnerWrapper flex-dir="row">
                                                 <$Label> Seed Research of Oregon </$Label>
                                                 <Checkbox
-                                                    hover
-                                                    name="SEEDRESEARCHOFOREGON"
+                                                    selected={SEEDRESEARCHOFOREGON}
+                                                    data-enum="SEEDRESEARCHOFOREGON"
                                                     width="30px"
                                                     height="30px"
                                                     border-rad="0px"
                                                     min-width="30px"
-                                                    onClick={loginContext.state.companySelect} />
+                                                    onClick={loginContext.state.toggleSRO} 
+                                                />
                                             </FlexInnerWrapper>
 
                                             <Mutation
-
                                                 mutation={SIGNUP_MUTATION}
                                                 variables={{ name, email, password, companies }}
                                                 onCompleted={authenticate}
@@ -162,11 +163,12 @@ class Login extends Component {
                                                             height="40px"
                                                             font-fam="Michroma"
                                                             letter-spac="4px"
-                                                            onClick={signUpMutation}>
+                                                            onClick={signUpMutation}
+                                                            >
                                                             SIGN UP
-                          </SubmitButton>)
-                                                }
-                                                }
+                                                        </SubmitButton>
+                                                    )
+                                                }}
                                             </Mutation>
                                             <SignUpSwitcher toggle={this.toggleSignUp} signup={this.state.signup} />
                                         </Fragment>
