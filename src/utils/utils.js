@@ -38,11 +38,10 @@ const errors = {
 }
 
 
-module.exports = {
+export {
   formatName,
   IndexColor,
   formatInput,
   Colors,
   errors,
- 
 }
