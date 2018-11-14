@@ -1,0 +1,13 @@
+{
+  "workbench.colorCustomizations": {
+    "titleBar.activeForeground": "#000",
+    "titleBar.inactiveForeground": "#000000CC",
+    "titleBar.activeBackground": "#00d9ff",
+    "titleBar.inactiveBackground": "#00a3c0"
+  },
+  "editor.fontFamily": "'Fira Code Retina', Consolas, 'Courier New', monospace",
+  "git.ignoreLimitWarning": true,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  }
+}

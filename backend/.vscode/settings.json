@@ -1,0 +1,7 @@
+{
+  "git.ignoreLimitWarning": true,
+  "editor.fontFamily": "'Fira Code Retina', Consolas, 'Courier New', monospace",
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  }
+}
