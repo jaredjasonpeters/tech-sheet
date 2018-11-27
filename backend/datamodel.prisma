@@ -60,47 +60,52 @@ type Techsheet {
   id: ID! @unique
   createdAt: DateTime!
   updatedAt: DateTime!
-  title: String!
+  title: String! @unique
   company: Company!
   division: Division!
   published: Boolean! @default(value: false)
   author: User
-  data: TechsheetInfo!
-}
-
-type TechsheetInfo {
+  ntepTables: [NTEPTable!]!
+  toleranceTable: ToleranceTable!
+    @relation(name: "ToleranceofTechsheet", onDelete: CASCADE)
   isAlist: Boolean!
   classification: SeedClassification!
   species: Species!
-  tolerance: ToleranceTable!
-  # image: String!
-  # quickfacts: String!
-  # adaptation: String!
-  # tables: [NTEPTable!]!
-  # seedingRate: Int!
-  # establishmentRate: Int!
-  # mowingFrequency: Int!
-  # nitrogenReq: Amount!
-  # endophyteEnhanced: Boolean!
+  image: String!
+  quickfacts: String!
+  adaptation: String!
+  seedingRate: Int!
+  establishmentRate: Int!
+  mowingFrequency: Int!
+  nitrogenReq: Amount!
+  endophyteEnhanced: Boolean!
 }
 
 type ToleranceTable {
-  data: [ToleranceRow!]!
+  id: ID! @unique
+  rows: [ToleranceRow!]! @relation(name: "RowOfTable", onDelete: CASCADE)
+  techsheet: Techsheet @relation(name: "ToleranceofTechsheet")
 }
 
 type ToleranceRow {
+  id: ID! @unique
   toleranceName: String!
   rating: Float!
+  table: ToleranceTable @relation(name: "RowOfTable")
 }
 
 type NTEPTable {
-  tableTitle: String!
-  tableSubject: String!
+  id: ID! @unique
+  title: String!
+  subject: String!
   location: String!
-  data: [NTEPRow!]!
+  rows: [NTEPRow!]! @relation(name: "RowOfNTEP", onDelete: CASCADE)
+  techsheets: [Techsheet!]!
 }
 
 type NTEPRow {
+  id: ID! @unique
   varietyName: String!
   rating: Float!
+  table: NTEPTable @relation(name: "RowOfNTEP")
 }

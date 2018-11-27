@@ -18,6 +18,7 @@ type Mutation {
   login(email: String!, password: String!): AuthPayload!
   updateTitle(title: String!): User!
   createTechsheet(data: TechsheetCreateInput!): Techsheet
+  deleteTechsheet(id: ID!): Techsheet
   deleteUsers: BatchPayload
 }
 

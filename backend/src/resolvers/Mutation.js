@@ -4,7 +4,7 @@ const { APP_SECRET } = require("../utils");
 const { getUserId } = require("../utils");
 
 const Mutation = {
-  createTechsheet: async (root, args, context, info) => {
+  createTechsheet: async (parent, args, context, info) => {
     const userId = "test";
     const createTechsheet = await context.db.mutation.createTechsheet(
       {
@@ -18,26 +18,45 @@ const Mutation = {
                 id: userId
               }
             },
-            data: {
+            isAlist: args.alist,
+            classification: args.classification,
+            species: args.species,
+            tolerance: {
               create: {
-                isAlist: args.alist,
-                classification: args.classification,
-                species: args.species,
-                tolerance: {
-                  create: {
-                    data: {
-                      create: [args.rows]
-                    }
-                  }
+                data: {
+                  create: [args.rows]
                 }
               }
-            }
+            },
+            image: args.image,
+            quickfacts: args.quickfacts,
+            adaptation: args.adaptation,
+            ntepTables: {
+              create: [args.ntepTables]
+            },
+            seedingRate: args.seedingRate,
+            establishmentRate: args.establishmentRate,
+            mowingFrequency: args.mowingFrequency,
+            nitrogenReq: args.nitrogenReq,
+            endophyteEnhanced: args.endophyteEnhanced
           }
         }
       },
       info
     );
     return createTechsheet;
+  },
+  deleteTechsheet: async (root, args, context, info) => {
+    const techsheetId = args.id;
+    const techsheet = await context.db.mutation.deleteTechsheet(
+      {
+        where: {
+          id: techsheetId
+        }
+      },
+      info
+    );
+    return techsheet;
   },
   deleteUsers: (root, args, context, info) => {
     return context.db.mutation.deleteManyUsers();
