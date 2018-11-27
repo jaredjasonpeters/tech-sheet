@@ -1,39 +1,54 @@
-import React, { Component, Fragment } from 'react'
-import { DataContext } from '../Contexts/contexts'
-import styled, { css } from 'styled-components'
-import { FlexOuterWrapper, FlexInnerWrapper, SubmitButton, DLF_Pink, $Label } from '../Styled/styled'
-import { formatName, Colors } from '../../utils/utils'
-
+import React, { Component, Fragment } from "react";
+import { DataContext } from "../Contexts/";
+import styled, { css } from "styled-components";
+import {
+  FlexOuterWrapper,
+  FlexInnerWrapper,
+  SubmitButton,
+  DLF_Pink,
+  $Label
+} from "../Styled/";
+import { formatName, Colors } from "../../utils/";
 
 export default class StyleSwitcher extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       styles: [
-        'DLF_Pickseed_Pro_Turf',
-        'DLF_Pickseed_Forage',
-        'Seed_Research_of_Oregon'
-      ],
-    }
+        "DLF_Pickseed_Pro_Turf",
+        "DLF_Pickseed_Forage",
+        "Seed_Research_of_Oregon"
+      ]
+    };
   }
 
   render() {
     return (
-
       <DataContext.Consumer>
         {context => (
-          <FlexOuterWrapper border="3px solid white" width="auto" height="100%" align-self="center" pad="0 0 0 40px">
+          <FlexOuterWrapper
+            border="3px solid white"
+            width="auto"
+            height="100%"
+            align-self="center"
+            pad="0 0 0 40px"
+          >
             <FlexInnerWrapper flex-dir="row" height="100%">
-              <$Label color="white" align-self="center">Styles:</$Label>
-              {this.state.styles.map(
-                (v, i) => <Styles
+              <$Label color="white" align-self="center">
+                Styles:
+              </$Label>
+              {this.state.styles.map((v, i) => (
+                <Styles
                   context={context}
                   data-name={v}
                   name={v}
                   key={`style-${i}`}
-                  onClick={context.state.chooseTheme}>{formatName(v)}
-                </Styles>)}
-              {!context.state.display_form &&
+                  onClick={context.state.chooseTheme}
+                >
+                  {formatName(v)}
+                </Styles>
+              ))}
+              {!context.state.display_form && (
                 <SubmitButton
                   height="50px"
                   background="none"
@@ -43,9 +58,11 @@ export default class StyleSwitcher extends Component {
                   left="40px"
                   font-fam="Michroma"
                   top="0"
-                  onClick={context.state.displayForm}>+
+                  onClick={context.state.displayForm}
+                >
+                  +
                 </SubmitButton>
-              }
+              )}
             </FlexInnerWrapper>
           </FlexOuterWrapper>
         )}
@@ -66,10 +83,9 @@ text-align: center;
 align-self: center;
 cursor: pointer
 transition: color 1s
-color: ${props => (props.context.state.theme_style === props.name) ? Colors[props.name] : 'white'}
+color: ${props =>
+  props.context.state.theme_style === props.name ? Colors[props.name] : "white"}
 &:hover {
   color: ${props => Colors[props.name]}
 }
-`
-
-
+`;

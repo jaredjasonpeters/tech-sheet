@@ -1,21 +1,17 @@
-import React, { Component, Fragment } from 'react';
-import { Switch, Route } from 'react-router-dom'
-import '../styles/App.css';
-import LoginProvider from './Providers/login_provider'
-import { LoginContext } from './Contexts/contexts';
-import Login from './Login/login'
-import FourOFour from './404'
-import PrivateRoute from './PrivateRoute'
-import ProtectedApplication from './ProtectedApplication'
-
-
-
+import React, { Component, Fragment } from "react";
+import { Switch, Route } from "react-router-dom";
+import "../styles/App.css";
+import LoginProvider from "./Providers/login_provider";
+import { LoginContext } from "./Contexts/";
+import Login from "./Login/login";
+import FourOFour from "./404";
+import PrivateRoute from "./PrivateRoute";
+import ProtectedApplication from "./ProtectedApplication";
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
-
 
   render() {
     return (
@@ -27,13 +23,20 @@ class App extends Component {
                 <Route
                   exact
                   path="/"
-                  render={(props) =>
-                    <Login isAuthenticated={loginContext.state.isAuthenticated} loginContext={loginContext} />
-                  }
+                  render={props => (
+                    <Login
+                      isAuthenticated={loginContext.state.isAuthenticated}
+                      loginContext={loginContext}
+                    />
+                  )}
                 />
-                <PrivateRoute path="/app" component={ProtectedApplication} loginContext={loginContext} />
+                <PrivateRoute
+                  path="/app"
+                  component={ProtectedApplication}
+                  loginContext={loginContext}
+                />
               </Switch>
-            )
+            );
           }}
         </LoginContext.Consumer>
       </LoginProvider>
@@ -41,4 +44,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default App;
