@@ -1,25 +1,31 @@
-const { getUserId } = require('../utils')
+const { getUserId } = require("../utils");
 
 const Query = {
-    me: (parent, args, context, info) => {
-    return context.db.user({ id: getUserId(context) })
-    },
-    users: (root, args, context) => {
-        return context.db.users()
-    },
-    techsheet: (root, args, context) => {
-        return context.db.techsheet({ id: args.techsheetId })
-    },
-    techsheets: (root, args, context) => {
-        return context.db.techsheets()
-    },
-    techsheetsByUser: (root, args, context) => {
-        return context.db.user({
+  me: (parent, args, context, info) => {
+    return context.db.query.user({ id: getUserId(context) }, info);
+  },
+  users: (root, args, context, info) => {
+    return context.db.query.users({}, info);
+  },
+  techsheet: (root, args, context, info) => {
+    return context.db.query.techsheet({ id: args.techsheetId }, info);
+  },
+  techsheets: async (root, args, context, info) => {
+    const techsheets = await context.db.query.techsheets({}, info);
+    return techsheets;
+  },
+  techsheetsByUser: (root, args, context, info) => {
+    return context.db.query
+      .user(
+        {
           id: args.userId
-        }).techsheets()
-    },
-}
+        },
+        info
+      )
+      .techsheets();
+  }
+};
 
 module.exports = {
-    Query,
-}
+  Query
+};

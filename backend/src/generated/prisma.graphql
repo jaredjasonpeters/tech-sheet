@@ -1,4 +1,24 @@
+type AggregateNTEPRow {
+  count: Int!
+}
+
+type AggregateNTEPTable {
+  count: Int!
+}
+
 type AggregateTechsheet {
+  count: Int!
+}
+
+type AggregateTechsheetInfo {
+  count: Int!
+}
+
+type AggregateToleranceRow {
+  count: Int!
+}
+
+type AggregateToleranceTable {
   count: Int!
 }
 
@@ -11,21 +31,41 @@ type BatchPayload {
 }
 
 enum Company {
-  DLFPICKSEED
-  SEEDRESEARCHOFOREGON
+  DLF_PICKSEED
+  SEED_RESEARCH_OF_OREGON
 }
 
 scalar DateTime
 
+enum Division {
+  FORAGE
+  PRO_TURF
+  RETAIL
+}
+
 scalar Long
 
 type Mutation {
+  createNTEPRow(data: NTEPRowCreateInput!): NTEPRow!
+  updateManyNTEPRows(data: NTEPRowUpdateManyMutationInput!, where: NTEPRowWhereInput): BatchPayload!
+  deleteManyNTEPRows(where: NTEPRowWhereInput): BatchPayload!
+  createNTEPTable(data: NTEPTableCreateInput!): NTEPTable!
+  updateManyNTEPTables(data: NTEPTableUpdateManyMutationInput!, where: NTEPTableWhereInput): BatchPayload!
+  deleteManyNTEPTables(where: NTEPTableWhereInput): BatchPayload!
   createTechsheet(data: TechsheetCreateInput!): Techsheet!
   updateTechsheet(data: TechsheetUpdateInput!, where: TechsheetWhereUniqueInput!): Techsheet
   updateManyTechsheets(data: TechsheetUpdateManyMutationInput!, where: TechsheetWhereInput): BatchPayload!
   upsertTechsheet(where: TechsheetWhereUniqueInput!, create: TechsheetCreateInput!, update: TechsheetUpdateInput!): Techsheet!
   deleteTechsheet(where: TechsheetWhereUniqueInput!): Techsheet
   deleteManyTechsheets(where: TechsheetWhereInput): BatchPayload!
+  createTechsheetInfo(data: TechsheetInfoCreateInput!): TechsheetInfo!
+  updateManyTechsheetInfoes(data: TechsheetInfoUpdateManyMutationInput!, where: TechsheetInfoWhereInput): BatchPayload!
+  deleteManyTechsheetInfoes(where: TechsheetInfoWhereInput): BatchPayload!
+  createToleranceRow(data: ToleranceRowCreateInput!): ToleranceRow!
+  updateManyToleranceRows(data: ToleranceRowUpdateManyMutationInput!, where: ToleranceRowWhereInput): BatchPayload!
+  deleteManyToleranceRows(where: ToleranceRowWhereInput): BatchPayload!
+  createToleranceTable(data: ToleranceTableCreateInput!): ToleranceTable!
+  deleteManyToleranceTables(where: ToleranceTableWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
@@ -44,6 +84,221 @@ interface Node {
   id: ID!
 }
 
+type NTEPRow {
+  varietyName: String!
+  rating: Float!
+}
+
+type NTEPRowConnection {
+  pageInfo: PageInfo!
+  edges: [NTEPRowEdge]!
+  aggregate: AggregateNTEPRow!
+}
+
+input NTEPRowCreateInput {
+  varietyName: String!
+  rating: Float!
+}
+
+input NTEPRowCreateManyInput {
+  create: [NTEPRowCreateInput!]
+}
+
+type NTEPRowEdge {
+  node: NTEPRow!
+  cursor: String!
+}
+
+enum NTEPRowOrderByInput {
+  varietyName_ASC
+  varietyName_DESC
+  rating_ASC
+  rating_DESC
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type NTEPRowPreviousValues {
+  varietyName: String!
+  rating: Float!
+}
+
+type NTEPRowSubscriptionPayload {
+  mutation: MutationType!
+  node: NTEPRow
+  updatedFields: [String!]
+  previousValues: NTEPRowPreviousValues
+}
+
+input NTEPRowSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: NTEPRowWhereInput
+  AND: [NTEPRowSubscriptionWhereInput!]
+  OR: [NTEPRowSubscriptionWhereInput!]
+  NOT: [NTEPRowSubscriptionWhereInput!]
+}
+
+input NTEPRowUpdateManyMutationInput {
+  varietyName: String
+  rating: Float
+}
+
+input NTEPRowWhereInput {
+  varietyName: String
+  varietyName_not: String
+  varietyName_in: [String!]
+  varietyName_not_in: [String!]
+  varietyName_lt: String
+  varietyName_lte: String
+  varietyName_gt: String
+  varietyName_gte: String
+  varietyName_contains: String
+  varietyName_not_contains: String
+  varietyName_starts_with: String
+  varietyName_not_starts_with: String
+  varietyName_ends_with: String
+  varietyName_not_ends_with: String
+  rating: Float
+  rating_not: Float
+  rating_in: [Float!]
+  rating_not_in: [Float!]
+  rating_lt: Float
+  rating_lte: Float
+  rating_gt: Float
+  rating_gte: Float
+  AND: [NTEPRowWhereInput!]
+  OR: [NTEPRowWhereInput!]
+  NOT: [NTEPRowWhereInput!]
+}
+
+type NTEPTable {
+  tableTitle: String!
+  tableSubject: String!
+  location: String!
+  data(where: NTEPRowWhereInput, orderBy: NTEPRowOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [NTEPRow!]
+}
+
+type NTEPTableConnection {
+  pageInfo: PageInfo!
+  edges: [NTEPTableEdge]!
+  aggregate: AggregateNTEPTable!
+}
+
+input NTEPTableCreateInput {
+  tableTitle: String!
+  tableSubject: String!
+  location: String!
+  data: NTEPRowCreateManyInput
+}
+
+type NTEPTableEdge {
+  node: NTEPTable!
+  cursor: String!
+}
+
+enum NTEPTableOrderByInput {
+  tableTitle_ASC
+  tableTitle_DESC
+  tableSubject_ASC
+  tableSubject_DESC
+  location_ASC
+  location_DESC
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type NTEPTablePreviousValues {
+  tableTitle: String!
+  tableSubject: String!
+  location: String!
+}
+
+type NTEPTableSubscriptionPayload {
+  mutation: MutationType!
+  node: NTEPTable
+  updatedFields: [String!]
+  previousValues: NTEPTablePreviousValues
+}
+
+input NTEPTableSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: NTEPTableWhereInput
+  AND: [NTEPTableSubscriptionWhereInput!]
+  OR: [NTEPTableSubscriptionWhereInput!]
+  NOT: [NTEPTableSubscriptionWhereInput!]
+}
+
+input NTEPTableUpdateManyMutationInput {
+  tableTitle: String
+  tableSubject: String
+  location: String
+}
+
+input NTEPTableWhereInput {
+  tableTitle: String
+  tableTitle_not: String
+  tableTitle_in: [String!]
+  tableTitle_not_in: [String!]
+  tableTitle_lt: String
+  tableTitle_lte: String
+  tableTitle_gt: String
+  tableTitle_gte: String
+  tableTitle_contains: String
+  tableTitle_not_contains: String
+  tableTitle_starts_with: String
+  tableTitle_not_starts_with: String
+  tableTitle_ends_with: String
+  tableTitle_not_ends_with: String
+  tableSubject: String
+  tableSubject_not: String
+  tableSubject_in: [String!]
+  tableSubject_not_in: [String!]
+  tableSubject_lt: String
+  tableSubject_lte: String
+  tableSubject_gt: String
+  tableSubject_gte: String
+  tableSubject_contains: String
+  tableSubject_not_contains: String
+  tableSubject_starts_with: String
+  tableSubject_not_starts_with: String
+  tableSubject_ends_with: String
+  tableSubject_not_ends_with: String
+  location: String
+  location_not: String
+  location_in: [String!]
+  location_not_in: [String!]
+  location_lt: String
+  location_lte: String
+  location_gt: String
+  location_gte: String
+  location_contains: String
+  location_not_contains: String
+  location_starts_with: String
+  location_not_starts_with: String
+  location_ends_with: String
+  location_not_ends_with: String
+  data_every: NTEPRowWhereInput
+  data_some: NTEPRowWhereInput
+  data_none: NTEPRowWhereInput
+  AND: [NTEPTableWhereInput!]
+  OR: [NTEPTableWhereInput!]
+  NOT: [NTEPTableWhereInput!]
+}
+
 type PageInfo {
   hasNextPage: Boolean!
   hasPreviousPage: Boolean!
@@ -52,17 +307,61 @@ type PageInfo {
 }
 
 type Query {
+  nTEPRows(where: NTEPRowWhereInput, orderBy: NTEPRowOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [NTEPRow]!
+  nTEPRowsConnection(where: NTEPRowWhereInput, orderBy: NTEPRowOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NTEPRowConnection!
+  nTEPTables(where: NTEPTableWhereInput, orderBy: NTEPTableOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [NTEPTable]!
+  nTEPTablesConnection(where: NTEPTableWhereInput, orderBy: NTEPTableOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NTEPTableConnection!
   techsheet(where: TechsheetWhereUniqueInput!): Techsheet
   techsheets(where: TechsheetWhereInput, orderBy: TechsheetOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Techsheet]!
   techsheetsConnection(where: TechsheetWhereInput, orderBy: TechsheetOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TechsheetConnection!
+  techsheetInfoes(where: TechsheetInfoWhereInput, orderBy: TechsheetInfoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [TechsheetInfo]!
+  techsheetInfoesConnection(where: TechsheetInfoWhereInput, orderBy: TechsheetInfoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TechsheetInfoConnection!
+  toleranceRows(where: ToleranceRowWhereInput, orderBy: ToleranceRowOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ToleranceRow]!
+  toleranceRowsConnection(where: ToleranceRowWhereInput, orderBy: ToleranceRowOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ToleranceRowConnection!
+  toleranceTables(where: ToleranceTableWhereInput, orderBy: ToleranceTableOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ToleranceTable]!
+  toleranceTablesConnection(where: ToleranceTableWhereInput, orderBy: ToleranceTableOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ToleranceTableConnection!
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   node(id: ID!): Node
 }
 
+enum SeedClassification {
+  VARIETY
+  BLEND
+  MIXTURE
+}
+
+enum Species {
+  ANNUAL_RYEGRASS
+  PERENNIAL_RYEGRASS
+  INTERMEDIATE_RYEGRASS
+  ITALIAN_RYEGRASS
+  HYBRID_RYEGRASS
+  BENTGRASS
+  TALL_FESCUE
+  FINE_FESCUE
+  MEADOW_FESCUE
+  BERMUDAGRASS
+  BLUEGRASS
+  ROUGH_BLUEGRASS
+  SPECIALTY
+  ALFALFA
+  WHITE_CLOVER
+  RED_CLOVER
+  FESTULOLIUM
+  TIMOTHY
+  PRAIRIE_BROMEGRASS
+  REED_CANARYGRASS
+}
+
 type Subscription {
+  nTEPRow(where: NTEPRowSubscriptionWhereInput): NTEPRowSubscriptionPayload
+  nTEPTable(where: NTEPTableSubscriptionWhereInput): NTEPTableSubscriptionPayload
   techsheet(where: TechsheetSubscriptionWhereInput): TechsheetSubscriptionPayload
+  techsheetInfo(where: TechsheetInfoSubscriptionWhereInput): TechsheetInfoSubscriptionPayload
+  toleranceRow(where: ToleranceRowSubscriptionWhereInput): ToleranceRowSubscriptionPayload
+  toleranceTable(where: ToleranceTableSubscriptionWhereInput): ToleranceTableSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
 
@@ -71,8 +370,11 @@ type Techsheet {
   createdAt: DateTime!
   updatedAt: DateTime!
   title: String!
+  company: Company!
+  division: Division!
   published: Boolean!
   author: User
+  data: TechsheetInfo!
 }
 
 type TechsheetConnection {
@@ -83,8 +385,11 @@ type TechsheetConnection {
 
 input TechsheetCreateInput {
   title: String!
+  company: Company!
+  division: Division!
   published: Boolean
   author: UserCreateOneWithoutTechsheetsInput
+  data: TechsheetInfoCreateOneInput!
 }
 
 input TechsheetCreateManyWithoutAuthorInput {
@@ -94,12 +399,124 @@ input TechsheetCreateManyWithoutAuthorInput {
 
 input TechsheetCreateWithoutAuthorInput {
   title: String!
+  company: Company!
+  division: Division!
   published: Boolean
+  data: TechsheetInfoCreateOneInput!
 }
 
 type TechsheetEdge {
   node: Techsheet!
   cursor: String!
+}
+
+type TechsheetInfo {
+  isAlist: Boolean!
+  classification: SeedClassification!
+  species: Species!
+  tolerance: ToleranceTable!
+}
+
+type TechsheetInfoConnection {
+  pageInfo: PageInfo!
+  edges: [TechsheetInfoEdge]!
+  aggregate: AggregateTechsheetInfo!
+}
+
+input TechsheetInfoCreateInput {
+  isAlist: Boolean!
+  classification: SeedClassification!
+  species: Species!
+  tolerance: ToleranceTableCreateOneInput!
+}
+
+input TechsheetInfoCreateOneInput {
+  create: TechsheetInfoCreateInput
+}
+
+type TechsheetInfoEdge {
+  node: TechsheetInfo!
+  cursor: String!
+}
+
+enum TechsheetInfoOrderByInput {
+  isAlist_ASC
+  isAlist_DESC
+  classification_ASC
+  classification_DESC
+  species_ASC
+  species_DESC
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type TechsheetInfoPreviousValues {
+  isAlist: Boolean!
+  classification: SeedClassification!
+  species: Species!
+}
+
+type TechsheetInfoSubscriptionPayload {
+  mutation: MutationType!
+  node: TechsheetInfo
+  updatedFields: [String!]
+  previousValues: TechsheetInfoPreviousValues
+}
+
+input TechsheetInfoSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: TechsheetInfoWhereInput
+  AND: [TechsheetInfoSubscriptionWhereInput!]
+  OR: [TechsheetInfoSubscriptionWhereInput!]
+  NOT: [TechsheetInfoSubscriptionWhereInput!]
+}
+
+input TechsheetInfoUpdateDataInput {
+  isAlist: Boolean
+  classification: SeedClassification
+  species: Species
+  tolerance: ToleranceTableUpdateOneRequiredInput
+}
+
+input TechsheetInfoUpdateManyMutationInput {
+  isAlist: Boolean
+  classification: SeedClassification
+  species: Species
+}
+
+input TechsheetInfoUpdateOneRequiredInput {
+  create: TechsheetInfoCreateInput
+  update: TechsheetInfoUpdateDataInput
+  upsert: TechsheetInfoUpsertNestedInput
+}
+
+input TechsheetInfoUpsertNestedInput {
+  update: TechsheetInfoUpdateDataInput!
+  create: TechsheetInfoCreateInput!
+}
+
+input TechsheetInfoWhereInput {
+  isAlist: Boolean
+  isAlist_not: Boolean
+  classification: SeedClassification
+  classification_not: SeedClassification
+  classification_in: [SeedClassification!]
+  classification_not_in: [SeedClassification!]
+  species: Species
+  species_not: Species
+  species_in: [Species!]
+  species_not_in: [Species!]
+  tolerance: ToleranceTableWhereInput
+  AND: [TechsheetInfoWhereInput!]
+  OR: [TechsheetInfoWhereInput!]
+  NOT: [TechsheetInfoWhereInput!]
 }
 
 enum TechsheetOrderByInput {
@@ -111,6 +528,10 @@ enum TechsheetOrderByInput {
   updatedAt_DESC
   title_ASC
   title_DESC
+  company_ASC
+  company_DESC
+  division_ASC
+  division_DESC
   published_ASC
   published_DESC
 }
@@ -120,6 +541,8 @@ type TechsheetPreviousValues {
   createdAt: DateTime!
   updatedAt: DateTime!
   title: String!
+  company: Company!
+  division: Division!
   published: Boolean!
 }
 
@@ -143,12 +566,17 @@ input TechsheetSubscriptionWhereInput {
 
 input TechsheetUpdateInput {
   title: String
+  company: Company
+  division: Division
   published: Boolean
   author: UserUpdateOneWithoutTechsheetsInput
+  data: TechsheetInfoUpdateOneRequiredInput
 }
 
 input TechsheetUpdateManyMutationInput {
   title: String
+  company: Company
+  division: Division
   published: Boolean
 }
 
@@ -163,7 +591,10 @@ input TechsheetUpdateManyWithoutAuthorInput {
 
 input TechsheetUpdateWithoutAuthorDataInput {
   title: String
+  company: Company
+  division: Division
   published: Boolean
+  data: TechsheetInfoUpdateOneRequiredInput
 }
 
 input TechsheetUpdateWithWhereUniqueWithoutAuthorInput {
@@ -222,9 +653,18 @@ input TechsheetWhereInput {
   title_not_starts_with: String
   title_ends_with: String
   title_not_ends_with: String
+  company: Company
+  company_not: Company
+  company_in: [Company!]
+  company_not_in: [Company!]
+  division: Division
+  division_not: Division
+  division_in: [Division!]
+  division_not_in: [Division!]
   published: Boolean
   published_not: Boolean
   author: UserWhereInput
+  data: TechsheetInfoWhereInput
   AND: [TechsheetWhereInput!]
   OR: [TechsheetWhereInput!]
   NOT: [TechsheetWhereInput!]
@@ -232,6 +672,177 @@ input TechsheetWhereInput {
 
 input TechsheetWhereUniqueInput {
   id: ID
+}
+
+type ToleranceRow {
+  toleranceName: String!
+  rating: Float!
+}
+
+type ToleranceRowConnection {
+  pageInfo: PageInfo!
+  edges: [ToleranceRowEdge]!
+  aggregate: AggregateToleranceRow!
+}
+
+input ToleranceRowCreateInput {
+  toleranceName: String!
+  rating: Float!
+}
+
+input ToleranceRowCreateManyInput {
+  create: [ToleranceRowCreateInput!]
+}
+
+type ToleranceRowEdge {
+  node: ToleranceRow!
+  cursor: String!
+}
+
+enum ToleranceRowOrderByInput {
+  toleranceName_ASC
+  toleranceName_DESC
+  rating_ASC
+  rating_DESC
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ToleranceRowPreviousValues {
+  toleranceName: String!
+  rating: Float!
+}
+
+type ToleranceRowSubscriptionPayload {
+  mutation: MutationType!
+  node: ToleranceRow
+  updatedFields: [String!]
+  previousValues: ToleranceRowPreviousValues
+}
+
+input ToleranceRowSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ToleranceRowWhereInput
+  AND: [ToleranceRowSubscriptionWhereInput!]
+  OR: [ToleranceRowSubscriptionWhereInput!]
+  NOT: [ToleranceRowSubscriptionWhereInput!]
+}
+
+input ToleranceRowUpdateManyInput {
+  create: [ToleranceRowCreateInput!]
+}
+
+input ToleranceRowUpdateManyMutationInput {
+  toleranceName: String
+  rating: Float
+}
+
+input ToleranceRowWhereInput {
+  toleranceName: String
+  toleranceName_not: String
+  toleranceName_in: [String!]
+  toleranceName_not_in: [String!]
+  toleranceName_lt: String
+  toleranceName_lte: String
+  toleranceName_gt: String
+  toleranceName_gte: String
+  toleranceName_contains: String
+  toleranceName_not_contains: String
+  toleranceName_starts_with: String
+  toleranceName_not_starts_with: String
+  toleranceName_ends_with: String
+  toleranceName_not_ends_with: String
+  rating: Float
+  rating_not: Float
+  rating_in: [Float!]
+  rating_not_in: [Float!]
+  rating_lt: Float
+  rating_lte: Float
+  rating_gt: Float
+  rating_gte: Float
+  AND: [ToleranceRowWhereInput!]
+  OR: [ToleranceRowWhereInput!]
+  NOT: [ToleranceRowWhereInput!]
+}
+
+type ToleranceTable {
+  data(where: ToleranceRowWhereInput, orderBy: ToleranceRowOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ToleranceRow!]
+}
+
+type ToleranceTableConnection {
+  pageInfo: PageInfo!
+  edges: [ToleranceTableEdge]!
+  aggregate: AggregateToleranceTable!
+}
+
+input ToleranceTableCreateInput {
+  data: ToleranceRowCreateManyInput
+}
+
+input ToleranceTableCreateOneInput {
+  create: ToleranceTableCreateInput
+}
+
+type ToleranceTableEdge {
+  node: ToleranceTable!
+  cursor: String!
+}
+
+enum ToleranceTableOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ToleranceTableSubscriptionPayload {
+  mutation: MutationType!
+  node: ToleranceTable
+  updatedFields: [String!]
+}
+
+input ToleranceTableSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ToleranceTableWhereInput
+  AND: [ToleranceTableSubscriptionWhereInput!]
+  OR: [ToleranceTableSubscriptionWhereInput!]
+  NOT: [ToleranceTableSubscriptionWhereInput!]
+}
+
+input ToleranceTableUpdateDataInput {
+  data: ToleranceRowUpdateManyInput
+}
+
+input ToleranceTableUpdateOneRequiredInput {
+  create: ToleranceTableCreateInput
+  update: ToleranceTableUpdateDataInput
+  upsert: ToleranceTableUpsertNestedInput
+}
+
+input ToleranceTableUpsertNestedInput {
+  update: ToleranceTableUpdateDataInput!
+  create: ToleranceTableCreateInput!
+}
+
+input ToleranceTableWhereInput {
+  data_every: ToleranceRowWhereInput
+  data_some: ToleranceRowWhereInput
+  data_none: ToleranceRowWhereInput
+  AND: [ToleranceTableWhereInput!]
+  OR: [ToleranceTableWhereInput!]
+  NOT: [ToleranceTableWhereInput!]
 }
 
 type User {

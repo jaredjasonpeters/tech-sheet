@@ -1,34 +1,33 @@
+#import * from "/generated/prisma.graphql"
+
 type Query {
   me: User
   users: [User!]!
   techsheet(techsheetId: ID!): Techsheet
   techsheets: [Techsheet!]!
   techsheetsByUser(userId: ID!): Techsheet
-  
 }
 
 type Mutation {
-  signup(email: String!, password: String!, name: String!, companies: [Company] ): AuthPayload!
+  signup(
+    email: String!
+    password: String!
+    name: String!
+    companies: [Company]
+  ): AuthPayload!
   login(email: String!, password: String!): AuthPayload!
-  updateTitle(title: String!) : User!
-  createTechsheet(title: String!): Techsheet
+  updateTitle(title: String!): User!
+  createTechsheet(data: TechsheetCreateInput!): Techsheet
   deleteUsers: BatchPayload
 }
 
 type User {
-  id: ID! 
+  id: ID!
   email: String!
   name: String!
   title: String!
   companies: [Company]
   techsheets: [Techsheet!]!
-}
-
-type Techsheet {
-  id: ID! 
-  title: String!
-  published: Boolean!
-  author: User!
 }
 
 type AuthPayload {
@@ -38,9 +37,4 @@ type AuthPayload {
 
 type BatchPayload {
   count: Int!
-}
-
-enum Company {
-  DLFPICKSEED
-  SEEDRESEARCHOFOREGON
 }

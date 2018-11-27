@@ -1,25 +1,106 @@
+enum Company {
+  DLF_PICKSEED
+  SEED_RESEARCH_OF_OREGON
+}
+
+enum Division {
+  FORAGE
+  PRO_TURF
+  RETAIL
+}
+
+enum SeedClassification {
+  VARIETY
+  BLEND
+  MIXTURE
+}
+
+enum Species {
+  ANNUAL_RYEGRASS
+  PERENNIAL_RYEGRASS
+  INTERMEDIATE_RYEGRASS
+  ITALIAN_RYEGRASS
+  HYBRID_RYEGRASS
+  BENTGRASS
+  TALL_FESCUE
+  FINE_FESCUE
+  MEADOW_FESCUE
+  BERMUDAGRASS
+  BLUEGRASS
+  ROUGH_BLUEGRASS
+  SPECIALTY
+  ALFALFA
+  WHITE_CLOVER
+  RED_CLOVER
+  FESTULOLIUM
+  TIMOTHY
+  PRAIRIE_BROMEGRASS
+  REED_CANARYGRASS
+}
+
+enum Amount {
+  LOW
+  MED
+  HIGH
+}
+
 type User {
   id: ID! @unique
   createdAt: DateTime!
   updatedAt: DateTime!
-  email: String!@unique
+  email: String! @unique
   password: String!
   name: String!
   title: String! @default(value: "Minion")
   companies: [Company!]
-  techsheets: [Techsheet!]!
+  techsheets: [Techsheet!]
 }
 
 type Techsheet {
   id: ID! @unique
   createdAt: DateTime!
   updatedAt: DateTime!
-  title: String! 
-  published: Boolean! @default(value: "false")
+  title: String!
+  company: Company!
+  division: Division!
+  published: Boolean! @default(value: false)
   author: User
+  data: TechsheetInfo!
 }
 
-enum Company {
-  DLFPICKSEED
-  SEEDRESEARCHOFOREGON
+type TechsheetInfo {
+  isAlist: Boolean!
+  classification: SeedClassification!
+  species: Species!
+  tolerance: ToleranceTable!
+  # image: String!
+  # quickfacts: String!
+  # adaptation: String!
+  # tables: [NTEPTable!]!
+  # seedingRate: Int!
+  # establishmentRate: Int!
+  # mowingFrequency: Int!
+  # nitrogenReq: Amount!
+  # endophyteEnhanced: Boolean!
+}
+
+type ToleranceTable {
+  data: [ToleranceRow!]!
+}
+
+type ToleranceRow {
+  toleranceName: String!
+  rating: Float!
+}
+
+type NTEPTable {
+  tableTitle: String!
+  tableSubject: String!
+  location: String!
+  data: [NTEPRow!]!
+}
+
+type NTEPRow {
+  varietyName: String!
+  rating: Float!
 }

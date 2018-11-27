@@ -1,11 +1,17 @@
 const Techsheet = {
-     author: (root, args, context) => {
-      return context.db.techsheet({
-        id: root.id
-      }).author()
-    }
+  author: async (root, args, context, info) => {
+    const techsheet = await context.db.query.techsheet(
+      {
+        where: {
+          id: root.id
+        }
+      },
+      info
+    );
+    return techsheet.author;
   }
+};
 
-  module.exports = {
-      Techsheet,
-  }
+module.exports = {
+  Techsheet
+};
