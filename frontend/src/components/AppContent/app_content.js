@@ -27,7 +27,7 @@ export default class AppContent extends Component {
                     transition: "opacity 1500ms cubic-bezier(.77,.18,.27,1.5)"
                   }}
                 >
-                  <CloseDataEntry context={dataContext} />
+                  <CloseDataEntryButton context={dataContext} />
                   <DataEntryForm />
                 </div>
               )}
@@ -39,7 +39,7 @@ export default class AppContent extends Component {
   }
 }
 
-const CloseDiv = styled.div`
+const CloseBar = styled.div`
   width: 100%;
   color: #ce1141;
   font-size: 50px;
@@ -53,22 +53,22 @@ const CloseDiv = styled.div`
   }
 `;
 
-class CloseDataEntry extends Component {
+class CloseDataEntryButton extends Component {
   componentDidMount() {
-    const CloseDiv = document.getElementById("close-div");
+    const CloseBar = document.getElementById("close-bar");
     setTimeout(() => {
-      CloseDiv.style.opacity = 1;
+      CloseBar.style.opacity = 1;
     }, 1750);
   }
 
   render() {
     return (
-      <CloseDiv
-        id="close-div"
+      <CloseBar
+        id="close-bar"
         onClick={this.props.context.state.closeDataEntry}
       >
         X
-      </CloseDiv>
+      </CloseBar>
     );
   }
 }
