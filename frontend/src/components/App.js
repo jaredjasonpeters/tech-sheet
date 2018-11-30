@@ -20,16 +20,14 @@ class App extends Component {
           {loginContext => {
             return (
               <Switch>
-                <Route
-                  exact
-                  path="/"
-                  render={props => (
+                <Route exact path="/">
+                  {props => (
                     <Login
                       isAuthenticated={loginContext.state.isAuthenticated}
                       loginContext={loginContext}
                     />
                   )}
-                />
+                </Route>
                 <PrivateRoute
                   path="/app"
                   component={ProtectedApplication}
