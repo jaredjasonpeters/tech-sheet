@@ -27,7 +27,7 @@ export default class AppContent extends Component {
                     transition: "opacity 1500ms cubic-bezier(.77,.18,.27,1.5)"
                   }}
                 >
-                  <CloseDataEntry />
+                  <CloseDataEntry context={dataContext} />
                   <DataEntryForm />
                 </div>
               )}
@@ -63,13 +63,12 @@ class CloseDataEntry extends Component {
 
   render() {
     return (
-      <DataContext.Consumer>
-        {dataContext => (
-          <CloseDiv id="close-div" onClick={dataContext.state.closeDataEntry}>
-            X
-          </CloseDiv>
-        )}
-      </DataContext.Consumer>
+      <CloseDiv
+        id="close-div"
+        onClick={this.props.context.state.closeDataEntry}
+      >
+        X
+      </CloseDiv>
     );
   }
 }
