@@ -2,7 +2,7 @@ import React, { Fragment, Component } from "react";
 import { DataContext } from "../../Contexts/";
 import NTEProw from "../NTEP/ntep_row";
 import {
-  $Input,
+  StyledInput,
   InputLabel,
   DLF_Green,
   SubmitButton,
@@ -114,7 +114,7 @@ export default class NTEPtable extends Component {
     return (
       <DataContext.Consumer>
         {context => (
-          <Fragment>
+          <>
             <div
               style={{
                 flexGrow: 1,
@@ -149,7 +149,7 @@ export default class NTEPtable extends Component {
               </div>
 
               <InputLabel style={{ marginBottom: "0px" }}>Title:</InputLabel>
-              <$Input
+              <StyledInput
                 name="title"
                 onChange={this.setTitle}
                 value={this.state.table.title}
@@ -258,7 +258,7 @@ export default class NTEPtable extends Component {
                 </SubmitButton>
               </Wrapper>
             </div>
-          </Fragment>
+          </>
         )}
       </DataContext.Consumer>
     );

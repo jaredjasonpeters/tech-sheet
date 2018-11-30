@@ -4,7 +4,7 @@ import {
   SectionHeader,
   InputWrapper,
   InputLabel,
-  $Input,
+  StyledInput,
   Value,
   DLF_Pink
 } from "../../Styled/";
@@ -26,7 +26,7 @@ const ToleranceTable = props => (
           context.state.sliders.map(v => (
             <InputWrapper key={v}>
               <InputLabel>{formatName(v)}</InputLabel>
-              <$Input
+              <StyledInput
                 type="range"
                 name={v}
                 value={context.state[v] || 1}

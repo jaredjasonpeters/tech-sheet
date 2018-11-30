@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Context } from "../../Contexts/";
 import {
   FlexOuterWrapper,
-  $Input,
+  StyledInput,
   NTEPVarietyInput,
-  $Label,
+  StyledLabel,
   NTEPRatingInput,
   Wrapper,
   DLF_Green,
@@ -29,10 +29,10 @@ const NTEProw = props => (
       />
     )}
     <FlexOuterWrapper width="35%">
-      <$Label margin="0">{props.lsd || "Variety Name:"}</$Label>
+      <StyledLabel margin="0">{props.lsd || "Variety Name:"}</StyledLabel>
 
       {!props.lsd && (
-        <$Input
+        <StyledInput
           type="text"
           name="variety_name"
           onChange={props.handleInput}
@@ -43,8 +43,8 @@ const NTEProw = props => (
       )}
     </FlexOuterWrapper>
     <FlexOuterWrapper width="35%">
-      <$Label margin="0">Variety Rating:</$Label>
-      <$Input
+      <StyledLabel margin="0">Variety Rating:</StyledLabel>
+      <StyledInput
         type="text"
         placeholder="Ex. 4.6"
         name="ntep_rating"

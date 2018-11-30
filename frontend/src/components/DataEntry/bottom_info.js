@@ -2,8 +2,8 @@ import React, { Component, Fragment } from "react";
 import { DataContext } from "../Contexts/";
 import {
   Wrapper,
-  $Label,
-  $Input,
+  StyledLabel,
+  StyledInput,
   SectionHeader,
   FlexOuterWrapper
 } from "../Styled/";
@@ -21,8 +21,8 @@ const BottomInfo = props => {
           </SectionHeader>
           <FlexOuterWrapper>
             <FlexOuterWrapper width="auto">
-              <$Label center> Seeding Rate: </$Label>
-              <$Input
+              <StyledLabel center> Seeding Rate: </StyledLabel>
+              <StyledInput
                 name="seeding_rate"
                 onChange={context.state.handleChange}
                 value={context.state.seeding_rate}
@@ -30,8 +30,8 @@ const BottomInfo = props => {
               />
             </FlexOuterWrapper>
             <FlexOuterWrapper width="auto">
-              <$Label center> Establishment Rate: </$Label>
-              <$Input
+              <StyledLabel center> Establishment Rate: </StyledLabel>
+              <StyledInput
                 name="establishment_rate"
                 onChange={context.state.handleChange}
                 value={context.state.establishment_rate}
@@ -39,8 +39,8 @@ const BottomInfo = props => {
               />
             </FlexOuterWrapper>
             <FlexOuterWrapper width="auto">
-              <$Label center> Mowing Frequency: </$Label>
-              <$Input
+              <StyledLabel center> Mowing Frequency: </StyledLabel>
+              <StyledInput
                 name="mowing_frequency"
                 onChange={context.state.handleChange}
                 value={context.state.mowing_frequency}
@@ -48,8 +48,8 @@ const BottomInfo = props => {
               />
             </FlexOuterWrapper>
             <FlexOuterWrapper width="auto">
-              <$Label center> Nitrogen Required: </$Label>
-              <$Input
+              <StyledLabel center> Nitrogen Required: </StyledLabel>
+              <StyledInput
                 name="nitrogen_required"
                 onChange={context.state.handleChange}
                 value={context.state.nitrogen_required}
@@ -57,8 +57,8 @@ const BottomInfo = props => {
               />
             </FlexOuterWrapper>
             <FlexOuterWrapper width="auto">
-              <$Label center> Endophyte +: </$Label>
-              <$Input
+              <StyledLabel center> Endophyte +: </StyledLabel>
+              <StyledInput
                 name="endophyte_enhanced"
                 onChange={context.state.handleChange}
                 value={context.state.endophyte_enhanced}

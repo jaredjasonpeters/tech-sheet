@@ -1,10 +1,10 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { DataContext } from "../Contexts/";
 import {
   SectionHeader,
   Checkbox,
   InputLabel,
-  $Input,
+  StyledInput,
   Select,
   FlexOuterWrapper
 } from "../Styled/";
@@ -12,15 +12,20 @@ import {
 const Identifiers = props => (
   <DataContext.Consumer>
     {context => (
-      <Fragment>
+      <>
         <SectionHeader theme={context.state.theme_style} className="sh header">
           {" "}
           IDENTIFIERS{" "}
         </SectionHeader>
         <FlexOuterWrapper>
-          <FlexOuterWrapper flex-dir="row">
+          <FlexOuterWrapper
+            flex-dir="row"
+            justify="center"
+            align-items="center"
+          >
             <Checkbox
               blue
+              border-rad="none"
               onClick={context.state.handleCheck}
               checked={context.state.isAlist}
             />
@@ -32,7 +37,9 @@ const Identifiers = props => (
                 minWidth: "70px"
               }}
             />
+          </FlexOuterWrapper>
 
+          <FlexOuterWrapper>
             <InputLabel>Variety/Blend/Mixture: </InputLabel>
             <Select
               id="species_name"
@@ -45,11 +52,12 @@ const Identifiers = props => (
               <option value="Blend">Blend</option>
               <option value="Mixture">Mixture</option>
             </Select>
+          </FlexOuterWrapper>
 
+          <FlexOuterWrapper>
             <InputLabel>Variety Name: </InputLabel>
-            <$Input
+            <StyledInput
               height="auto"
-              maxW="200px"
               name="variety_name"
               placeholder="Leah's Awesome Blend"
               onChange={context.state.handleChange}
@@ -57,7 +65,9 @@ const Identifiers = props => (
               font-family="Nunito"
               font-weight="800"
             />
+          </FlexOuterWrapper>
 
+          <FlexOuterWrapper>
             <InputLabel>Species Name: </InputLabel>
             <Select
               id="species_name"
@@ -76,7 +86,7 @@ const Identifiers = props => (
             </Select>
           </FlexOuterWrapper>
         </FlexOuterWrapper>
-      </Fragment>
+      </>
     )}
   </DataContext.Consumer>
 );

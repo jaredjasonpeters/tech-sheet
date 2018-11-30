@@ -1,5 +1,10 @@
 import React, { Fragment } from "react";
-import { SectionHeader, InputLabel, $TextArea, $Label } from "../Styled/";
+import {
+  SectionHeader,
+  InputLabel,
+  StyledTextArea,
+  StyledLabel
+} from "../Styled/";
 import { DataContext } from "../Contexts/";
 
 const TextContent = props => (
@@ -11,16 +16,16 @@ const TextContent = props => (
           CONTENT{" "}
         </SectionHeader>
 
-        <$Label htmlFor="quick-facts"> Quick Facts: </$Label>
-        <$TextArea
+        <StyledLabel htmlFor="quick-facts"> Quick Facts: </StyledLabel>
+        <StyledTextArea
           id="quick-facts"
           name="quick_facts"
           onChange={context.state.handleChange}
           value={context.state.quick_facts}
         />
 
-        <$Label htmlFor="quick-facts"> Adaptation: </$Label>
-        <$TextArea
+        <StyledLabel htmlFor="quick-facts"> Adaptation: </StyledLabel>
+        <StyledTextArea
           id="adaptation"
           name="adaptation"
           onChange={context.state.handleChange}

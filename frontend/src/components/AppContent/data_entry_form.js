@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { $Form, SubmitButton, FlexOuterWrapper } from "../Styled/";
+import { StyledForm, SubmitButton, FlexOuterWrapper } from "../Styled/";
 import { DataContext } from "../Contexts/";
 import ToleranceTable from "../DataEntry/Tolerance/tolerance_table";
 import TextContent from "../DataEntry/text_content";
@@ -24,7 +24,7 @@ class DataEntryForm extends Component {
     return (
       <DataContext.Consumer>
         {context => (
-          <$Form id="data-entry-form">
+          <StyledForm id="data-entry-form">
             <Identifiers />
             <ToleranceTable />
             <ImageSelector />
@@ -49,7 +49,7 @@ class DataEntryForm extends Component {
                 Reset{" "}
               </SubmitButton>
             </FlexOuterWrapper>
-          </$Form>
+          </StyledForm>
         )}
       </DataContext.Consumer>
     );

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { DataContext } from "../../Contexts/";
 import {
-  $Label,
+  StyledLabel,
   Wrapper,
   SubmitButton,
   ResetButton,
@@ -54,10 +54,10 @@ export default class ToleranceSelection extends Component {
           <>
             <Wrapper media="true">
               <SelectionContainer>
-                <$Label margin="0" height="50px">
+                <StyledLabel margin="0" height="50px">
                   {" "}
                   Turf Quality{" "}
-                </$Label>
+                </StyledLabel>
                 <Checkbox
                   checked={this.state.turf_quality}
                   name="turf_quality"
@@ -65,10 +65,10 @@ export default class ToleranceSelection extends Component {
                 />
               </SelectionContainer>
               <SelectionContainer>
-                <$Label margin="0" height="50px">
+                <StyledLabel margin="0" height="50px">
                   {" "}
                   Salinity Tolerance{" "}
-                </$Label>
+                </StyledLabel>
                 <Checkbox
                   checked={this.state.salinity_tolerance}
                   name="salinity_tolerance"
@@ -76,10 +76,10 @@ export default class ToleranceSelection extends Component {
                 />
               </SelectionContainer>
               <SelectionContainer>
-                <$Label margin="0" height="50px">
+                <StyledLabel margin="0" height="50px">
                   {" "}
                   Shade Tolerance{" "}
-                </$Label>
+                </StyledLabel>
                 <Checkbox
                   checked={this.state.shade_tolerance}
                   name="shade_tolerance"
@@ -87,10 +87,10 @@ export default class ToleranceSelection extends Component {
                 />
               </SelectionContainer>
               <SelectionContainer>
-                <$Label margin="0" height="50px">
+                <StyledLabel margin="0" height="50px">
                   {" "}
                   Drought Tolerance{" "}
-                </$Label>
+                </StyledLabel>
                 <Checkbox
                   checked={this.state.cold_tolerance}
                   name="cold_tolerance"
@@ -98,10 +98,10 @@ export default class ToleranceSelection extends Component {
                 />
               </SelectionContainer>
               <SelectionContainer>
-                <$Label margin="0" height="50px">
+                <StyledLabel margin="0" height="50px">
                   {" "}
                   Cold Tolerance{" "}
-                </$Label>
+                </StyledLabel>
                 <Checkbox
                   checked={this.state.drought_tolerance}
                   name="drought_tolerance"
@@ -109,10 +109,10 @@ export default class ToleranceSelection extends Component {
                 />
               </SelectionContainer>
               <SelectionContainer>
-                <$Label margin="0" height="50px">
+                <StyledLabel margin="0" height="50px">
                   {" "}
                   Wear Tolerance{" "}
-                </$Label>
+                </StyledLabel>
                 <Checkbox
                   checked={this.state.wear_tolerance}
                   name="wear_tolerance"

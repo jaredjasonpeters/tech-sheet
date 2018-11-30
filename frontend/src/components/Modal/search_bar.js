@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { $Input } from "../Styled/";
+import { StyledInput } from "../Styled/";
 
 export default class SearchBar extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ export default class SearchBar extends Component {
   render() {
     return (
       <SearchBarWrapper>
-        <$Input
+        <StyledInput
           search
           margin="0"
           width="80%"

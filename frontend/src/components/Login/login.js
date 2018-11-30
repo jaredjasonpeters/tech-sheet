@@ -2,8 +2,8 @@ import React, { Component, Fragment } from "react";
 import {
   SubmitButton,
   FlexOuterWrapper,
-  $Label,
-  $Input,
+  StyledLabel,
+  StyledInput,
   Checkbox
 } from "../Styled/";
 import { LoginContext } from "../Contexts/";
@@ -95,8 +95,8 @@ class Login extends Component {
                   {this.state.signup && (
                     <Fragment>
                       <FlexOuterWrapper>
-                        <$Label font-size="16px">Name:</$Label>
-                        <$Input
+                        <StyledLabel font-size="16px">Name:</StyledLabel>
+                        <StyledInput
                           type="text"
                           value={loginContext.state.name || ""}
                           name="name"
@@ -107,8 +107,8 @@ class Login extends Component {
                       </FlexOuterWrapper>
 
                       <FlexOuterWrapper>
-                        <$Label font-size="16px">Email:</$Label>
-                        <$Input
+                        <StyledLabel font-size="16px">Email:</StyledLabel>
+                        <StyledInput
                           type="email"
                           value={loginContext.state.email || ""}
                           onBlur={loginContext.state.handleBlur}
@@ -120,8 +120,8 @@ class Login extends Component {
                         />
                       </FlexOuterWrapper>
                       <FlexOuterWrapper>
-                        <$Label font-size="16px">Password:</$Label>
-                        <$Input
+                        <StyledLabel font-size="16px">Password:</StyledLabel>
+                        <StyledInput
                           type="password"
                           value={loginContext.state.password || ""}
                           name="password"
@@ -133,11 +133,11 @@ class Login extends Component {
                       </FlexOuterWrapper>
 
                       <FlexOuterWrapper margin="0 0 30px 0">
-                        <$Label font-size="16px"> Company: </$Label>
+                        <StyledLabel font-size="16px"> Company: </StyledLabel>
                       </FlexOuterWrapper>
 
                       <FlexOuterWrapper flex-dir="row">
-                        <$Label> DLF Pickseed </$Label>
+                        <StyledLabel> DLF Pickseed </StyledLabel>
                         <Checkbox
                           selected={DLFPICKSEED}
                           data-enum="DLFPICKSEED"
@@ -150,7 +150,7 @@ class Login extends Component {
                       </FlexOuterWrapper>
 
                       <FlexOuterWrapper flex-dir="row">
-                        <$Label> Seed Research of Oregon </$Label>
+                        <StyledLabel> Seed Research of Oregon </StyledLabel>
                         <Checkbox
                           selected={SEEDRESEARCHOFOREGON}
                           data-enum="SEEDRESEARCHOFOREGON"
@@ -198,8 +198,8 @@ class Login extends Component {
                   {!this.state.signup && (
                     <Fragment>
                       <FlexOuterWrapper>
-                        <$Label font-size="16px">Email:</$Label>
-                        <$Input
+                        <StyledLabel font-size="16px">Email:</StyledLabel>
+                        <StyledInput
                           type="email"
                           name="email"
                           className="login-modal-input"
@@ -209,8 +209,8 @@ class Login extends Component {
                       </FlexOuterWrapper>
 
                       <FlexOuterWrapper>
-                        <$Label font-size="16px">Password:</$Label>
-                        <$Input
+                        <StyledLabel font-size="16px">Password:</StyledLabel>
+                        <StyledInput
                           type="password"
                           name="password"
                           className="login-modal-input"

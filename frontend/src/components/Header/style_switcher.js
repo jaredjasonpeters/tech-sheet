@@ -1,7 +1,12 @@
 import React, { Component, Fragment } from "react";
 import { DataContext } from "../Contexts/";
 import styled, { css } from "styled-components";
-import { FlexOuterWrapper, SubmitButton, DLF_Pink, $Label } from "../Styled/";
+import {
+  FlexOuterWrapper,
+  SubmitButton,
+  DLF_Pink,
+  StyledLabel
+} from "../Styled/";
 import { formatName, Colors } from "../../utils/";
 
 export default class StyleSwitcher extends Component {
@@ -28,15 +33,15 @@ export default class StyleSwitcher extends Component {
             pad="0 0 0 40px"
           >
             <FlexOuterWrapper flex-dir="row" height="100%">
-              <$Label color="white" align-self="center">
+              <StyledLabel color="white" align-self="center">
                 Styles:
-              </$Label>
+              </StyledLabel>
               {this.state.styles.map((v, i) => (
                 <Styles
                   context={context}
                   data-name={v}
                   name={v}
-                  key={`style-${i}`}
+                  key={`style-Styled{i}`}
                   onClick={context.state.chooseTheme}
                 >
                   {formatName(v)}
@@ -77,9 +82,9 @@ text-align: center;
 align-self: center;
 cursor: pointer
 transition: color 1s
-color: ${props =>
+color: Styled{props =>
   props.context.state.theme_style === props.name ? Colors[props.name] : "white"}
 &:hover {
-  color: ${props => Colors[props.name]}
+  color: Styled{props => Colors[props.name]}
 }
 `;

@@ -7,9 +7,6 @@ import Header from "./Header/header";
 import Modal from "./Modal/modal";
 
 export default class ProtectedApplication extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     const loginContext = this.props.loginContext;
     return (
