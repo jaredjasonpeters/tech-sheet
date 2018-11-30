@@ -172,40 +172,39 @@ ${props =>
 `}
 `;
 
-const FlexInnerWrapper = styled.div`
-display: flex;
-flex-direction: ${props => props["flex-dir"] || "column"}
-flex-grow: ${props => props.fg || "1"}
-justify-content: ${props => props.justify || "center"}
-width: ${props => props.width || "100%"};
-height: ${props => props.height || "auto"};
-background: ${props => props["bg-color"] || "none"}
-padding: ${props => props.pad || "0px"}
-border-radius: ${props => props.br || "0px"}
-border: ${props => props.border || "none"}
-align-items: space-between;
-align-self: ${props => props["align-self"] || "flex-start"}
-margin: ${props => props.margin || "0 0 0 0"}
+// const FlexInnerWrapper = styled.div`
+// display: flex;
+// flex-direction: ${props => props["flex-dir"] || "column"}
+// flex-grow: ${props => props.fg || "1"}
+// justify-content: ${props => props.justify || "center"}
+// width: ${props => props.width || "100%"};
+// height: ${props => props.height || "auto"};
+// background: ${props => props["bg-color"] || "none"}
+// padding: ${props => props.pad || "0px"}
+// border-radius: ${props => props.br || "0px"}
+// border: ${props => props.border || "none"}
+// align-items: space-between;
+// align-self: ${props => props["align-self"] || "flex-start"}
+// margin: ${props => props.margin || "0 0 0 0"}
 
-${props =>
-  props.center &&
-  `
- text-align: center
-`}
+// ${props =>
+//   props.center &&
+//   `
+//  text-align: center
+// `}
 
-
-${props =>
-  props.media &&
-  `
-    @media (max-width: 425px) {
-        flex-direction: column;
-        & > div {
-            width: 100%;
-            text-align: center;
-        }
-    }
-`}
-`;
+// ${props =>
+//   props.media &&
+//   `
+//     @media (max-width: 425px) {
+//         flex-direction: column;
+//         & > div {
+//             width: 100%;
+//             text-align: center;
+//         }
+//     }
+// `}
+// `;
 
 const SubmitButton = styled.button`
 flex-grow: 1;
@@ -355,7 +354,6 @@ ${props =>
 export {
   Wrapper,
   FlexOuterWrapper,
-  FlexInnerWrapper,
   InputWrapper,
   InputLabel,
   Value,

@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import TechSheetSidebar from "./Sidebar/tech_sheet_sidebar";
 import { DataContext } from "../Contexts/";
 import DataEntryForm from "./data_entry_form";
-import { FlexOuterWrapper, FlexInnerWrapper } from "../Styled/";
+import { FlexOuterWrapper } from "../Styled/";
 import styled from "styled-components";
 
 export default class AppContent extends Component {
@@ -15,13 +15,11 @@ export default class AppContent extends Component {
     return (
       <DataContext.Consumer>
         {dataContext => (
-          <FlexOuterWrapper pad="50px 0">
-            <FlexInnerWrapper id="sidebar-container">
-              {!dataContext.state.display_form && (
-                <TechSheetSidebar dataContext={dataContext} />
-              )}
-            </FlexInnerWrapper>
-            <FlexInnerWrapper>
+          <FlexOuterWrapper id="sidebar-container" pad="50px 0">
+            {!dataContext.state.display_form && (
+              <TechSheetSidebar dataContext={dataContext} />
+            )}
+            <FlexOuterWrapper>
               {dataContext.state.display_form && (
                 <div
                   id="entry-form-wrapper"
@@ -33,7 +31,7 @@ export default class AppContent extends Component {
                   <DataEntryForm />
                 </div>
               )}
-            </FlexInnerWrapper>
+            </FlexOuterWrapper>
           </FlexOuterWrapper>
         )}
       </DataContext.Consumer>

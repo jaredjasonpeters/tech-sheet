@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import {
   SubmitButton,
-  FlexInnerWrapper,
   FlexOuterWrapper,
   $Label,
   $Input,
@@ -60,7 +59,7 @@ class Login extends Component {
               align-items="center"
             >
               <FlexOuterWrapper width="500px" justify="center" pad="40px">
-                <FlexInnerWrapper center margin="0 0 40px 0">
+                <FlexOuterWrapper center margin="0 0 40px 0">
                   <img
                     id="modal-logo"
                     src={`/images/DLF_BLK.png`}
@@ -85,7 +84,7 @@ class Login extends Component {
                   >
                     TECH SHEETS APP
                   </h1>
-                </FlexInnerWrapper>
+                </FlexOuterWrapper>
 
                 <FlexOuterWrapper
                   bg-color="#e0e0e0"
@@ -95,7 +94,7 @@ class Login extends Component {
                 >
                   {this.state.signup && (
                     <Fragment>
-                      <FlexInnerWrapper>
+                      <FlexOuterWrapper>
                         <$Label font-size="16px">Name:</$Label>
                         <$Input
                           type="text"
@@ -105,9 +104,9 @@ class Login extends Component {
                           height="40px"
                           onChange={loginContext.state.inputChange}
                         />
-                      </FlexInnerWrapper>
+                      </FlexOuterWrapper>
 
-                      <FlexInnerWrapper>
+                      <FlexOuterWrapper>
                         <$Label font-size="16px">Email:</$Label>
                         <$Input
                           type="email"
@@ -119,8 +118,8 @@ class Login extends Component {
                           onChange={loginContext.state.inputChange}
                           autoComplete="off"
                         />
-                      </FlexInnerWrapper>
-                      <FlexInnerWrapper>
+                      </FlexOuterWrapper>
+                      <FlexOuterWrapper>
                         <$Label font-size="16px">Password:</$Label>
                         <$Input
                           type="password"
@@ -131,13 +130,13 @@ class Login extends Component {
                           onChange={loginContext.state.inputChange}
                           autoComplete="off"
                         />
-                      </FlexInnerWrapper>
+                      </FlexOuterWrapper>
 
-                      <FlexInnerWrapper margin="0 0 30px 0">
+                      <FlexOuterWrapper margin="0 0 30px 0">
                         <$Label font-size="16px"> Company: </$Label>
-                      </FlexInnerWrapper>
+                      </FlexOuterWrapper>
 
-                      <FlexInnerWrapper flex-dir="row">
+                      <FlexOuterWrapper flex-dir="row">
                         <$Label> DLF Pickseed </$Label>
                         <Checkbox
                           selected={DLFPICKSEED}
@@ -148,9 +147,9 @@ class Login extends Component {
                           min-width="30px"
                           onClick={loginContext.state.toggleDLF}
                         />
-                      </FlexInnerWrapper>
+                      </FlexOuterWrapper>
 
-                      <FlexInnerWrapper flex-dir="row">
+                      <FlexOuterWrapper flex-dir="row">
                         <$Label> Seed Research of Oregon </$Label>
                         <Checkbox
                           selected={SEEDRESEARCHOFOREGON}
@@ -161,7 +160,7 @@ class Login extends Component {
                           min-width="30px"
                           onClick={loginContext.state.toggleSRO}
                         />
-                      </FlexInnerWrapper>
+                      </FlexOuterWrapper>
 
                       <Mutation
                         mutation={SIGNUP_MUTATION}
@@ -198,7 +197,7 @@ class Login extends Component {
                   )}
                   {!this.state.signup && (
                     <Fragment>
-                      <FlexInnerWrapper>
+                      <FlexOuterWrapper>
                         <$Label font-size="16px">Email:</$Label>
                         <$Input
                           type="email"
@@ -207,9 +206,9 @@ class Login extends Component {
                           height="40px"
                           onChange={loginContext.state.inputChange}
                         />
-                      </FlexInnerWrapper>
+                      </FlexOuterWrapper>
 
-                      <FlexInnerWrapper>
+                      <FlexOuterWrapper>
                         <$Label font-size="16px">Password:</$Label>
                         <$Input
                           type="password"
@@ -218,7 +217,7 @@ class Login extends Component {
                           height="40px"
                           onChange={loginContext.state.inputChange}
                         />
-                      </FlexInnerWrapper>
+                      </FlexOuterWrapper>
 
                       <Mutation
                         mutation={LOGIN_MUTATION}

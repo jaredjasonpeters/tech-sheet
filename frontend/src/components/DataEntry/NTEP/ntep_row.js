@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Context } from "../../Contexts/";
 import {
   FlexOuterWrapper,
-  FlexInnerWrapper,
   $Input,
   NTEPVarietyInput,
   $Label,
@@ -29,7 +28,7 @@ const NTEProw = props => (
         width="10%"
       />
     )}
-    <FlexInnerWrapper width="35%">
+    <FlexOuterWrapper width="35%">
       <$Label margin="0">{props.lsd || "Variety Name:"}</$Label>
 
       {!props.lsd && (
@@ -42,8 +41,8 @@ const NTEProw = props => (
           data-table={props["data-table"]}
         />
       )}
-    </FlexInnerWrapper>
-    <FlexInnerWrapper width="35%">
+    </FlexOuterWrapper>
+    <FlexOuterWrapper width="35%">
       <$Label margin="0">Variety Rating:</$Label>
       <$Input
         type="text"
@@ -54,7 +53,7 @@ const NTEProw = props => (
         data-row={props.name}
         data-table={props["data-table"]}
       />
-    </FlexInnerWrapper>
+    </FlexOuterWrapper>
   </FlexOuterWrapper>
 );
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled, { css } from "styled-components";
-import { FlexOuterWrapper, FlexInnerWrapper } from "../Styled/";
+import { FlexOuterWrapper } from "../Styled/";
 import { DataContext, LoginContext } from "../Contexts/";
 import UserPanel from "../Header/UserPanel/user_panel";
 import StyleSwitcher from "../Header/style_switcher";
@@ -62,7 +62,7 @@ export default class Header extends Component {
             width="100%"
             height="80px"
           >
-            <FlexInnerWrapper
+            <FlexOuterWrapper
               id="App-header"
               className="App-header"
               width="auto"
@@ -71,7 +71,7 @@ export default class Header extends Component {
                 transition: "background 500ms ease-in"
               }}
             >
-              <FlexInnerWrapper
+              <FlexOuterWrapper
                 width="auto"
                 flex-dir="row"
                 justify="space-between"
@@ -90,8 +90,8 @@ export default class Header extends Component {
                 >
                   TECH SHEETS APP
                 </h1>
-              </FlexInnerWrapper>
-            </FlexInnerWrapper>
+              </FlexOuterWrapper>
+            </FlexOuterWrapper>
             <StyleSwitcher />
             <LoginContext.Consumer>
               {loginContext => (

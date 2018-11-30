@@ -1,13 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { DataContext } from "../Contexts/";
 import styled, { css } from "styled-components";
-import {
-  FlexOuterWrapper,
-  FlexInnerWrapper,
-  SubmitButton,
-  DLF_Pink,
-  $Label
-} from "../Styled/";
+import { FlexOuterWrapper, SubmitButton, DLF_Pink, $Label } from "../Styled/";
 import { formatName, Colors } from "../../utils/";
 
 export default class StyleSwitcher extends Component {
@@ -33,7 +27,7 @@ export default class StyleSwitcher extends Component {
             align-self="center"
             pad="0 0 0 40px"
           >
-            <FlexInnerWrapper flex-dir="row" height="100%">
+            <FlexOuterWrapper flex-dir="row" height="100%">
               <$Label color="white" align-self="center">
                 Styles:
               </$Label>
@@ -63,7 +57,7 @@ export default class StyleSwitcher extends Component {
                   +
                 </SubmitButton>
               )}
-            </FlexInnerWrapper>
+            </FlexOuterWrapper>
           </FlexOuterWrapper>
         )}
       </DataContext.Consumer>

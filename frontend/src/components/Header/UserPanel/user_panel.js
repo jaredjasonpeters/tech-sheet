@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { FlexOuterWrapper, FlexInnerWrapper, DLF_Green } from "../../Styled/";
+import { FlexOuterWrapper, DLF_Green } from "../../Styled/";
 import styled, { css } from "styled-components";
 import { Mutation } from "react-apollo";
 import { EDIT_TITLE_MUTATION } from "../../../resolvers/Mutations/edit_title_mutation";
@@ -26,14 +26,14 @@ export default class UserPanel extends Component {
     const { editTitle } = this.props.loginContext.state;
     const { title } = this.state;
     return (
-      <FlexInnerWrapper
+      <FlexOuterWrapper
         flex-dir="row"
         width="auto"
         align-self="flex-end"
         height="100%"
         pad="0 0 0 40px"
       >
-        <FlexInnerWrapper flex-dir="row" height="100%">
+        <FlexOuterWrapper flex-dir="row" height="100%">
           <ProfileImage
             src={this.state.profile_image_url}
             alt="80px by 80px image of user"
@@ -62,8 +62,8 @@ export default class UserPanel extends Component {
           <UserRole textColor={initTextColor}>
             {this.state.title.toUpperCase()}
           </UserRole>
-        </FlexInnerWrapper>
-      </FlexInnerWrapper>
+        </FlexOuterWrapper>
+      </FlexOuterWrapper>
     );
   }
 }

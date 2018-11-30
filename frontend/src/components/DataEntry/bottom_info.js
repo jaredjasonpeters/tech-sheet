@@ -5,7 +5,6 @@ import {
   $Label,
   $Input,
   SectionHeader,
-  FlexInnerWrapper,
   FlexOuterWrapper
 } from "../Styled/";
 
@@ -21,7 +20,7 @@ const BottomInfo = props => {
             BOTTOM INFO:{" "}
           </SectionHeader>
           <FlexOuterWrapper>
-            <FlexInnerWrapper width="auto">
+            <FlexOuterWrapper width="auto">
               <$Label center> Seeding Rate: </$Label>
               <$Input
                 name="seeding_rate"
@@ -29,8 +28,8 @@ const BottomInfo = props => {
                 value={context.state.seeding_rate}
                 height="auto"
               />
-            </FlexInnerWrapper>
-            <FlexInnerWrapper width="auto">
+            </FlexOuterWrapper>
+            <FlexOuterWrapper width="auto">
               <$Label center> Establishment Rate: </$Label>
               <$Input
                 name="establishment_rate"
@@ -38,8 +37,8 @@ const BottomInfo = props => {
                 value={context.state.establishment_rate}
                 height="auto"
               />
-            </FlexInnerWrapper>
-            <FlexInnerWrapper width="auto">
+            </FlexOuterWrapper>
+            <FlexOuterWrapper width="auto">
               <$Label center> Mowing Frequency: </$Label>
               <$Input
                 name="mowing_frequency"
@@ -47,8 +46,8 @@ const BottomInfo = props => {
                 value={context.state.mowing_frequency}
                 height="auto"
               />
-            </FlexInnerWrapper>
-            <FlexInnerWrapper width="auto">
+            </FlexOuterWrapper>
+            <FlexOuterWrapper width="auto">
               <$Label center> Nitrogen Required: </$Label>
               <$Input
                 name="nitrogen_required"
@@ -56,8 +55,8 @@ const BottomInfo = props => {
                 value={context.state.nitrogen_required}
                 height="auto"
               />
-            </FlexInnerWrapper>
-            <FlexInnerWrapper width="auto">
+            </FlexOuterWrapper>
+            <FlexOuterWrapper width="auto">
               <$Label center> Endophyte +: </$Label>
               <$Input
                 name="endophyte_enhanced"
@@ -65,7 +64,7 @@ const BottomInfo = props => {
                 value={context.state.endophyte_enhanced}
                 height="auto"
               />
-            </FlexInnerWrapper>
+            </FlexOuterWrapper>
           </FlexOuterWrapper>
         </Fragment>
       )}

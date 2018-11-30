@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 import { DataContext } from "../Contexts/";
 import {
   SectionHeader,
-  FlexInnerWrapper,
   Checkbox,
   InputLabel,
   $Input,
@@ -19,7 +18,7 @@ const Identifiers = props => (
           IDENTIFIERS{" "}
         </SectionHeader>
         <FlexOuterWrapper>
-          <FlexInnerWrapper flex-dir="row">
+          <FlexOuterWrapper flex-dir="row">
             <Checkbox
               blue
               onClick={context.state.handleCheck}
@@ -75,7 +74,7 @@ const Identifiers = props => (
               <option value="Annual Ryegrass">Annual Ryegrass</option>
               <option value="Festulolium">Festulolium</option>
             </Select>
-          </FlexInnerWrapper>
+          </FlexOuterWrapper>
         </FlexOuterWrapper>
       </Fragment>
     )}

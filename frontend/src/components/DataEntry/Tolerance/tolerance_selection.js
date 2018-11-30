@@ -51,7 +51,7 @@ export default class ToleranceSelection extends Component {
     return (
       <DataContext.Consumer>
         {context => (
-          <Fragment>
+          <>
             <Wrapper media="true">
               <SelectionContainer>
                 <$Label margin="0" height="50px">
@@ -142,7 +142,7 @@ export default class ToleranceSelection extends Component {
                 Clear Selection
               </SubmitButton>
             </Wrapper>
-          </Fragment>
+          </>
         )}
       </DataContext.Consumer>
     );
