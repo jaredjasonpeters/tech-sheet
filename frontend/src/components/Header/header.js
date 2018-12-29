@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import styled, { css } from "styled-components";
 import { FlexOuterWrapper } from "../Styled/";
 import { DataContext, LoginContext } from "../Contexts/";
+import { LoginConsumer } from '../Providers/login_provider'
+import { DataConsumer } from '../Providers/data_provider'
 import UserPanel from "../Header/UserPanel/user_panel";
 import StyleSwitcher from "../Header/style_switcher";
 import { Colors } from "../../utils/";
@@ -50,10 +52,11 @@ export default class Header extends Component {
     }, 500);
   }
   render() {
-    const { isAuthenticated } = this.props.loginContext.state;
 
     return (
-      <DataContext.Consumer>
+      <LoginConsumer>
+        {({ isAuthenticated, name, title }) => (
+        <DataConsumer>
         {dataContext => (
           <FlexOuterWrapper
             id="header-wrapper"
@@ -78,7 +81,7 @@ export default class Header extends Component {
               >
                 <img
                   id="company-logo"
-                  src={`/images/${dataContext.state.theme_style}.png`}
+                  src={`/images/${dataContext.theme_style}.png`}
                   className="App-logo"
                   alt="logo"
                 />
@@ -93,17 +96,16 @@ export default class Header extends Component {
               </FlexOuterWrapper>
             </FlexOuterWrapper>
             <StyleSwitcher />
-            <LoginContext.Consumer>
-              {loginContext => (
                 <UserPanel
                   dataContext={dataContext}
-                  loginContext={loginContext}
+                  name={name}
+                  title={title}
                 />
-              )}
-            </LoginContext.Consumer>
           </FlexOuterWrapper>
         )}
-      </DataContext.Consumer>
-    );
+      </DataConsumer>
+        )}
+      </LoginConsumer>
+    )
   }
 }

@@ -27,7 +27,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "graphql-cli": "^2.16.7"
+    "graphql-cli": "^3.0.3"
   },
   "browserslist": [
     ">0.2%",

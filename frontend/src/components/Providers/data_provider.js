@@ -3,7 +3,9 @@ import { DataContext } from "../Contexts/";
 import { errors, formatName } from "../../utils";
 import { DLF_Green } from "../Styled/";
 
-export default class DataProvider extends Component {
+const {Provider, Consumer } = DataContext
+
+class DataProvider extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -231,9 +233,11 @@ export default class DataProvider extends Component {
   }
   render() {
     return (
-      <DataContext.Provider value={{ state: this.state }}>
+      <Provider value={this.state}>
         {this.props.children}
-      </DataContext.Provider>
+      </Provider>
     );
   }
 }
+
+export {DataProvider, Consumer as DataConsumer}

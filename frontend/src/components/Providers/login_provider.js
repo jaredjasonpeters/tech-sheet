@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { LoginContext } from "../Contexts/";
 import { DLF_Green } from "../Styled/";
 
-export default class LoginProvider extends Component {
+const { Provider, Consumer } = LoginContext
+
+class LoginProvider extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -95,9 +97,11 @@ export default class LoginProvider extends Component {
 
   render() {
     return (
-      <LoginContext.Provider value={{ state: this.state }}>
+      <Provider value={this.state}>
         {this.props.children}
-      </LoginContext.Provider>
+      </Provider>
     );
   }
 }
+
+export { Consumer as LoginConsumer, LoginProvider}

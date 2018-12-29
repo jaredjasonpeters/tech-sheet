@@ -6,11 +6,11 @@ import {
   StyledInput,
   Checkbox
 } from "../Styled/";
-import { LoginContext } from "../Contexts/";
+import { LoginConsumer } from "../Providers/login_provider";
 import { Mutation } from "react-apollo";
-import { SIGNUP_MUTATION } from "../../resolvers/Mutations/sign_up_mutation";
-import { LOGIN_MUTATION } from "../../resolvers/Mutations/login_mutation";
 import { withRouter } from "react-router";
+import LoginForm from "./LoginForm";
+import SignUpForm from './SignUpForm';
 
 class Login extends Component {
   constructor(props) {
@@ -32,25 +32,9 @@ class Login extends Component {
     if (this.props.isAuthenticated) this.props.history.push("/app");
   }
 
-  componentDidMount() {}
-
   render() {
+    const {signup, error} = this.state
     return (
-      <LoginContext.Consumer>
-        {loginContext => {
-          const {
-            name,
-            email,
-            password,
-            authenticate,
-            DLFPICKSEED,
-            SEEDRESEARCHOFOREGON
-          } = loginContext.state;
-          const companies = [];
-          if (DLFPICKSEED) companies.push("DLFPICKSEED");
-          if (SEEDRESEARCHOFOREGON) companies.push("SEEDRESEARCHOFOREGON");
-
-          return (
             <FlexOuterWrapper
               id="login"
               height="100vh"
@@ -92,211 +76,24 @@ class Login extends Component {
                   br="5px"
                   justify="center"
                 >
-                  {this.state.signup && (
-                    <Fragment>
-                      <FlexOuterWrapper>
-                        <StyledLabel font-size="16px">Name:</StyledLabel>
-                        <StyledInput
-                          type="text"
-                          value={loginContext.state.name || ""}
-                          name="name"
-                          className="login-modal-input"
-                          height="40px"
-                          onChange={loginContext.state.inputChange}
-                        />
-                      </FlexOuterWrapper>
-
-                      <FlexOuterWrapper>
-                        <StyledLabel font-size="16px">Email:</StyledLabel>
-                        <StyledInput
-                          type="email"
-                          value={loginContext.state.email || ""}
-                          onBlur={loginContext.state.handleBlur}
-                          name="email"
-                          className="login-modal-input"
-                          height="40px"
-                          onChange={loginContext.state.inputChange}
-                          autoComplete="off"
-                        />
-                      </FlexOuterWrapper>
-                      <FlexOuterWrapper>
-                        <StyledLabel font-size="16px">Password:</StyledLabel>
-                        <StyledInput
-                          type="password"
-                          value={loginContext.state.password || ""}
-                          name="password"
-                          className="login-modal-input"
-                          height="40px"
-                          onChange={loginContext.state.inputChange}
-                          autoComplete="off"
-                        />
-                      </FlexOuterWrapper>
-
-                      <FlexOuterWrapper margin="0 0 30px 0">
-                        <StyledLabel font-size="16px"> Company: </StyledLabel>
-                      </FlexOuterWrapper>
-
-                      <FlexOuterWrapper flex-dir="row">
-                        <StyledLabel> DLF Pickseed </StyledLabel>
-                        <Checkbox
-                          selected={DLFPICKSEED}
-                          data-enum="DLFPICKSEED"
-                          width="30px"
-                          height="30px"
-                          border-rad="0px"
-                          min-width="30px"
-                          onClick={loginContext.state.toggleDLF}
-                        />
-                      </FlexOuterWrapper>
-
-                      <FlexOuterWrapper flex-dir="row">
-                        <StyledLabel> Seed Research of Oregon </StyledLabel>
-                        <Checkbox
-                          selected={SEEDRESEARCHOFOREGON}
-                          data-enum="SEEDRESEARCHOFOREGON"
-                          width="30px"
-                          height="30px"
-                          border-rad="0px"
-                          min-width="30px"
-                          onClick={loginContext.state.toggleSRO}
-                        />
-                      </FlexOuterWrapper>
-
-                      <Mutation
-                        mutation={SIGNUP_MUTATION}
-                        variables={{ name, email, password, companies }}
-                        onCompleted={authenticate}
-                        onError={({ graphQLErrors }) => {
-                          graphQLErrors.map(({ message }) =>
-                            this.setState({ error: message })
-                          );
-                        }}
-                      >
-                        {signUpMutation => {
-                          return (
-                            <SubmitButton
-                              className="submit-btn"
-                              submit
-                              align-self="center"
-                              width="300px"
-                              height="40px"
-                              font-fam="Michroma"
-                              letter-spac="4px"
-                              onClick={signUpMutation}
-                            >
-                              SIGN UP
-                            </SubmitButton>
-                          );
-                        }}
-                      </Mutation>
-                      <SignUpSwitcher
-                        toggle={this.toggleSignUp}
-                        signup={this.state.signup}
-                      />
-                    </Fragment>
-                  )}
-                  {!this.state.signup && (
-                    <Fragment>
-                      <FlexOuterWrapper>
-                        <StyledLabel font-size="16px">Email:</StyledLabel>
-                        <StyledInput
-                          type="email"
-                          name="email"
-                          className="login-modal-input"
-                          height="40px"
-                          onChange={loginContext.state.inputChange}
-                        />
-                      </FlexOuterWrapper>
-
-                      <FlexOuterWrapper>
-                        <StyledLabel font-size="16px">Password:</StyledLabel>
-                        <StyledInput
-                          type="password"
-                          name="password"
-                          className="login-modal-input"
-                          height="40px"
-                          onChange={loginContext.state.inputChange}
-                        />
-                      </FlexOuterWrapper>
-
-                      <Mutation
-                        mutation={LOGIN_MUTATION}
-                        variables={{ email, password }}
-                        onCompleted={authenticate}
-                        onError={({ graphQLErrors }) => {
-                          graphQLErrors.map(({ message }) =>
-                            this.setState({ error: message })
-                          );
-                        }}
-                      >
-                        {(loginMutation, { loading, error }) => {
-                          return (
-                            <Fragment>
-                              <SubmitButton
-                                className="submit-btn"
-                                submit
-                                align-self="center"
-                                width="300px"
-                                height="40px"
-                                font-fam="Michroma"
-                                letter-spac="4px"
-                                onClick={loginMutation}
-                              >
-                                LOGIN
-                              </SubmitButton>
-                              <SignUpSwitcher
-                                toggle={this.toggleSignUp}
-                                signup={this.state.signup}
-                              />
-                              <ErrorMessage error={this.state.error} />
-                            </Fragment>
-                          );
-                        }}
-                      </Mutation>
-                    </Fragment>
-                  )}
+                  {signup ? 
+                    <SignUpForm 
+                    toggle={this.toggleSignUp}
+                    signup={signup}/> 
+                    : <LoginForm 
+                    toggle={this.toggleSignUp}
+                    signup={signup}
+                    error={error}/>
+                  }
                 </FlexOuterWrapper>
               </FlexOuterWrapper>
             </FlexOuterWrapper>
-          );
-        }}
-      </LoginContext.Consumer>
     );
   }
 }
 
 export default withRouter(Login);
 
-const SignUpSwitcher = props => {
-  return (
-    <h5
-      onClick={props.toggle}
-      style={{
-        width: "100%",
-        textAlign: "center",
-        textDecoration: "underline",
-        cursor: "pointer",
-        fontFamily: "Nunito"
-      }}
-    >
-      {props.signup
-        ? "Already signed up click here to LOGIN"
-        : "Don't have an account SIGNUP"}
-    </h5>
-  );
-};
 
-const ErrorMessage = props => {
-  return (
-    <h4
-      style={{
-        width: "100%",
-        textAlign: "center",
-        color: "red",
-        fontFamily: "Nunito"
-      }}
-    >
-      {props.error}
-    </h4>
-  );
-};
+
+

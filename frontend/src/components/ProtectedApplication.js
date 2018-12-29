@@ -1,18 +1,17 @@
 import React, { Component } from "react";
-import DataProvider from "./Providers/data_provider";
-import LoginProvider from "./Providers/login_provider";
-import { DataContext, LoginContext } from "./Contexts/";
+import { DataProvider, DataConsumer } from "./Providers/data_provider";
+import { LoginProvider, LoginConsumer } from "./Providers/login_provider";
 import AppContent from "./AppContent/app_content";
 import Header from "./Header/header";
 import Modal from "./Modal/modal";
 
 export default class ProtectedApplication extends Component {
   render() {
-    const loginContext = this.props.loginContext;
+    
     return (
       <DataProvider>
-        <DataContext.Consumer>
-          {dataContext => {
+        <DataConsumer>
+          {({display_modal}) => {
             return (
               <div
                 id="App"
@@ -22,20 +21,18 @@ export default class ProtectedApplication extends Component {
                   background: "#80bc00"
                 }}
               >
-                {dataContext.state.display_modal && (
-                  <Modal dataContext={dataContext} />
+                {display_modal && (
+                  <Modal/>
                 )}
                 <Header
                   id="header"
                   companyName="DLF Pickseed"
-                  loginContext={loginContext}
-                  dataContext={dataContext}
                 />
                 <AppContent />
               </div>
             );
           }}
-        </DataContext.Consumer>
+        </DataConsumer>
       </DataProvider>
     );
   }

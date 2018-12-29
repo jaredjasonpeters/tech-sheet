@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { DataContext } from "../Contexts/";
+import { DataConsumer } from "../Providers/data_provider";
 import styled, { css } from "styled-components";
 import {
   FlexOuterWrapper,
@@ -23,8 +23,8 @@ export default class StyleSwitcher extends Component {
 
   render() {
     return (
-      <DataContext.Consumer>
-        {context => (
+      <DataConsumer>
+        {dataContext => (
           <FlexOuterWrapper
             border="3px solid white"
             width="auto"
@@ -38,16 +38,16 @@ export default class StyleSwitcher extends Component {
               </StyledLabel>
               {this.state.styles.map((v, i) => (
                 <Styles
-                  context={context}
+                  context={dataContext}
                   data-name={v}
                   name={v}
                   key={`style-Styled{i}`}
-                  onClick={context.state.chooseTheme}
+                  onClick={dataContext.chooseTheme}
                 >
                   {formatName(v)}
                 </Styles>
               ))}
-              {!context.state.display_form && (
+              {!dataContext.display_form && (
                 <SubmitButton
                   height="50px"
                   background="none"
@@ -57,7 +57,7 @@ export default class StyleSwitcher extends Component {
                   left="40px"
                   font-fam="Michroma"
                   top="0"
-                  onClick={context.state.displayForm}
+                  onClick={dataContext.displayForm}
                 >
                   +
                 </SubmitButton>
@@ -65,7 +65,7 @@ export default class StyleSwitcher extends Component {
             </FlexOuterWrapper>
           </FlexOuterWrapper>
         )}
-      </DataContext.Consumer>
+      </DataConsumer>
     );
   }
 }
@@ -83,7 +83,7 @@ align-self: center;
 cursor: pointer
 transition: color 1s
 color: Styled{props =>
-  props.context.state.theme_style === props.name ? Colors[props.name] : "white"}
+  props.context.theme_style === props.name ? Colors[props.name] : "white"}
 &:hover {
   color: Styled{props => Colors[props.name]}
 }

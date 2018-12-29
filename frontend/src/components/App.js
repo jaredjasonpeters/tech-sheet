@@ -1,8 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Switch, Route } from "react-router-dom";
 import "../styles/App.css";
-import LoginProvider from "./Providers/login_provider";
-import { LoginContext } from "./Contexts/";
+import {LoginProvider, LoginConsumer} from "./Providers/login_provider";
 import Login from "./Login/login";
 import FourOFour from "./404";
 import PrivateRoute from "./PrivateRoute";
@@ -14,29 +13,29 @@ class App extends Component {
   }
 
   render() {
+
     return (
       <LoginProvider>
-        <LoginContext.Consumer>
-          {loginContext => {
+        <LoginConsumer>
+          {({isAuthenticated}) => {
             return (
               <Switch>
                 <Route exact path="/">
                   {props => (
                     <Login
-                      isAuthenticated={loginContext.state.isAuthenticated}
-                      loginContext={loginContext}
+                      isAuthenticated={isAuthenticated}
                     />
                   )}
                 </Route>
                 <PrivateRoute
                   path="/app"
                   component={ProtectedApplication}
-                  loginContext={loginContext}
+                  isAuthenticated={isAuthenticated}
                 />
               </Switch>
             );
           }}
-        </LoginContext.Consumer>
+        </LoginConsumer>
       </LoginProvider>
     );
   }

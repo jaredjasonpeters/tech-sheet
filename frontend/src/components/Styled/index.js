@@ -7,11 +7,11 @@ const DLF_Green = "#00a651",
   ALIST_Blue = "#00aeef";
 
 const SectionHeader = styled.div`
-  flex-grow: 1
-  align-self: center
-  width: 100%
+  flex-grow: 1;
+  align-self: center;
+  width: 100%;
   height: 30px;
-  margin: 10px 0 10px 0
+  margin: 10px 0 10px 0;
   padding: 5px;
   background: ${props => Colors[props.theme] || "black"};
   border-radius: 5px;

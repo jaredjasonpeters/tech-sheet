@@ -9,8 +9,8 @@ export default class UserPanel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: this.props.loginContext.state.name,
-      title: this.props.loginContext.state.title,
+      name: this.props.name,
+      title: this.props.title,
       profile_image_url:
         "https://www.dlfpickseed.com/Files/Images/DLF_Pickseed_USA/Staff_Images/Leah_Brilman.jpg"
     };
