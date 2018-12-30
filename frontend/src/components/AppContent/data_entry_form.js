@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { StyledForm, SubmitButton, FlexOuterWrapper } from "../Styled/";
-import { DataContext } from "../Contexts/";
+import { DataConsumer } from "../Providers/data_provider";
 import ToleranceTable from "../DataEntry/Tolerance/tolerance_table";
 import TextContent from "../DataEntry/text_content";
 import NTEPDataEntry from "../DataEntry/NTEP/ntep_data_entry";
@@ -22,7 +22,7 @@ class DataEntryForm extends Component {
 
   render() {
     return (
-      <DataContext.Consumer>
+      <DataConsumer>
         {context => (
           <StyledForm id="data-entry-form">
             <Identifiers />
@@ -51,7 +51,7 @@ class DataEntryForm extends Component {
             </FlexOuterWrapper>
           </StyledForm>
         )}
-      </DataContext.Consumer>
+      </DataConsumer>
     );
   }
 }

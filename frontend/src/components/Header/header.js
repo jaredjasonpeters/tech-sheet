@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import styled, { css } from "styled-components";
 import { FlexOuterWrapper } from "../Styled/";
-import { DataContext, LoginContext } from "../Contexts/";
-import { LoginConsumer } from '../Providers/login_provider'
 import { DataConsumer } from '../Providers/data_provider'
 import UserPanel from "../Header/UserPanel/user_panel";
 import StyleSwitcher from "../Header/style_switcher";
@@ -54,8 +51,7 @@ export default class Header extends Component {
   render() {
 
     return (
-      <LoginConsumer>
-        {({ isAuthenticated, name, title }) => (
+      
         <DataConsumer>
         {dataContext => (
           <FlexOuterWrapper
@@ -88,7 +84,7 @@ export default class Header extends Component {
                 <h1
                   className="App-title"
                   style={{
-                    color: isAuthenticated && "white"
+                    color: "white"
                   }}
                 >
                   TECH SHEETS APP
@@ -97,15 +93,10 @@ export default class Header extends Component {
             </FlexOuterWrapper>
             <StyleSwitcher />
                 <UserPanel
-                  dataContext={dataContext}
-                  name={name}
-                  title={title}
                 />
           </FlexOuterWrapper>
         )}
       </DataConsumer>
-        )}
-      </LoginConsumer>
     )
   }
 }

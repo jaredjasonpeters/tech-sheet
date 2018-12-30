@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import TechSheetSidebar from "./Sidebar/tech_sheet_sidebar";
-import { DataContext } from "../Contexts/";
+import { DataConsumer } from "../Providers/data_provider";
 import DataEntryForm from "./data_entry_form";
 import { FlexOuterWrapper } from "../Styled/";
 import styled from "styled-components";
@@ -13,28 +13,28 @@ export default class AppContent extends Component {
 
   render() {
     return (
-      <DataContext.Consumer>
-        {dataContext => (
+      <DataConsumer>
+        {({ display_form }) => (
           <FlexOuterWrapper id="sidebar-container" pad="50px 0">
-            {!dataContext.state.display_form && (
-              <TechSheetSidebar dataContext={dataContext} />
+            {!display_form && (
+              <TechSheetSidebar />
             )}
             <FlexOuterWrapper>
-              {dataContext.state.display_form && (
+              {display_form && (
                 <div
                   id="entry-form-wrapper"
                   style={{
                     transition: "opacity 1500ms cubic-bezier(.77,.18,.27,1.5)"
                   }}
                 >
-                  <CloseDataEntryButton context={dataContext} />
+                  <CloseDataEntryButton />
                   <DataEntryForm />
                 </div>
               )}
             </FlexOuterWrapper>
           </FlexOuterWrapper>
         )}
-      </DataContext.Consumer>
+      </DataConsumer>
     );
   }
 }
@@ -60,15 +60,21 @@ class CloseDataEntryButton extends Component {
       CloseBar.style.opacity = 1;
     }, 1750);
   }
-
+  
   render() {
     return (
-      <CloseBar
+
+      <DataConsumer>
+      {({closeDataEntry}) => (
+        <CloseBar
         id="close-bar"
-        onClick={this.props.context.state.closeDataEntry}
-      >
+        onClick={closeDataEntry}
+        >
         X
-      </CloseBar>
-    );
-  }
+        </CloseBar>
+        )}
+      </DataConsumer>
+        )
+        }
 }
+      

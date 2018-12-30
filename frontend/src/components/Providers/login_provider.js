@@ -13,6 +13,7 @@ class LoginProvider extends Component {
       password: null,
       name: null,
       title: "minion",
+      profile_image: "https://www.dlfpickseed.com/Files/Images/DLF_Pickseed_USA/Staff_Images/Leah_Brilman.jpg",
       SEEDRESEARCHOFOREGON: false,
       DLFPICKSEED: false,
       validation_error: "",

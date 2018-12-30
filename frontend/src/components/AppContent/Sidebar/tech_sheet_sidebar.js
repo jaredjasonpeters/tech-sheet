@@ -1,13 +1,15 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
-import { DataContext } from "../../Contexts/";
+import { DataConsumer } from "../../Providers/data_provider";
 import { DLF_Green } from "../../Styled/";
+
+//initial state here
 
 export default class TechSheetSidebar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      theme_style: props.dataContext.state.theme_style,
+      theme_style: '',
       data: {
         DLF_Pickseed_Pro_Turf: {
           techsheets: [
@@ -55,9 +57,9 @@ export default class TechSheetSidebar extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { theme_style } = prevProps.dataContext.state;
+    const { theme_style } = prevState;
 
-    if (theme_style !== this.props.dataContext.state.theme_style) {
+    if (theme_style !== this.state.theme_style) {
       var Sidebar = document.getElementById("sidebar-container");
       Sidebar.style.transition = "none";
       Sidebar.style.opacity = 0;
@@ -71,19 +73,19 @@ export default class TechSheetSidebar extends Component {
 
   render() {
     return (
-      <DataContext.Consumer>
-        {context =>
-          context.state.theme_style !== "DLF_BLK" && (
-            <SidebarContainer context={context.state.theme_style}>
-              {this.state.data[context.state.theme_style].techsheets.map(v => (
-                <a href="" key={`ts_link-${v}`}>
-                  <li key={`ts-${v}`}>{v.toUpperCase()}</li>
+      <DataConsumer>
+        {({ theme_style }) =>
+          theme_style !== "DLF_BLK" && (
+            <SidebarContainer>
+              {this.state.data[theme_style].techsheets.map( techsheet => (
+                <a href="" key={`ts_link-${techsheet}`}>
+                  <li key={`ts-${techsheet}`}>{techsheet.toUpperCase()}</li>
                 </a>
               ))}
             </SidebarContainer>
           )
         }
-      </DataContext.Consumer>
+      </DataConsumer>
     );
   }
 }

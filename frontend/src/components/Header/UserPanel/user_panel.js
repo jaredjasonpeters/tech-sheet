@@ -1,71 +1,69 @@
-import React, { Component, Fragment } from "react";
+import React from "react";
 import { FlexOuterWrapper, DLF_Green } from "../../Styled/";
 import styled, { css } from "styled-components";
 import { Mutation } from "react-apollo";
 import { EDIT_TITLE_MUTATION } from "../../../resolvers/Mutations/edit_title_mutation";
 import { Redirect } from "react-router-dom";
+import { LoginConsumer } from "../../Providers/login_provider";
+import { DataConsumer } from "../../Providers/data_provider";
 
-export default class UserPanel extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: this.props.name,
-      title: this.props.title,
-      profile_image_url:
-        "https://www.dlfpickseed.com/Files/Images/DLF_Pickseed_USA/Staff_Images/Leah_Brilman.jpg"
-    };
-  }
+export default function UserPanel() {
+  
+  //look at proper way to set-up initial state
 
-  render() {
-    const { logoutUser, isAuthenticated } = this.props.loginContext.state;
-
-    var initTextColor =
-      this.props.dataContext.state.theme_style === "DLF_BLK"
-        ? "black"
-        : "white";
-    const { editTitle } = this.props.loginContext.state;
-    const { title } = this.state;
     return (
-      <FlexOuterWrapper
-        flex-dir="row"
-        width="auto"
-        align-self="flex-end"
-        height="100%"
-        pad="0 0 0 40px"
-      >
-        <FlexOuterWrapper flex-dir="row" height="100%">
+      <LoginConsumer>
+      {({title, editTitle, name, profile_image, logoutUser, isAuthenticated }) => {
+        return (
+          <DataConsumer>
+          {({theme_style, }) => {
+            var initTextColor = theme_style === "DLF_BLK" ? "black" : "white";
+            return (
+              <FlexOuterWrapper
+              flex-dir="row"
+              width="auto"
+              align-self="flex-end"
+              height="100%"
+              pad="0 0 0 40px"
+              >
+              <FlexOuterWrapper flex-dir="row" height="100%">
           <ProfileImage
-            src={this.state.profile_image_url}
+            src={profile_image}
             alt="80px by 80px image of user"
           />
-          <UserName textColor={initTextColor}>{this.state.name}</UserName>
+          <UserName textColor={initTextColor}>{name}</UserName>
           <UserOptions textColor={initTextColor}>
-            <Mutation
-              mutation={EDIT_TITLE_MUTATION}
+          <Mutation
+          mutation={EDIT_TITLE_MUTATION}
               variables={{ title }}
               onCompleted={editTitle}
               onError={({ graphQLErrors }) => {
                 graphQLErrors.map(({ message }) =>
-                  this.setState({ error: message })
+                this.setState({ error: message })
                 );
               }}
-            >
+              >
               {editTitleMutation => (
                 <a onClick={editTitleMutation}>
-                  <li>Change Title</li>
+                <li>Change Title</li>
                 </a>
-              )}
-            </Mutation>
-            <LogoutUser onClick={logoutUser}>LOGOUT</LogoutUser>
-            {!isAuthenticated && <Redirect to="/" />}
-          </UserOptions>
-          <UserRole textColor={initTextColor}>
-            {this.state.title.toUpperCase()}
-          </UserRole>
-        </FlexOuterWrapper>
-      </FlexOuterWrapper>
-    );
-  }
+                )}
+                </Mutation>
+                <LogoutUser onClick={logoutUser}>LOGOUT</LogoutUser>
+                {!isAuthenticated && <Redirect to="/" />}
+                </UserOptions>
+                <UserRole textColor={initTextColor}>
+                {title.toUpperCase()}
+                </UserRole>
+                </FlexOuterWrapper>
+                </FlexOuterWrapper>
+                )
+              }}
+              </DataConsumer> 
+              )
+            }}
+            </LoginConsumer>
+              );
 }
 
 const ProfileImage = styled.img`
