@@ -18,7 +18,7 @@ class DataProvider extends Component {
       species_name: "",
       sliders: {},
       tables: {},
-      image: "",
+      selected_modal_image: "",
       quick_facts: "",
       adaptation: "",
       seeding_rate: "",
@@ -59,7 +59,7 @@ class DataProvider extends Component {
         if (src) {
           button.style.background = DLF_Green;
           setTimeout(
-            () => this.setState({ image: src, display_modal: false }),
+            () => this.setState({ selected_modal_image: src, display_modal: false }),
             1200
           );
         }
@@ -219,12 +219,8 @@ class DataProvider extends Component {
         });
       },
 
-      closeDataEntry: () => {
-        const entryFormWrapper = document.getElementById("entry-form-wrapper");
-        setTimeout(() => {
-          entryFormWrapper.style.opacity = 0;
-        }, 750);
-
+      closeDataEntry: (e) => {
+        e.preventDefault()
         setTimeout(() => {
           this.setState({ display_form: false });
         }, 1700);

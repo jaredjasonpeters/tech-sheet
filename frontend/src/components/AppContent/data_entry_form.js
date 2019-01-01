@@ -16,7 +16,7 @@ class DataEntryForm extends Component {
       <DataConsumer>
         {({reset, saveForm}) => (
           <StyledForm opacity={100}>
-            <CloseDataEntryButton />
+            <CloseForm />
             <Identifiers />
             <ToleranceTable />
             <ImageSelector />
@@ -64,21 +64,13 @@ const CloseBar = styled.div`
   }
 `;
 
-class CloseDataEntryButton extends Component {
-  componentDidMount() {
-    const CloseBar = document.getElementById("close-bar");
-    setTimeout(() => {
-      CloseBar.style.opacity = 1;
-    }, 1750);
-  }
+class CloseForm extends Component {
   
   render() {
     return (
-
       <DataConsumer>
       {({closeDataEntry}) => (
         <CloseBar
-        id="close-bar"
         onClick={closeDataEntry}
         >
         X

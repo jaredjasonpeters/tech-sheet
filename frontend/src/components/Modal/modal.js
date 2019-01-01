@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
-import { DataContext } from "../Contexts/";
-import { FlexOuterWrapper, FlexInnerWrapper } from "../Styled/";
+import { DataConsumer } from "../Providers/data_provider";
+import { FlexOuterWrapper } from "../Styled/";
 import SearchBar from "./search_bar";
 
 class Modal extends Component {
@@ -20,10 +20,13 @@ class Modal extends Component {
   }
 
   render() {
+
+    const {images} = this.state
+
     return (
-      <DataContext.Consumer>
-        {({ state }) => (
-          <Overlay data-overlay onClick={state.closeModal}>
+      <DataConsumer>
+        {({ closeModal,  }) => (
+          <Overlay data-overlay onClick={closeModal}>
             <FlexOuterWrapper
               flex-dir="row"
               pad="0"
@@ -34,11 +37,11 @@ class Modal extends Component {
               align-items="center"
             >
               <SearchBar />
-              {this.state.images.map((v, i) => {
+              {images.map((image, index) => {
                 return (
                   <ThumbnailWrapper>
-                    <Thumbnail key={v} src={v} />
-                    <SelectImage data-src={v} onClick={state.closeModal}>
+                    <Thumbnail key={image} src={image} />
+                    <SelectImage data-src={image} onClick={closeModal}>
                       {" "}
                       +{" "}
                     </SelectImage>
@@ -48,7 +51,7 @@ class Modal extends Component {
             </FlexOuterWrapper>
           </Overlay>
         )}
-      </DataContext.Consumer>
+      </DataConsumer>
     );
   }
 }

@@ -19,8 +19,7 @@ class ImageSelector extends Component {
         {({theme_style, selected_modal_image: img, displayModal}) => (
           <>
             <SectionHeader theme={theme_style} className="sh">
-              {" "}
-              IMAGE SELECTOR{" "}
+              IMAGE SELECTOR
             </SectionHeader>
             <FlexOuterWrapper flex-dir="row" justify="center">
               {img && (

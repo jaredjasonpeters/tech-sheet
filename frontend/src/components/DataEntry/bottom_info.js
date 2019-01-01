@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
-import { DataContext } from "../Contexts/";
+import { DataConsumer } from "../Providers/data_provider";
 import {
-  Wrapper,
   StyledLabel,
   StyledInput,
   SectionHeader,
@@ -10,11 +9,18 @@ import {
 
 const BottomInfo = props => {
   return (
-    <DataContext.Consumer>
-      {context => (
-        <Fragment>
+    <DataConsumer>
+      {({ theme_style,
+          handleChange,
+          mowing_frequency,
+          nitrogen_required,
+          endophyte_enhanced,
+          seeding_rate,
+          establishment_rate 
+        }) => (
+        <>
           <SectionHeader
-            theme={context.state.theme_style}
+            theme={theme_style}
             className="sh bottom_info"
           >
             BOTTOM INFO:{" "}
@@ -24,8 +30,8 @@ const BottomInfo = props => {
               <StyledLabel center> Seeding Rate: </StyledLabel>
               <StyledInput
                 name="seeding_rate"
-                onChange={context.state.handleChange}
-                value={context.state.seeding_rate}
+                onChange={handleChange}
+                value={seeding_rate}
                 height="auto"
               />
             </FlexOuterWrapper>
@@ -33,8 +39,8 @@ const BottomInfo = props => {
               <StyledLabel center> Establishment Rate: </StyledLabel>
               <StyledInput
                 name="establishment_rate"
-                onChange={context.state.handleChange}
-                value={context.state.establishment_rate}
+                onChange={handleChange}
+                value={establishment_rate}
                 height="auto"
               />
             </FlexOuterWrapper>
@@ -42,8 +48,8 @@ const BottomInfo = props => {
               <StyledLabel center> Mowing Frequency: </StyledLabel>
               <StyledInput
                 name="mowing_frequency"
-                onChange={context.state.handleChange}
-                value={context.state.mowing_frequency}
+                onChange={handleChange}
+                value={mowing_frequency}
                 height="auto"
               />
             </FlexOuterWrapper>
@@ -51,8 +57,8 @@ const BottomInfo = props => {
               <StyledLabel center> Nitrogen Required: </StyledLabel>
               <StyledInput
                 name="nitrogen_required"
-                onChange={context.state.handleChange}
-                value={context.state.nitrogen_required}
+                onChange={handleChange}
+                value={nitrogen_required}
                 height="auto"
               />
             </FlexOuterWrapper>
@@ -60,15 +66,15 @@ const BottomInfo = props => {
               <StyledLabel center> Endophyte +: </StyledLabel>
               <StyledInput
                 name="endophyte_enhanced"
-                onChange={context.state.handleChange}
-                value={context.state.endophyte_enhanced}
+                onChange={handleChange}
+                value={endophyte_enhanced}
                 height="auto"
               />
             </FlexOuterWrapper>
           </FlexOuterWrapper>
-        </Fragment>
+        </>
       )}
-    </DataContext.Consumer>
+    </DataConsumer>
   );
 };
 

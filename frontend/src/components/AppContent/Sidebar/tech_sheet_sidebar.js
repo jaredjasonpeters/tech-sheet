@@ -45,32 +45,6 @@ export default class TechSheetSidebar extends Component {
     };
   }
 
-  componentDidMount() {
-    var Sidebar = document.getElementById("sidebar-container");
-    Sidebar.style.transition = "none";
-    Sidebar.style.opacity = 0;
-
-    setTimeout(() => {
-      Sidebar.style.transition = "opacity 750ms ease-in";
-      Sidebar.style.opacity = 1;
-    }, 750);
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const { theme_style } = prevState;
-
-    if (theme_style !== this.state.theme_style) {
-      var Sidebar = document.getElementById("sidebar-container");
-      Sidebar.style.transition = "none";
-      Sidebar.style.opacity = 0;
-
-      setTimeout(() => {
-        Sidebar.style.transition = "opacity 750ms ease-in";
-        Sidebar.style.opacity = 1;
-      }, 750);
-    }
-  }
-
   render() {
     return (
       <DataConsumer>
