@@ -1,5 +1,5 @@
-import React, { Fragment, Component } from "react";
-import { DataContext } from "../../Contexts/";
+import React, { Component } from "react";
+import { DataConsumer } from "../../Providers/data_provider";
 import NTEProw from "../NTEP/ntep_row";
 import {
   StyledInput,
@@ -56,12 +56,9 @@ export default class NTEPtable extends Component {
         }
       }
     };
-    this.handleInput = this.handleInput.bind(this);
-    this.handleCheck = this.handleCheck.bind(this);
-    this.setTitle = this.setTitle.bind(this);
   }
 
-  handleInput(e) {
+  handleInput = (e) => {
     var { name, value } = e.target;
     var row = e.target.getAttribute("data-row");
 
@@ -87,7 +84,7 @@ export default class NTEPtable extends Component {
     });
   }
 
-  handleCheck(e) {
+  handleCheck = (e) => {
     var { name, value } = e.target;
     var row = e.target.getAttribute("data-row");
 
@@ -100,7 +97,7 @@ export default class NTEPtable extends Component {
     });
   }
 
-  setTitle(e) {
+  setTitle = (e) => {
     var { name, value } = e.target;
     console.log(name);
     this.setState(prevState => {
@@ -112,8 +109,8 @@ export default class NTEPtable extends Component {
 
   render() {
     return (
-      <DataContext.Consumer>
-        {context => (
+      <DataConsumer>
+        { ({addTable}) => (
           <>
             <div
               style={{
@@ -249,8 +246,8 @@ export default class NTEPtable extends Component {
                   width="150px"
                   max="150px"
                   height="40px"
-                  onClick={context.state.addTable.bind(
-                    context,
+                  onClick={addTable.bind(
+                    addTable,
                     this.state.table
                   )}
                 >
@@ -260,7 +257,7 @@ export default class NTEPtable extends Component {
             </div>
           </>
         )}
-      </DataContext.Consumer>
+      </DataConsumer>
     );
   }
 }

@@ -9,6 +9,7 @@ class DataProvider extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      techsheet_data: {},
       theme_style: "DLF_Pickseed_Pro_Turf",
       display_form: true,
       display_modal: false,
