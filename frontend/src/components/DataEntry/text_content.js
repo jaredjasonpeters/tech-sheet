@@ -1,17 +1,17 @@
-import React, { Fragment } from "react";
+import React from "react";
 import {
   SectionHeader,
   InputLabel,
   StyledTextArea,
   StyledLabel
 } from "../Styled/";
-import { DataContext } from "../Contexts/";
+import { DataConsumer } from "../Providers/data_provider";
 
-const TextContent = props => (
-  <DataContext.Consumer>
-    {context => (
-      <Fragment>
-        <SectionHeader className="sh" theme={context.state.theme_style}>
+const TextContent = (props) => (
+  <DataConsumer>
+    {({theme_style, handleChange, quick_facts, adaptation, }) => (
+      <>
+        <SectionHeader className="sh" theme={theme_style}>
           {" "}
           CONTENT{" "}
         </SectionHeader>
@@ -20,20 +20,20 @@ const TextContent = props => (
         <StyledTextArea
           id="quick-facts"
           name="quick_facts"
-          onChange={context.state.handleChange}
-          value={context.state.quick_facts}
+          onChange={  handleChange}
+          value={  quick_facts}
         />
 
         <StyledLabel htmlFor="quick-facts"> Adaptation: </StyledLabel>
         <StyledTextArea
           id="adaptation"
           name="adaptation"
-          onChange={context.state.handleChange}
-          value={context.state.adaptation}
+          onChange={  handleChange}
+          value={  adaptation}
         />
-      </Fragment>
+      </>
     )}
-  </DataContext.Consumer>
+  </DataConsumer>
 );
 
 export default TextContent;

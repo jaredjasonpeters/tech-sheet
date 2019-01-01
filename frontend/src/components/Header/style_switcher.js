@@ -9,6 +9,8 @@ import {
 } from "../Styled/";
 import { formatName, Colors } from "../../utils/";
 
+// clear state switch to function component
+
 export default class StyleSwitcher extends Component {
   constructor(props) {
     super(props);

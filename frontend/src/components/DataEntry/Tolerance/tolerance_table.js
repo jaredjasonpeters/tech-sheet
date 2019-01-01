@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from "react";
-import { DataContext } from "../../Contexts/";
+import React, { Component } from "react";
+import { DataConsumer } from "../../Providers/data_provider";
 import {
   SectionHeader,
   InputWrapper,
@@ -11,37 +11,37 @@ import {
 import { formatName, errors } from "../../../utils";
 import ToleranceSelection from "../Tolerance/tolerance_selection";
 
-const ToleranceTable = props => (
-  <DataContext.Consumer>
-    {context => (
-      <Fragment>
+const ToleranceTable = () => (
+  <DataConsumer>
+    {({toleranceSelected, sliders, theme_style, handleChange,error_message }) => (
+      <>
         <SectionHeader
-          theme={context.state.theme_style}
+          theme={theme_style}
           className="sh tolerance_table"
         >
           {" "}
           TOLERANCE TABLE{" "}
         </SectionHeader>
-        {context.state.toleranceSelected ? (
-          context.state.sliders.map(v => (
+        {toleranceSelected ? (
+          sliders.map(v => (
             <InputWrapper key={v}>
               <InputLabel>{formatName(v)}</InputLabel>
               <StyledInput
                 type="range"
                 name={v}
-                value={context.state[v] || 1}
+                value={sliders[v] || 1}
                 min="1"
                 max="9"
                 step="1"
-                onChange={context.state.handleChange}
+                onChange={handleChange}
               />
-              <Value value={context.state[v]}>{context.state[v]}</Value>
+              <Value value={sliders[v]}>{sliders[v]}</Value>
             </InputWrapper>
           ))
         ) : (
           <ToleranceSelection />
         )}
-        {context.state.error_message === errors.tolerance_not_selected && (
+        {error_message === errors.tolerance_not_selected && (
           <span
             style={{
               width: "100%",
@@ -52,12 +52,12 @@ const ToleranceTable = props => (
               fontSize: "20px"
             }}
           >
-            {context.state.error_message}
+            {error_message}
           </span>
         )}
-      </Fragment>
+      </>
     )}
-  </DataContext.Consumer>
+  </DataConsumer>
 );
 
 export default ToleranceTable;

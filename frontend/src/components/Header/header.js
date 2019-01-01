@@ -91,9 +91,8 @@ export default class Header extends Component {
                 </h1>
               </FlexOuterWrapper>
             </FlexOuterWrapper>
-            <StyleSwitcher />
-                <UserPanel
-                />
+              <StyleSwitcher />
+              <UserPanel/>
           </FlexOuterWrapper>
         )}
       </DataConsumer>

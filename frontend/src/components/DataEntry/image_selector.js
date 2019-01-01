@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import {
   SectionHeader,
   FlexInnerWrapper,
@@ -8,41 +8,37 @@ import {
   Checkbox,
   SubmitButton
 } from "../Styled/";
-import { DataContext } from "../Contexts/";
+import { DataConsumer } from "../Providers/data_provider";
 import styled from "styled-components";
 
 class ImageSelector extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
+  
   render() {
     return (
-      <DataContext.Consumer>
-        {dataContext => (
-          <Fragment>
-            <SectionHeader theme={dataContext.state.theme_style} className="sh">
+      <DataConsumer>
+        {({theme_style, selected_modal_image: img, displayModal}) => (
+          <>
+            <SectionHeader theme={theme_style} className="sh">
               {" "}
               IMAGE SELECTOR{" "}
             </SectionHeader>
             <FlexOuterWrapper flex-dir="row" justify="center">
-              {dataContext.state.image && (
-                <SelectedImage src={dataContext.state.image} alt="plant" />
+              {img && (
+                <SelectedImage src={img} alt="plant" />
               )}
               <SubmitButton
                 submit
                 max="100px"
                 font-size="40px"
-                onClick={dataContext.state.displayModal}
+                onClick={displayModal}
                 flex-grow="1"
               >
                 {String.fromCodePoint(0x2b07)}
               </SubmitButton>
             </FlexOuterWrapper>
-          </Fragment>
+          </>
         )}
-      </DataContext.Consumer>
+      </DataConsumer>
     );
   }
 }

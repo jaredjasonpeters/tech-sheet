@@ -34,10 +34,11 @@ const StyledForm = styled.div`
   padding: 50px;
   border: solid 3px white;
   border-radius: 15px
-  opacity: 0;
+  opacity: ${({timeout}) => timeout && setTimeout(() => 1, timeout)};
   box-shadow: 15px 15px 5px 2px rgba(0, 0, 0, .2);
   transition: opacity 2s
   background: rgb(240, 240, 240)
+
 `;
 
 const StyledLabel = styled.label`

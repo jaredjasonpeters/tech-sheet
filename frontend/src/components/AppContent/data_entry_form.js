@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styled from 'styled-components'
 import { StyledForm, SubmitButton, FlexOuterWrapper } from "../Styled/";
 import { DataConsumer } from "../Providers/data_provider";
 import ToleranceTable from "../DataEntry/Tolerance/tolerance_table";
@@ -9,22 +10,13 @@ import Identifiers from "../DataEntry/identifiers";
 import ImageSelector from "../DataEntry/image_selector";
 
 class DataEntryForm extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidMount() {
-    var form = document.getElementById("data-entry-form");
-    setTimeout(() => {
-      form.style.opacity = 1;
-    }, 1000);
-  }
 
   render() {
     return (
       <DataConsumer>
-        {context => (
-          <StyledForm id="data-entry-form">
+        {({reset, saveForm}) => (
+          <StyledForm opacity={100}>
+            <CloseDataEntryButton />
             <Identifiers />
             <ToleranceTable />
             <ImageSelector />
@@ -35,7 +27,7 @@ class DataEntryForm extends Component {
               <SubmitButton
                 submit
                 name="save_button"
-                onClick={context.state.saveForm}
+                onClick={saveForm}
               >
                 {" "}
                 Save{" "}
@@ -43,7 +35,7 @@ class DataEntryForm extends Component {
               <SubmitButton
                 reset
                 name="reset_button"
-                onClick={context.state.reset}
+                onClick={reset}
               >
                 {" "}
                 Reset{" "}
@@ -57,3 +49,42 @@ class DataEntryForm extends Component {
 }
 
 export default DataEntryForm;
+
+const CloseBar = styled.div`
+  width: 100%;
+  color: #ce1141;
+  font-size: 50px;
+  cursor: pointer;
+  text-align: center;
+  background: white;
+  opacity: 0;
+  transition: font-size 200ms ease-in-out, opacity 400ms ease-in;
+  &:hover {
+    font-size: 60px;
+  }
+`;
+
+class CloseDataEntryButton extends Component {
+  componentDidMount() {
+    const CloseBar = document.getElementById("close-bar");
+    setTimeout(() => {
+      CloseBar.style.opacity = 1;
+    }, 1750);
+  }
+  
+  render() {
+    return (
+
+      <DataConsumer>
+      {({closeDataEntry}) => (
+        <CloseBar
+        id="close-bar"
+        onClick={closeDataEntry}
+        >
+        X
+        </CloseBar>
+        )}
+      </DataConsumer>
+        )
+        }
+}

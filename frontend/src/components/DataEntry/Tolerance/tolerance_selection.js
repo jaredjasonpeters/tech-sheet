@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { DataContext } from "../../Contexts/";
+import { DataConsumer } from "../../Providers/data_provider";
 import {
   StyledLabel,
   Wrapper,
@@ -21,11 +21,9 @@ export default class ToleranceSelection extends Component {
       drought_tolerance: false,
       wear_tolerance: false
     };
-    this.handleClick = this.handleClick.bind(this);
-    this.handleReset = this.handleReset.bind(this);
   }
 
-  handleClick(e) {
+  handleClick = (e) => {
     e.preventDefault();
     var name = e.target.getAttribute("name");
     var key = name;
@@ -36,7 +34,7 @@ export default class ToleranceSelection extends Component {
     });
   }
 
-  handleReset(e) {
+  handleReset = (e) => {
     this.setState({
       turf_quality: false,
       salinity_tolerance: false,
@@ -49,8 +47,8 @@ export default class ToleranceSelection extends Component {
 
   render() {
     return (
-      <DataContext.Consumer>
-        {context => (
+      <DataConsumer>
+        {({handleSubmit}) => (
           <>
             <Wrapper media="true">
               <SelectionContainer>
@@ -127,7 +125,7 @@ export default class ToleranceSelection extends Component {
                 width="auto"
                 bottom="20px"
                 fSize="14px"
-                onClick={context.state.handleSubmit.bind(this, this.state)}
+                onClick={handleSubmit.bind(this, this.state)}
               >
                 Populate Tables
               </SubmitButton>
@@ -144,7 +142,7 @@ export default class ToleranceSelection extends Component {
             </Wrapper>
           </>
         )}
-      </DataContext.Consumer>
+      </DataConsumer>
     );
   }
 }

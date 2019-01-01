@@ -75,12 +75,12 @@ class DataProvider extends Component {
         });
       },
 
-      handleSubmit: (options, e) => {
+      handleSubmit: (tolerances, e) => {
         var count = 0;
         var inputs = [];
-        for (let option in options) {
-          if (options[option] === true) {
-            inputs.push(option);
+        for (let tolerance in tolerances) {
+          if (tolerances[tolerance] === true) {
+            inputs.push(tolerance);
             count++;
           }
         }

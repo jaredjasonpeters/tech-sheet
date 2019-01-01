@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { DataContext } from "../../Contexts/";
+import { DataConsumer } from "../../Providers/data_provider";
 import NTEPtable from "../NTEP/ntep_table";
 import {
   AddTableButton,
@@ -16,7 +16,7 @@ export default class NTEPDataEntry extends Component {
       count: 1
     };
   }
-  handleClick(e) {
+  handleClick = (e) => {
     e.preventDefault();
     if (this.state.count <= 4) {
       this.setState(prevState => {
@@ -32,13 +32,12 @@ export default class NTEPDataEntry extends Component {
     }
   }
 
-  removeTable(context, e) {
+  removeTable = (e, rmTable) => {
     e.preventDefault();
     if (this.state.count > 1) {
       this.setState(prevState => {
         var count = prevState.count - 1;
-        console.log(count);
-        context.state.removeTable(count);
+        rmTable(count);
 
         var newArr = prevState.arr;
         newArr.pop();
@@ -53,20 +52,20 @@ export default class NTEPDataEntry extends Component {
 
   render() {
     return (
-      <DataContext.Consumer>
-        {context => (
-          <Fragment>
+      <DataConsumer>
+        {({removeTable, theme_style}) => (
+          <>
             <SectionHeader
-              theme={context.state.theme_style}
+              theme={theme_style}
               className="sh ntep_data_entry"
             >
               NTEP DATA ENTRY:{" "}
             </SectionHeader>
             <Wrapper justify="center">
-              <AddTableButton onClick={this.handleClick.bind(this)}>
+              <AddTableButton onClick={this.handleClick}>
                 +
               </AddTableButton>
-              <ResetButton onClick={this.removeTable.bind(this, context)}>
+              <ResetButton onClick={this.removeTable.bind(this, removeTable)}>
                 -
               </ResetButton>
             </Wrapper>
@@ -75,9 +74,9 @@ export default class NTEPDataEntry extends Component {
                 <NTEPtable key={`table-${v}`} name={`table-${v}`} count={v} />
               ))}
             </Wrapper>
-          </Fragment>
+          </>
         )}
-      </DataContext.Consumer>
+      </DataConsumer>
     );
   }
 }
